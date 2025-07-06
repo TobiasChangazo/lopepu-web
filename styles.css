@@ -231,16 +231,16 @@ footer a {
 }
 
 .datos-negocio {
-  background: #fff;
-  color: #222;
-  padding: 25px 20px;
-  margin: auto;
-  max-width: 600px;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  background: none;
+  color: #fff;
+  padding: 10px 20px;
+  margin: 0 auto;
+  max-width: 800px;
   font-family: 'Segoe UI', 'Montserrat', sans-serif;
   font-weight: 500;
   letter-spacing: 0.3px;
+  box-shadow: none;
+  border-radius: 0;
 }
 
 .datos-negocio h2,
