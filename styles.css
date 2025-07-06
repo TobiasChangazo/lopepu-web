@@ -8,7 +8,8 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  overflow-x: hidden;
+  /* CAMBIO CLAVE: Asegúrate de que overflow-x: hidden; no esté aquí */
+  /* Si aún lo tienes, coméntalo o bórralo */
 }
 
 header {
@@ -28,29 +29,42 @@ header img:hover {
 nav {
   background: #fff;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  overflow-x: auto; /* Permite el scroll horizontal */
+  -webkit-overflow-scrolling: touch; /* Mejora el scroll en iOS */
+  padding: 0 10px; /* Asegura un pequeño padding lateral para que no se pegue al borde */
 }
 
 nav ul {
   display: flex;
-  justify-content: center;
+  justify-content: center; /* Centra los elementos cuando caben */
   list-style: none;
   margin: 0;
   padding: 1rem 0;
+  gap: 16px;
+  white-space: nowrap; /* Mantiene los elementos en una sola línea */
+  scrollbar-width: none; /* Oculta el scrollbar para Firefox */
+  -ms-overflow-style: none; /* Oculta el scrollbar para IE/Edge */
+}
+
+nav ul::-webkit-scrollbar {
+  display: none; /* Oculta el scrollbar para Webkit (Chrome, Safari) */
 }
 
 nav li {
-  margin: 0 1.8rem;
+  flex: 0 0 auto; /* Asegura que los elementos no se achiquen */
 }
 
 nav a {
   text-decoration: none;
   color: #333;
   font-weight: bold;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   cursor: pointer;
   padding: 10px 16px;
   border-radius: 6px;
   transition: background 0.3s;
+  white-space: nowrap;
+  background-color: #fff;
 }
 
 nav a:hover,
@@ -65,27 +79,28 @@ nav a.active {
   max-width: 1200px;
   margin: auto;
   flex-grow: 1;
+  box-sizing: border-box; /* Asegura que el padding no cause desbordamiento */
 }
 .section.active {
   display: block;
 }
 
-/* 🟢 CORREGIDO: Grid adaptable */
 .cards-horizontal,
 .cards-horizontal.two-column-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  /* Ajuste de minmax si se veían 3 columnas en algunos casos fuera del media query */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Reducido minmax para móviles sin media query */
   gap: 20px;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  box-sizing: border-box;
 }
 
 .card-horizontal {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
@@ -100,7 +115,8 @@ nav a.active {
 
 .card-horizontal img {
   width: 100%;
-  height: 380px;
+  height: auto;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: 8px;
 }
@@ -142,6 +158,8 @@ footer {
   background: #000;
   color: #ffeb3b;
   margin-top: auto;
+  box-sizing: border-box; /* Asegura que el padding no desborde */
+  width: 100%; /* Asegura que ocupe todo el ancho disponible */
 }
 
 footer a {
@@ -156,6 +174,7 @@ footer a {
   padding: 15px 20px;
   font-size: 1rem;
   line-height: 1.5;
+  box-sizing: border-box; /* Asegura que el padding no desborde */
 }
 
 .info-negocio p {
@@ -219,6 +238,7 @@ footer a {
   text-align: center;
   padding: 30px 20px 40px;
   font-family: 'Montserrat', sans-serif;
+  box-sizing: border-box; /* Asegura que el padding no desborde */
 }
 
 .bienvenida h1 {
@@ -241,6 +261,7 @@ footer a {
   letter-spacing: 0.3px;
   box-shadow: none;
   border-radius: 0;
+  box-sizing: border-box; /* Asegura que el padding no desborde */
 }
 
 .datos-negocio h2,
@@ -249,55 +270,114 @@ footer a {
   font-family: 'Segoe UI Semibold', 'Montserrat', sans-serif;
 }
 
-/* -------------------- RESPONSIVE -------------------- */
+/* -------------------- RESPONSIVE: móviles -------------------- */
 @media (max-width: 600px) {
+  nav {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 5px; /* Reducir aún más el padding en nav para móviles */
+  }
+
   nav ul {
-    flex-direction: column;
-    padding: 0;
+    display: flex;
+    flex-wrap: nowrap; /* Asegura que los elementos se mantengan en una sola fila */
+    overflow-x: auto; /* Habilita el scroll horizontal */
+    white-space: nowrap;
+    padding: 10px 0; /* Asegura padding vertical, pero no horizontal para que el scroll tenga espacio */
+    margin: 0;
+    gap: 8px; /* Reducir un poco el espacio entre elementos */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    justify-content: flex-start; /* Alinea los elementos al inicio para que sean visibles si desbordan */
+  }
+
+  nav ul::-webkit-scrollbar {
+    display: none;
   }
 
   nav li {
-    margin: 0.5rem 0;
+    flex: 0 0 auto;
   }
 
   nav a {
-    font-size: 1rem;
-    padding: 8px 12px;
+    display: inline-block;
+    font-size: 0.9rem; /* Reducir un poco el tamaño de fuente en nav */
+    padding: 6px 10px; /* Reducir padding en nav para que quepan más elementos */
+    white-space: nowrap;
+    border-radius: 6px;
+    background-color: white;
+    font-weight: bold;
+  }
+
+  nav a.active {
+    background-color: #ffc107;
+    color: #000;
   }
 
   .cards-horizontal {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    /* CAMBIO CLAVE: Forzar 2 columnas en pantallas pequeñas con !important */
+    grid-template-columns: repeat(2, 1fr) !important; 
+    gap: 10px; /* Reducir el gap para más espacio */
+    padding: 10px; /* Reducir padding de la sección de tarjetas */
+    box-sizing: border-box;
   }
 
   .card-horizontal {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    padding: 8px; /* Reducir padding de las tarjetas individuales */
   }
 
   .card-horizontal img {
     width: 100%;
-    height: 220px;
-    object-fit: contain;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
     border-radius: 8px;
   }
 
   .card-horizontal .price {
     position: static;
-    margin-top: 10px;
+    margin-top: 8px;
     text-align: center;
-  }
-
-  .bienvenida h1 {
-    font-size: 2rem;
+    font-size: 1.2rem; /* Ajustar tamaño de fuente del precio */
   }
 
   .card-horizontal h4 {
-    font-size: 1.1rem;
+    font-size: 1rem; /* Ajustar tamaño de fuente de los títulos de las tarjetas */
+    margin-bottom: 5px;
   }
 
   .card-horizontal p {
-    font-size: 0.9rem;
+    font-size: 0.8rem; /* Ajustar tamaño de fuente de la descripción de las tarjetas */
+    margin-bottom: 10px; /* Ajustar margen para el precio */
+  }
+
+  .bienvenida h1 {
+    font-size: 1.8rem; /* Reducir tamaño de título de bienvenida */
+  }
+
+  .bienvenida .datos-negocio p,
+  .bienvenida .datos-negocio h3 {
+    font-size: 0.9rem; /* Ajustar tamaño de texto en datos-negocio */
+  }
+
+  .bienvenida {
+    padding: 15px 10px 20px; /* Ajustar aún más el padding de la bienvenida */
+  }
+
+  footer {
+    padding: 10px 5px; /* Ajustar el padding del footer */
+    font-size: 0.8rem; /* Reducir tamaño de fuente del copyright */
+  }
+
+  .redes-sociales .iconos-redes {
+    gap: 15px; /* Reducir espacio entre iconos de redes */
+  }
+
+  .iconos-redes a {
+    font-size: 2rem; /* Ajustar tamaño de los iconos de redes */
   }
 }
