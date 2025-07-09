@@ -4,12 +4,20 @@
 body {
   margin: 0;
   font-family: 'Arial', sans-serif;
-  background: url('img/fondo.jpg') no-repeat center center fixed;
+  background: url('img/fondo.jpg') no-repeat center center;
   background-size: cover;
+  background-attachment: fixed;
   color: #333;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+}
+
+/* Fijar fondo en escritorio pero scroll en iPhone */
+@supports (-webkit-touch-callout: none) {
+  body {
+    background-attachment: scroll;
+  }
 }
 
 /* === HEADER === */
@@ -32,6 +40,7 @@ nav {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  width: 100%;
   padding: 0 10px;
 }
 nav ul {
@@ -42,6 +51,9 @@ nav ul {
   padding: 1rem 0;
   gap: 16px;
   white-space: nowrap;
+  overflow-x: auto;
+  flex-wrap: nowrap;
+  max-width: 100%;
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
@@ -60,9 +72,9 @@ nav a {
   padding: 10px 16px;
   border-radius: 6px;
   background-color: transparent;
-  transition: background 0.3s;
+  transition: background 0.3s, transform 0.3s ease; /* <--- AÑADIR ESTO */
+  white-space: nowrap;
 }
-
 nav a:hover,
 nav a.active {
   background: #a8402c;
@@ -77,9 +89,18 @@ nav a.active {
   margin: auto;
   flex-grow: 1;
   box-sizing: border-box;
+
+  /* AÑADIR: */
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.4s ease;
 }
 .section.active {
   display: block;
+
+  /* AÑADIR: */
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* === GRID DE TARJETAS === */
@@ -93,21 +114,18 @@ nav a.active {
   padding: 24px 36px;
   margin: 20px auto;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-
   width: 60vw;              
   max-width: 1600px;         
   height: 200px;             
   border: 2px solid #000;
   box-sizing: border-box;
 }
-
 .card-horizontal.full img {
   width: 120px;
   height: 120px;
   object-fit: cover;
   border-radius: 10px;
 }
-
 .card-horizontal.full .info {
   flex: 1;
   display: flex;
@@ -116,28 +134,23 @@ nav a.active {
   height: 100%;
   padding-right: 20px;
 }
-
 .card-horizontal.full h4 {
   font-size: 1.1rem;
   margin: 0 0 4px;
   color: #fff;
 }
-
 .card-horizontal.full p {
   font-size: 0.9rem;
   color: #ccc;
   margin: 0;
 }
-
 .card-horizontal.full .price {
   font-size: 1.1rem;
   font-weight: bold;
   color: #4CAF50;
   margin-top: 10px;
-  align-self: flex-start; /* 🔸 Lo empuja a la izquierda */
+  align-self: flex-start;
 }
-
-
 
 /* === BIENVENIDA Y DATOS === */
 .bienvenida {
@@ -157,11 +170,14 @@ nav a.active {
   letter-spacing: 1px;
 }
 .datos-negocio {
-  background: none;
+  background-color: #000;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
   color: #fff;
   padding: 10px 20px;
   margin: 0 auto;
-  max-width: 800px;
+  max-width: 100%;
+  width: 100%;
   font-family: 'Segoe UI', 'Montserrat', sans-serif;
   font-weight: 500;
   letter-spacing: 0.3px;
@@ -183,6 +199,7 @@ nav a.active {
   justify-content: center;
   gap: 25px;
   margin-top: 10px;
+  flex-wrap: wrap;
 }
 .iconos-redes a {
   text-decoration: none;
@@ -218,6 +235,7 @@ footer a {
   margin: 20px auto;
   object-fit: cover;
   border: 4px solid #ffeb3b;
+  max-width: 100%;
 }
 
 /* === MODAL === */
@@ -231,7 +249,6 @@ footer a {
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 999;
 }
-
 #item-modal {
   display: none;
   position: fixed;
@@ -310,19 +327,16 @@ footer a {
   border: 2px solid #ffc107;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
 }
-
 .bloque-precio-empanadas.simple h3 {
   color: #ffc107;
   margin-bottom: 16px;
 }
-
 .bloque-precio-empanadas.simple .precio {
   color: #4CAF50;
   font-weight: bold;
 }
 
 /* === conos variedad === */
-
 .bloque-promo-conos {
   background-color: #1c1c1c;
   color: #fff;
@@ -334,36 +348,29 @@ footer a {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
   text-align: left;
 }
-
 .bloque-promo-conos h3 {
   color: #ffc107;
   margin-bottom: 20px;
   font-size: 1.6rem;
   text-align: center;
   text-transform: uppercase;
-  /* Quitamos la línea amarilla: */
   border-bottom: none;
   padding-bottom: 0;
 }
-
-/* ✅ movemos el efecto de columnas acá */
 .bloque-promo-conos ul {
   list-style-type: disc;
   padding-left: 30px;
   font-size: 1.2rem;
-  column-count: 2;         /* 🔸 ahora sí dividido */
+  column-count: 2;
   column-gap: 40px;
 }
-
 .bloque-promo-conos li {
   margin-bottom: 10px;
 }
-
 .bloque-promo-conos li::marker {
   font-size: 1.3em;
   color: #fff;
 }
-
 .nota-conos {
   background-color: #2c2c2c;
   color: #fbf5fc;
@@ -384,52 +391,113 @@ footer a {
   gap: 4px;
   margin-top: 10px;
 }
-
-.price.grande {
-  color: #fff;
-}
+.price.grande,
 .price.chica {
   color: #fff;
 }
-
 .price {
   font-weight: bold;
   font-size: 1rem;
   display: flex;
   gap: 6px;
   align-items: center;
+  margin-bottom: 4px;
 }
-
 .label {
-  color: #fff; /* blanco para "Grande:" y "Chica:" */
+  color: #fff;
 }
-
 .monto {
-  color: #4CAF50; /* verde solo para el precio */
+  color: #4CAF50;
 }
 
-/* responsive telefonos */
-
+/* === RESPONSIVE CELULARES === */
 @media (max-width: 768px) {
-  .card-horizontal.full {
-    flex-direction: column;
-    align-items: flex-start;
-    height: auto;
-    width: 95%;
-    max-width: 95%;
-    padding: 20px;
+  nav {
+    width: 100%;
+    overflow-x: auto;
   }
 
-  .card-horizontal.full .info {
+  nav ul {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 12px;
+    padding: 0.5rem;
+    margin: 0;
+    list-style: none;
+    scrollbar-width: none;
+  }
+
+  nav ul::-webkit-scrollbar {
+    display: none;
+  }
+
+  nav a {
+    font-size: 1rem;
+    white-space: nowrap;
+  }
+
+  .datos-negocio {
     width: 100%;
-    padding: 0;
-    margin-bottom: 10px;
+    max-width: 90%;
+    padding: 10px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .bienvenida h1 {
+    font-size: 1.8rem;
+  }
+
+  .card-horizontal.full {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 100%;
+    margin: 10px auto;
+    height: auto;
+    padding: 16px;
   }
 
   .card-horizontal.full img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    object-fit: cover;
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
   }
+
+  .card-horizontal.full .info {
+    padding: 10px 0 0;
+    width: 100%;
+  }
+
+  .card-horizontal.full h4 {
+    font-size: 1rem;
+  }
+
+  .card-horizontal.full p,
+  .card-horizontal.full .price {
+    font-size: 0.9rem;
+  }
+
+  .precios-dobles {
+    gap: 4px;
+    margin-top: 8px;
+  }
+
+  .iconos-redes {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  footer {
+    font-size: 0.9rem;
+    padding: 15px;
+  }
+}
+.section {
+  padding: 20px 16px;
 }
