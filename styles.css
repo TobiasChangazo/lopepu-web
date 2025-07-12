@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap');
 
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 /* === RESET Y BASE === */
 body {
   margin: 0;
@@ -32,6 +37,13 @@ header img {
 }
 header img:hover {
   transform: scale(1.1);
+}
+
+header,
+.bienvenida {
+  margin: 0;
+  padding: 0;
+  border: none;
 }
 
 /* === NAVBAR === */
@@ -232,11 +244,13 @@ footer a {
   width: 110px;
   height: 110px;
   border-radius: 50%;
-  margin: 20px auto;
+  margin: 0 auto;
+  display: block;
   object-fit: cover;
-  border: 4px solid #ffeb3b;
+  border: none; /* Quitar borde */
+  box-shadow: none; /* Quitar sombras */
   max-width: 100%;
-}
+  }
 
 /* === MODAL === */
 #item-modal-overlay {
@@ -453,25 +467,33 @@ footer a {
   }
 
   .card-horizontal.full {
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    width: 100%;
-    max-width: 100%;
-    margin: 10px auto;
-    height: auto;
-    padding: 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  width: 100%;
+  max-width: 100%;
+  padding: 16px;
+  box-sizing: border-box;
+  text-align: left;
+  gap: 12px;
   }
 
   .card-horizontal.full img {
-    width: 80px;
-    height: 80px;
-    flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 10px;
+  flex-shrink: 0;
   }
 
   .card-horizontal.full .info {
-    padding: 10px 0 0;
-    width: 100%;
+  padding: 0;
+  width: calc(100% - 100px); /* Dejá espacio para la imagen */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   }
 
   .card-horizontal.full h4 {
