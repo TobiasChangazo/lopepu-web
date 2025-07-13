@@ -531,7 +531,6 @@ footer a {
     font-size: 0.9rem;
     padding: 15px;
   }
-  }
   .section {
     padding: 20px 16px;
   }
@@ -544,3 +543,7 @@ footer a {
     transform: none !important;
     opacity: 1 !important;
   }
+  .section.active {
+    display: block !important;
+  }
+}
