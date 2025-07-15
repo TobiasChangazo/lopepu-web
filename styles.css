@@ -6,15 +6,10 @@ html, body {
   max-width: 100%;
   overflow-x: hidden;
   font-family: 'Arial', sans-serif;
-  background: url('img/fondo2.jpg') center 120px no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-  background-color: #000; /* fallback si no carga la imagen */
   color: #fff;
-  display: flex;
-  flex-direction: column;
   min-height: 100vh;
   position: relative;
+  z-index: 0;
 }
 
 body::before {
@@ -23,8 +18,10 @@ body::before {
   top: 0; left: 0;
   width: 100vw;
   height: 100vh;
-  background: url('img/fondo2.jpg') center top no-repeat;
+  background: url('img/fondo.jpg') center top no-repeat;
   background-size: cover;
+  background-attachment: fixed;
+  background-color: #000; /* fallback */
   z-index: -1;
   opacity: 1;
 }
@@ -806,4 +803,15 @@ footer a {
   background-color: #2e3f2e;
   border: 2px solid #4CAF50;
   color: #c8ffc8;
+}
+
+.fondo-fijo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: url('img/fondo.jpg') center top no-repeat;
+  background-size: cover;
 }
