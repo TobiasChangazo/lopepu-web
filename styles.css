@@ -1,18 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap');
 
-html, body {
-  max-width: 100%;
-  overflow-x: hidden;
+body {
   margin: 0;
   font-family: 'Arial', sans-serif;
-  /*background: url('img/fondo.jpg') no-repeat center center; 
-  background-size: cover;
-  background-attachment: fixed; */
+  background-color: #000;
   color: #fff;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   position: relative;
+  background-image: url('img/fondo.jpg');
+  background-repeat: repeat;
+  background-position: top center;
+  background-size: auto;
+  background-attachment: scroll;
+  overflow-x: hidden;
 }
 
 /* Desactivar fondo fijo en móviles */
@@ -449,21 +451,8 @@ footer a {
     padding: 15px;
   }
 
-  .section {
-    padding: 20px 16px;
-    transition: none !important;
-    transform: none !important;
-    opacity: 1 !important;
+  .section, footer, nav, header {
+    position: relative;
+    z-index: 1;
   }
-}
-.fondo-fijo {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url('img/fondo.jpg') no-repeat center center;
-  background-size: cover;
-  z-index: -10;
-  pointer-events: none;
 }
