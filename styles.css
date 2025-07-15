@@ -1,20 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap');
 
-body {
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
   margin: 0;
   font-family: 'Arial', sans-serif;
-  background-color: #000;
+  background: url('img/fondo.jpg') no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
   color: #fff;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   position: relative;
-  background-image: url('img/fondo.jpg');
-  background-repeat: repeat;
-  background-position: top center;
-  background-size: auto;
-  background-attachment: scroll;
-  overflow-x: hidden;
 }
 
 /* Desactivar fondo fijo en móviles */
@@ -37,22 +35,31 @@ header img {
 header img:hover {
   transform: scale(1.1);
 }
-header,
+/*header,
 .bienvenida {
   margin: 0;
   padding: 0;
   border: none;
-}
+}*/
 
 /* === NAVBAR === */
 nav {
-  background: #1c1c1c;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  background: rgba(187, 95, 95, 0.92);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  width: 100%;
-  padding: 0 10px;
+  width: fit-content;
+  max-width: 95%;
+  margin: 20px auto;
+  padding: 0 20px;
+  border-radius: 16px;
+  position: relative;
+  z-index: 10;
 }
+
+/* Estilo del UL contenedor */
 nav ul {
   display: flex;
   justify-content: center;
@@ -70,25 +77,31 @@ nav ul {
 nav ul::-webkit-scrollbar {
   display: none;
 }
+
+/* Estilo de los ítems */
 nav li {
   flex: 0 0 auto;
 }
+
+/* Estilo de los enlaces */
 nav a {
   text-decoration: none;
-  color: #f1f1f1;
+  color: #fff5eb; /* blanco cálido */
   font-weight: bold;
   font-size: 1.1rem;
   cursor: pointer;
   padding: 10px 16px;
-  border-radius: 6px;
+  border-radius: 8px;
   background-color: transparent;
   transition: background 0.3s, transform 0.3s ease;
   white-space: nowrap;
 }
+
+/* Hover y enlace activo */
 nav a:hover,
 nav a.active {
-  background: #a8402c;
-  color: #fff;
+  background: #fff5eb;
+  color: #ba5940;
 }
 
 /* === SECCIONES === */
@@ -159,35 +172,55 @@ nav a.active {
 }
 
 /* === BIENVENIDA Y DATOS === */
-.bienvenida {
-  background-color: #000;
-  color: #fff;
-  text-align: center;
-  padding: 30px 20px 40px;
+.bienvenida-box {
+  background: linear-gradient(
+    to bottom,
+    #f0cf2b 0%,     /* amarillo logo */
+    #dea160 60%,    /* durazno claro */
+    #f09952 75%,    /* naranja pastel */
+    rgba(0,0,0,0) 100%  /* transición a fondo */
+  );
+  color: #333;
+  padding: 40px 20px;
   font-family: 'Montserrat', sans-serif;
-  box-sizing: border-box;
+  box-shadow: inset 0 -40px 60px -20px rgba(0, 0, 0, 0.4);
 }
-.bienvenida h1 {
-  font-size: 2.8rem;
-  font-weight: 700;
-  margin: 0;
+
+.bienvenida-bloque {
+  background: rgba(28, 28, 28, 0.92); /* fondo oscuro semitransparente */
+  border-radius: 16px;
+  padding: 30px;
+  max-width: 650px;
+  margin: auto;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.4); /* sombra más profunda */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px); /* soporte Safari */
+  animation: fadeInUp 1s ease-out;
+  border: 1px solid rgba(240, 207, 43, 0.3);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ubicacion {
+  font-size: 1.1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
   color: #ffeb3b;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-.datos-negocio {
-  background-color: #000;
-  color: #fff;
-  padding: 10px 20px;
-  margin: 0 auto;
-  width: 100%;
-  max-width: 100%;
-  font-family: 'Segoe UI', 'Montserrat', sans-serif;
-}
-.datos-negocio h2,
-.datos-negocio h3,
-.datos-negocio p {
-  font-family: 'Segoe UI Semibold', 'Montserrat', sans-serif;
 }
 
 /* === REDES SOCIALES === */
@@ -397,19 +430,41 @@ footer a {
 /* === RESPONSIVE CELULARES === */
 @media (max-width: 768px) {
   nav {
-    width: 100%;
+    width: fit-content;
+    max-width: 90%;
     overflow-x: auto;
+    padding: 4px 10px;
+    margin: 0 auto;
+    border-radius: 14px;
   }
 
   nav ul {
     flex-direction: row;
-    gap: 12px;
-    padding: 0.5rem;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 0.5rem 12px;
     margin: 0;
+    white-space: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE y Edge */
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 0;
+    scroll-behavior: smooth;
+  }
+
+  nav ul::-webkit-scrollbar {
+    display: none;
+  }
+
+  nav li {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
   }
 
   nav a {
     font-size: 1rem;
+    padding: 7px 14px;
   }
 
   .datos-negocio {
@@ -451,8 +506,278 @@ footer a {
     padding: 15px;
   }
 
-  .section, footer, nav, header {
-    position: relative;
-    z-index: 1;
+  .section {
+    padding: 20px 16px;
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
   }
+}
+
+/* === ESTADO HORARIOS === */
+
+.estado-horarios-box {
+  background: #1c1c1c;
+  padding: 25px 20px;
+  border-radius: 16px;
+  border: none;
+  max-width: 500px;
+  margin: 25px auto;
+  text-align: center;
+  box-shadow: 0 0 18px rgba(255, 193, 7, 0.3);
+  position: relative;
+}
+
+.estado-local {
+  font-size: 1.1rem;            /* un poco más grande */
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-weight: 700;
+  margin: 0 auto 10px auto;     /* centrado */
+  display: inline-block;
+  background-color: #2b2b2b;
+  color: #fff;
+  border: 2px solid transparent;
+  position: relative;
+  padding-left: 42px;
+  max-width: 280px;             /* más corto */
+  text-align: center;
+}
+.estado-local::before {
+  content: '';
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: #f44336; /* rojo por defecto */
+  box-shadow: 0 0 6px rgba(255, 0, 0, 0.6);
+  transition: background-color 0.3s;
+}
+
+.estado-local.abierto {
+  background-color: #2e3f2e;
+  border: 2px solid #4CAF50;
+  color: #c8ffc8;
+}
+
+.estado-local.cerrado {
+  background-color: #3c2b2b;
+  border: 2px solid #f44336;
+  color: #ffdede;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.btn-horario {
+  background-color: #ffc107;
+  color: #000;
+  border: none;
+  padding: 6px 16px;
+  font-weight: 600;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(255, 193, 7, 0.3);
+  display: inline-block; /* que no ocupe todo el ancho */
+  width: auto;
+  margin: 0 auto;
+}
+
+.btn-horario:hover {
+  background-color: #ffd54f;
+  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.5);
+}
+
+.horarios-detalle {
+  display: none;
+  margin-top: 15px;
+  color: #fff;
+  font-size: 0.95rem;
+  text-align: left;
+  background-color: #2c2c2c;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.4);
+}
+
+.horarios-detalle ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.horarios-detalle li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  font-size: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.horarios-detalle li::before {
+  content: "🕒";
+  font-size: 1rem;
+  color: #ffc107;
+}
+
+.estado-local.abierto::before {
+  background-color: #4CAF50;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.6);
+  animation: pulse 1.5s infinite;
+}
+
+.estado-local.cerrado::before {
+  background-color: #f44336;
+  box-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.7; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.ubicacion-link {
+  font-size: 1rem;
+  margin: 0 auto;
+  background: #2c2c2c;
+  padding: 10px 14px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+}
+
+.ubicacion-link a {
+  color: #fff; /* hace el texto blanco */
+  text-decoration: none;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ubicacion-link a i {
+  color: #ffc107; /* deja el ícono dorado */
+}
+
+.ubicacion-link:hover {
+  background: #3a3a3a;
+}
+
+.ver-mapa {
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-left: 8px;
+  font-weight: normal;
+}
+
+/* === PAGO REDES === */
+
+.pago-redes-moderno {
+  text-align: center;
+  padding: 20px 0;
+  color: #fff;
+}
+
+.pago-redes-moderno h3 {
+  color: #fff; /* blanco */
+  font-size: 1.4rem;
+  margin-bottom: 18px;
+}
+
+.lista-medios {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto 20px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(150px, 1fr));
+  gap: 14px 40px;
+  font-size: 1rem;
+  max-width: 400px;
+  justify-content: center;
+  text-align: left;
+  padding-left: 70px;
+}
+
+.lista-medios li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #ddd;
+  justify-content: flex-start; /* Asegura alineación a la izquierda */
+}
+
+.lista-medios i {
+  color: #4CAF50;
+  font-size: 1.1rem;
+}
+
+.pedido-wsp a,
+.redes-sociales-link a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #fff;
+  margin: 12px 0;
+  font-size: 1rem;
+  padding: 10px 16px;
+  border-radius: 30px;
+  transition: background 0.3s;
+}
+
+.pedido-wsp a {
+  background-color: #25d366;
+}
+
+.pedido-wsp a:hover {
+  background-color: #1da955;
+}
+
+.redes-sociales-link a {
+  background-color: #e1306c;
+}
+
+.redes-sociales-link a:hover {
+  background-color: #c01e59;
+}
+
+.pedido-wsp i,
+.redes-sociales-link i {
+  font-size: 1.2rem;
+}
+
+.estado-local.abriendo {
+  background-color: #3c2e1e;
+  border: 2px solid #ffc107;
+  color: #fff3cd;
+}
+
+.estado-local.cerrando {
+  background-color: #3c2e1e;
+  border: 2px solid #ffc107;
+  color: #fff3cd;
+}
+
+.estado-local.cerrado {
+  background-color: #3c2b2b;
+  border: 2px solid #f44336;
+  color: #ffdede;
+}
+
+.estado-local.abierto {
+  background-color: #2e3f2e;
+  border: 2px solid #4CAF50;
+  color: #c8ffc8;
 }

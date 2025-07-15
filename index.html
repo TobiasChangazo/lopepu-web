@@ -2,10 +2,11 @@
 
 <html lang="es">
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Lo Pepu</title>
-<link href="styles.css?v=9.1" rel="stylesheet"/>
+<link href="styles.css?v=9.4" rel="stylesheet"/>
 <link href="favicon.ico" rel="icon" type="image/x-icon">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
 
@@ -14,27 +15,57 @@
 <header>
 <img alt="Lo Pepu" class="logo-redondo" src="img/logo1.jpg" title="Lo Pepu"/>
 </header>
-<section class="bienvenida">
-<div class="datos-negocio">
-<p><i class="fas fa-map-marker-alt"></i> Calle 30 Bis Esquina 5</p>
-<p><strong>🕒 Horarios:</strong> Martes a Domingos de 19:30 a 23:00 hs</p>
-<h3>Medios de pago</h3>
-<p>💵 Efectivo | 📲 QR | 📟 Transferencia | 💳 Débito</p>
-<div class="redes-sociales">
-<p><strong>Hacé tu pedido por WhatsApp</strong></p>
-<div class="iconos-redes">
-<a href="https://wa.me/5492324674311" target="_blank" title="WhatsApp">
-<i class="fab fa-whatsapp"></i>
-</a>
+<section class="bienvenida-box">
+  <div class="bienvenida-bloque">
+
+    <!-- Estado actual -->
+    <div class="estado-local" id="estado-actual">Cargando estado...</div>
+
+    <!-- Botón + horarios -->
+    <button id="toggle-horarios" class="btn-horario">🕒 Ver horarios</button>
+    <div id="horarios-detalle" class="horarios-detalle">
+      <ul>
+        <li><strong>Lunes:</strong> Cerrado</li>
+        <li><strong>Martes:</strong> 19:30 - 23:00</li>
+        <li><strong>Miércoles:</strong> 19:30 - 23:00</li>
+        <li><strong>Jueves:</strong> 19:30 - 23:00</li>
+        <li><strong>Viernes:</strong> 19:30 - 23:00</li>
+        <li><strong>Sábado:</strong> 19:30 - 23:00</li>
+        <li><strong>Domingo:</strong> 19:30 - 23:00</li>
+      </ul>
+    </div>
+
+    <!-- Mapa ubicación -->
+    <div class="ubicacion-link">
+      <a href="https://www.google.com/maps/search/?api=1&query=Calle+30+Bis+Esquina+5" target="_blank">
+      <i class="fa-solid fa-map-location-dot"></i> Calle 30 Bis Esquina 5 <span class="ver-mapa">[Ver en mapa]</span>
+      </a>
+    </div>
+
+    <!-- Medios de pago -->
+    <div class="pago-redes-moderno">
+  <h3><i class="fa-solid fa-credit-card"></i> Medios de pago</h3>
+  <ul class="lista-medios">
+    <li><i class="fa-solid fa-money-bill-wave"></i> Efectivo</li>
+    <li><i class="fa-solid fa-qrcode"></i> QR</li>
+    <li><i class="fa-solid fa-building-columns"></i> Transferencia</li>
+    <li><i class="fa-solid fa-credit-card"></i> Débito</li>
+  </ul>
+
+  <div class="pedido-wsp">
+    <a href="https://wa.me/5492324674311" target="_blank">
+      <i class="fab fa-whatsapp"></i> Hacé tu pedido por WhatsApp
+    </a>
+  </div>
+
+  <div class="redes-sociales-link">
+    <a href="https://instagram.com/lopepupizzeria" target="_blank">
+      <i class="fab fa-instagram"></i> Seguinos en Instagram
+    </a>
+  </div>
 </div>
-<p style="margin-top: 20px;"><strong>Seguinos en Instagram!</strong></p>
-<div class="iconos-redes">
-<a href="https://instagram.com/lopepupizzeria" target="_blank" title="Instagram">
-<i class="fab fa-instagram"></i>
-</a>
-</div>
-</div>
-</div>
+</section>
+
 </section>
 <nav>
 <ul>
@@ -590,6 +621,61 @@
     itemModalOverlay.style.display = 'none';
     document.body.style.overflow = '';
   });
+
+  // horarios config
+  document.getElementById('toggle-horarios').addEventListener('click', () => {
+    const detalle = document.getElementById('horarios-detalle');
+    detalle.style.display = detalle.style.display === 'none' ? 'block' : 'none';
+  });
+
+function actualizarEstado() {
+  const estadoEl = document.getElementById('estado-actual');
+  const ahora = new Date();
+  const dia = ahora.getDay();
+  const hora = ahora.getHours();
+  const minutos = ahora.getMinutes();
+
+  const abre = 19 * 60 + 30;   // 1170 = 19:30
+  const cierra = 23 * 60;      // 1380 = 23:00
+  const actual = hora * 60 + minutos;
+
+  const esDiaHabil = (dia >= 2 && dia <= 6) || dia === 0;
+
+  let estado = '';
+  let clase = '';
+
+  if (esDiaHabil) {
+    if (actual >= abre && actual < cierra) {
+      // Dentro del horario normal
+      if (actual >= cierra - 30) {
+        estado = '<strong>Cierra pronto</strong>';
+        clase = 'cerrando';
+      } else {
+        estado = '<strong>Abierto ahora</strong>';
+        clase = 'abierto';
+      }
+    } else if (actual >= abre - 15 && actual < abre) {
+      // Entre 19:15 y 19:30
+      estado = '<strong>Abre pronto</strong>';
+      clase = 'abriendo';
+    } else {
+      estado = '<strong>Cerrado en este momento</strong>';
+      clase = 'cerrado';
+    }
+  } else {
+    estado = '<strong>Cerrado en este momento</strong>';
+    clase = 'cerrado';
+  }
+
+  estadoEl.innerHTML = estado;
+  estadoEl.classList.remove('abierto', 'cerrado', 'abriendo', 'cerrando');
+  estadoEl.classList.add(clase);
+}
+
+  actualizarEstado();
+  setInterval(actualizarEstado, 60000);
 </script>
 </body>
 </html>
+
+/* === asds === */
