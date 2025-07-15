@@ -18,10 +18,8 @@ body::before {
   top: 0; left: 0;
   width: 100vw;
   height: 100vh;
-  background: url('img/fondo.jpg') center top no-repeat;
+  background: #000 url('img/fondo2.jpg') center top no-repeat;
   background-size: cover;
-  background-attachment: fixed;
-  background-color: #000; /* fallback */
   z-index: -1;
   opacity: 1;
 }
@@ -271,10 +269,18 @@ footer {
   color: #FFD700;
   padding: 10px 0;
   text-align: center;
+  margin: 0;
+  min-height: 50px;
+  z-index: 2;
+  position: relative;
 }
 footer a {
   margin: 0 10px;
   text-decoration: none;
+}
+
+html {
+  background-color: #000;
 }
 
 /* === LOGO REDONDO === */
