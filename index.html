@@ -6,7 +6,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Lo Pepu</title>
-<link href="styles.css?v=9.4" rel="stylesheet"/>
+<link href="styles.css?v=9.5" rel="stylesheet"/>
 <link href="favicon.ico" rel="icon" type="image/x-icon">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
 
@@ -637,6 +637,9 @@ function actualizarEstado() {
 
   const abre = 19 * 60 + 30;   // 1170 = 19:30
   const cierra = 23 * 60;      // 1380 = 23:00
+  // ejemplo de horarios para abierto
+  // const abre = 15 * 60 + 47;  // 947 minutos = 15:47
+  // const cierra = 23 * 60;     // 1380 minutos = 23:00
   const actual = hora * 60 + minutos;
 
   const esDiaHabil = (dia >= 2 && dia <= 6) || dia === 0;
@@ -651,7 +654,7 @@ function actualizarEstado() {
         estado = '<strong>Cierra pronto</strong>';
         clase = 'cerrando';
       } else {
-        estado = '<strong>Abierto ahora</strong>';
+        estado = '<strong>Abierto</strong>';
         clase = 'abierto';
       }
     } else if (actual >= abre - 15 && actual < abre) {
@@ -659,11 +662,11 @@ function actualizarEstado() {
       estado = '<strong>Abre pronto</strong>';
       clase = 'abriendo';
     } else {
-      estado = '<strong>Cerrado en este momento</strong>';
+      estado = '<strong>Cerrado</strong>';
       clase = 'cerrado';
     }
   } else {
-    estado = '<strong>Cerrado en este momento</strong>';
+    estado = '<strong>Cerrado</strong>';
     clase = 'cerrado';
   }
 
@@ -677,5 +680,3 @@ function actualizarEstado() {
 </script>
 </body>
 </html>
-
-/* === asds === */

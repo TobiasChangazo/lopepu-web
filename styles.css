@@ -1,13 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap');
 
 html, body {
+  margin: 0;
+  padding: 0;
   max-width: 100%;
   overflow-x: hidden;
-  margin: 0;
   font-family: 'Arial', sans-serif;
-  background: url('img/fondo.jpg') no-repeat center center;
+  background: url('img/fondo2.jpg') center 120px no-repeat;
   background-size: cover;
   background-attachment: fixed;
+  background-color: #000; /* fallback si no carga la imagen */
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -15,10 +17,25 @@ html, body {
   position: relative;
 }
 
-/* Desactivar fondo fijo en móviles */
-@media (hover: none) and (pointer: coarse) {
-  body {
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url('img/fondo2.jpg') center top no-repeat;
+  background-size: cover;
+  z-index: -1;
+  opacity: 1;
+}
+
+/* SOLUCIÓN PARA MÓVILES */
+@media (max-width: 768px) {
+  html, body {
     background-attachment: scroll !important;
+    background-size: cover; /* o try 'contain' si se ve mejor */
+    background-repeat: no-repeat;
+    background-position: center top;
   }
 }
 
@@ -529,7 +546,7 @@ footer a {
 }
 
 .estado-local {
-  font-size: 1.1rem;            /* un poco más grande */
+  font-size: 1.2rem;            /* un poco más grande */
   padding: 12px 20px;
   border-radius: 10px;
   font-weight: 700;
@@ -543,14 +560,15 @@ footer a {
   max-width: 280px;             /* más corto */
   text-align: center;
 }
+
 .estado-local::before {
   content: '';
   position: absolute;
-  left: 14px;
-  top: 50%;
+  left: 16px;
+  top: 0.9em;;
   transform: translateY(-50%);
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   background-color: #f44336; /* rojo por defecto */
   box-shadow: 0 0 6px rgba(255, 0, 0, 0.6);
@@ -567,6 +585,14 @@ footer a {
   background-color: #3c2b2b;
   border: 2px solid #f44336;
   color: #ffdede;
+}
+
+.estado-local.abierto::before {
+  top: 0.9em; /* ya está bien */
+}
+
+.estado-local.cerrado::before {
+  top: 1.3em; /* un poquito más abajo */
 }
 
 @keyframes fadeIn {
