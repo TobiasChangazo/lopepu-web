@@ -9,7 +9,8 @@
 <link href="styles.css?v=10.1" rel="stylesheet"/>
 <link href="favicon.ico" rel="icon" type="image/x-icon">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 </link></head>
 <body>
 <div class="fondo-fijo"></div>
@@ -38,7 +39,7 @@
 
     <!-- Mapa ubicación -->
     <div class="ubicacion-link">
-      <a href="https://www.google.com/maps/search/?api=1&query=Calle+30+Bis+Esquina+5" target="_blank">
+      <a href="https://maps.app.goo.gl/FqjmxddbLNjsjfuM8" target="_blank">
       <i class="fa-solid fa-map-location-dot"></i> Calle 30 Bis Esquina 5 <span class="ver-mapa">[Ver en mapa]</span>
       </a>
     </div>
@@ -592,89 +593,90 @@
   const modalItemDescription = document.getElementById('modal-item-description');
   const modalItemPrice = document.getElementById('modal-item-price');
 
+  function cerrarModal() {
+    itemModal.classList.remove('visible');
+    itemModalOverlay.classList.remove('visible');
+    document.body.style.overflow = '';
+  }
+
+  closeModalBtn.addEventListener('click', cerrarModal);
+  itemModalOverlay.addEventListener('click', cerrarModal);
+
   cards.forEach(card => {
     card.addEventListener('click', () => {
-      const imageSrc = card.querySelector('img').src;
+      const imageEl = card.querySelector('img');
+      const imageSrc = imageEl?.src || 'img/default.jpg';
       const title = card.querySelector('h4').innerText;
       const description = card.querySelector('p').innerText;
-      const price = card.querySelector('.price').innerText;
+
+      let priceText = '';
+      const prices = card.querySelectorAll('.price');
+      prices.forEach(price => {
+        const label = price.querySelector('.label')?.innerText || '';
+        const monto = price.querySelector('.monto')?.innerText || '';
+        priceText += `<strong>${label}</strong> ${monto}<br>`;
+      });
 
       modalItemImage.src = imageSrc;
       modalItemImage.alt = title;
       modalItemTitle.innerText = title;
       modalItemDescription.innerText = description;
-      modalItemPrice.innerText = price;
+      modalItemPrice.innerHTML = priceText;
 
-      itemModal.style.display = 'block';
-      itemModalOverlay.style.display = 'block';
+      itemModal.classList.add('visible');
+      itemModalOverlay.classList.add('visible');
       document.body.style.overflow = 'hidden';
     });
-  });
-
-  closeModalBtn.addEventListener('click', () => {
-    itemModal.style.display = 'none';
-    itemModalOverlay.style.display = 'none';
-    document.body.style.overflow = '';
-  });
-
-  itemModalOverlay.addEventListener('click', () => {
-    itemModal.style.display = 'none';
-    itemModalOverlay.style.display = 'none';
-    document.body.style.overflow = '';
   });
 
   // horarios config
   document.getElementById('toggle-horarios').addEventListener('click', () => {
     const detalle = document.getElementById('horarios-detalle');
-    detalle.style.display = detalle.style.display === 'none' ? 'block' : 'none';
+    const visible = window.getComputedStyle(detalle).display !== 'none';
+    detalle.style.display = visible ? 'none' : 'block';
   });
 
-function actualizarEstado() {
-  const estadoEl = document.getElementById('estado-actual');
-  const ahora = new Date();
-  const dia = ahora.getDay();
-  const hora = ahora.getHours();
-  const minutos = ahora.getMinutes();
+  function actualizarEstado() {
+    const estadoEl = document.getElementById('estado-actual');
+    const ahora = new Date();
+    const dia = ahora.getDay();
+    const hora = ahora.getHours();
+    const minutos = ahora.getMinutes();
 
-  const abre = 19 * 60 + 30;   // 1170 = 19:30
-  const cierra = 23 * 60;      // 1380 = 23:00
-  // ejemplo de horarios para abierto
-  // const abre = 15 * 60 + 47;  // 947 minutos = 15:47
-  // const cierra = 23 * 60;     // 1380 minutos = 23:00
-  const actual = hora * 60 + minutos;
+    const abre = 19 * 60 + 30;
+    const cierra = 23 * 60;
+    const actual = hora * 60 + minutos;
 
-  const esDiaHabil = (dia >= 2 && dia <= 6) || dia === 0;
+    const esDiaHabil = (dia >= 2 && dia <= 6) || dia === 0;
 
-  let estado = '';
-  let clase = '';
+    let estado = '';
+    let clase = '';
 
-  if (esDiaHabil) {
-    if (actual >= abre && actual < cierra) {
-      // Dentro del horario normal
-      if (actual >= cierra - 30) {
-        estado = '<strong>Cierra pronto</strong>';
-        clase = 'cerrando';
+    if (esDiaHabil) {
+      if (actual >= abre && actual < cierra) {
+        if (actual >= cierra - 30) {
+          estado = '<strong>Cierra pronto</strong>';
+          clase = 'cerrando';
+        } else {
+          estado = '<strong>Abierto</strong>';
+          clase = 'abierto';
+        }
+      } else if (actual >= abre - 30 && actual < abre) {
+        estado = '<strong>Abre pronto</strong>';
+        clase = 'abriendo';
       } else {
-        estado = '<strong>Abierto</strong>';
-        clase = 'abierto';
+        estado = '<strong>Cerrado</strong>';
+        clase = 'cerrado';
       }
-    } else if (actual >= abre - 15 && actual < abre) {
-      // Entre 19:15 y 19:30
-      estado = '<strong>Abre pronto</strong>';
-      clase = 'abriendo';
     } else {
       estado = '<strong>Cerrado</strong>';
       clase = 'cerrado';
     }
-  } else {
-    estado = '<strong>Cerrado</strong>';
-    clase = 'cerrado';
-  }
 
-  estadoEl.innerHTML = estado;
-  estadoEl.classList.remove('abierto', 'cerrado', 'abriendo', 'cerrando');
-  estadoEl.classList.add(clase);
-}
+    estadoEl.innerHTML = estado;
+    estadoEl.classList.remove('abierto', 'cerrado', 'abriendo', 'cerrando');
+    estadoEl.classList.add(clase);
+  }
 
   actualizarEstado();
   setInterval(actualizarEstado, 60000);
