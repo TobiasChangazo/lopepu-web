@@ -1,73 +1,63 @@
 <!DOCTYPE html>
-
 <html lang="es">
 <head>
+  <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Lo Pepu</title>
-<link href="styles.css?v=10.1" rel="stylesheet"/>
-<link href="favicon.ico" rel="icon" type="image/x-icon">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-</link></head>
+  <title>Lo Pepu</title>
+  <link href="styles.css?v=10.3" rel="stylesheet"/>
+  <link href="favicon.ico" rel="icon" type="image/x-icon">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+</head>
 <body>
-<div class="fondo-fijo"></div>
-<header>
-<img alt="Lo Pepu" class="logo-redondo" src="img/logo1.jpg" title="Lo Pepu"/>
-</header>
-<section class="bienvenida-box">
-  <div class="bienvenida-bloque">
+  <div class="fondo-fijo" aria-hidden="true"></div>
+  <header>
+    <img alt="Lo Pepu" class="logo-redondo" src="img/logo1.jpg" title="Lo Pepu" loading="lazy"/>
+  </header>
 
-    <!-- Estado actual -->
-    <div class="estado-local" id="estado-actual">Cargando estado...</div>
-
-    <!-- Botón + horarios -->
-    <button id="toggle-horarios" class="btn-horario">🕒 Ver horarios</button>
-    <div id="horarios-detalle" class="horarios-detalle">
-      <ul>
-        <li><strong>Lunes:</strong> Cerrado</li>
-        <li><strong>Martes:</strong> 19:30 - 23:00</li>
-        <li><strong>Miércoles:</strong> 19:30 - 23:00</li>
-        <li><strong>Jueves:</strong> 19:30 - 23:00</li>
-        <li><strong>Viernes:</strong> 19:30 - 23:00</li>
-        <li><strong>Sábado:</strong> 19:30 - 23:00</li>
-        <li><strong>Domingo:</strong> 19:30 - 23:00</li>
-      </ul>
-    </div>
-
-    <!-- Mapa ubicación -->
-    <div class="ubicacion-link">
-      <a href="https://maps.app.goo.gl/FqjmxddbLNjsjfuM8" target="_blank">
-      <i class="fa-solid fa-map-location-dot"></i> Calle 30 Bis Esquina 5 <span class="ver-mapa">[Ver en mapa]</span>
-      </a>
-    </div>
-
-    <!-- Medios de pago -->
-    <div class="pago-redes-moderno">
-  <h3><i class="fa-solid fa-credit-card"></i> Medios de pago</h3>
-  <ul class="lista-medios">
-    <li><i class="fa-solid fa-money-bill-wave"></i> Efectivo</li>
-    <li><i class="fa-solid fa-qrcode"></i> QR</li>
-    <li><i class="fa-solid fa-building-columns"></i> Transferencia</li>
-    <li><i class="fa-solid fa-credit-card"></i> Débito</li>
-  </ul>
-
-  <div class="pedido-wsp">
-    <a href="https://wa.me/5492324674311" target="_blank">
-      <i class="fab fa-whatsapp"></i> Hacé tu pedido por WhatsApp
-    </a>
-  </div>
-
-  <div class="redes-sociales-link">
-    <a href="https://instagram.com/lopepupizzeria" target="_blank">
-      <i class="fab fa-instagram"></i> Seguinos en Instagram
-    </a>
-  </div>
-</div>
-</section>
-
+  <main>
+    <section class="bienvenida-box">
+      <div class="bienvenida-bloque">
+        <div class="estado-local" id="estado-actual">Cargando estado...</div>
+        <button id="toggle-horarios" class="btn-horario">🕒 Ver horarios</button>
+        <div id="horarios-detalle" class="horarios-detalle" aria-hidden="true">
+          <ul>
+            <li><strong>Lunes:</strong> Cerrado</li>
+            <li><strong>Martes:</strong> 19:30 - 23:00</li>
+            <li><strong>Miércoles:</strong> 19:30 - 23:00</li>
+            <li><strong>Jueves:</strong> 19:30 - 23:00</li>
+            <li><strong>Viernes:</strong> 19:30 - 23:00</li>
+            <li><strong>Sábado:</strong> 19:30 - 23:00</li>
+            <li><strong>Domingo:</strong> 19:30 - 23:00</li>
+          </ul>
+        </div>
+        <div class="ubicacion-link">
+          <a href="https://maps.app.goo.gl/FqjmxddbLNjsjfuM8" target="_blank">
+            <i class="fa-solid fa-map-location-dot"></i> Calle 30 Bis Esquina 5 <span class="ver-mapa">[Ver en mapa]</span>
+          </a>
+        </div>
+        <div class="pago-redes-moderno">
+          <h3><i class="fa-solid fa-credit-card"></i> Medios de pago</h3>
+          <ul class="lista-medios">
+            <li><i class="fa-solid fa-money-bill-wave"></i> Efectivo</li>
+            <li><i class="fa-solid fa-qrcode"></i> QR</li>
+            <li><i class="fa-solid fa-building-columns"></i> Transferencia</li>
+            <li><i class="fa-solid fa-credit-card"></i> Débito</li>
+          </ul>
+          <div class="pedido-wsp">
+            <a href="https://wa.me/5492324674311" target="_blank">
+              <i class="fab fa-whatsapp"></i> Hacé tu pedido por WhatsApp
+            </a>
+          </div>
+          <div class="redes-sociales-link">
+            <a href="https://instagram.com/lopepupizzeria" target="_blank">
+              <i class="fab fa-instagram"></i> Seguinos en Instagram
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
 </section>
 <nav>
 <ul>
@@ -94,7 +84,7 @@
 </span>
 </div>
 </div>
-<img alt="Muzzarella" src="img/muzza.jpg"/>
+<img alt="Muzzarella" src="img/foto1.webp"/>
 </div>
 <div class="card-horizontal full">
 <div class="info">
@@ -109,7 +99,7 @@
 </span>
 </div>
 </div>
-<img alt="jamon y morron" src="img/123.jpg"/>
+<img alt="jamon y morron" src="img/foto2.webp"/>
 </div>
 <div class="card-horizontal full">
 <div class="info">
@@ -562,20 +552,33 @@
 <img alt="Promo 1" src="img/promo1.jpg"/>
 </div>
 </section>
+
+<!-- SOBRE NOSOTROS (MODAL O BLOQUE) -->
+<div id="sobre-nosotros-overlay"></div>
+<div id="sobre-nosotros" tabindex="-1" role="dialog" aria-modal="true">
+  <button id="cerrar-sobre-nosotros" aria-label="Cerrar sección">×</button>
+  <h2>Sobre Nosotros</h2>
+  <br>
+  <p>
+    Somos Pizzería Lo-Pepu, y estamos ofreciendo desde hace más de 20 años las mejores Pizzas, Empanadas, Tartas y Conos Pizza.
+  </p>
+</div>
+
+</main>
 <footer>
 <p>© 2025 Lo Pepu</p>
 </footer>
 <!-- MODAL -->
-<div id="item-modal-overlay"></div>
-<div id="item-modal">
-<button id="close-modal-btn">×</button>
-<img alt="" id="modal-item-image" src="">
-<div class="modal-item-details">
-<h4 id="modal-item-title"></h4>
-<p id="modal-item-description"></p>
-<span id="modal-item-price"></span>
-</div>
-</img></div>
+  <div id="item-modal-overlay" aria-hidden="true"></div>
+  <div id="item-modal" role="dialog" aria-modal="true" tabindex="-1">
+    <button id="close-modal-btn" aria-label="Cerrar modal">×</button>
+    <img alt="" id="modal-item-image" src="" loading="lazy">
+    <div class="modal-item-details">
+      <h4 id="modal-item-title"></h4>
+      <p id="modal-item-description"></p>
+      <span id="modal-item-price"></span>
+    </div>
+  </div>
 <script>
   function showSection(sectionId) {
     document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
@@ -680,6 +683,35 @@
 
   actualizarEstado();
   setInterval(actualizarEstado, 60000);
+
+    // Abrir sobre nosotros al clickear logo
+  document.addEventListener('DOMContentLoaded', function() {
+  const sobreNosotrosOverlay = document.getElementById('sobre-nosotros-overlay');
+  const sobreNosotros = document.getElementById('sobre-nosotros');
+  const cerrarSobreNosotros = document.getElementById('cerrar-sobre-nosotros');
+  const logo = document.querySelector('.logo-redondo');
+
+  function abrirSobreNosotros() {
+    sobreNosotrosOverlay.classList.add('visible');
+    sobreNosotros.classList.add('visible');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => sobreNosotros.focus(), 10);
+  }
+  function cerrarSobre() {
+    sobreNosotrosOverlay.classList.remove('visible');
+    sobreNosotros.classList.remove('visible');
+    document.body.style.overflow = '';
+  }
+
+  logo.addEventListener('click', abrirSobreNosotros);
+  cerrarSobreNosotros.addEventListener('click', cerrarSobre);
+  sobreNosotrosOverlay.addEventListener('click', cerrarSobre);
+
+  window.addEventListener('keydown', function(e) {
+    if ((sobreNosotros.classList.contains('visible')) && (e.key === 'Escape')) cerrarSobre();
+  });
+});
+
 </script>
 </body>
 </html>

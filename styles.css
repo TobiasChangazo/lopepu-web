@@ -811,20 +811,20 @@ html {
 .estado-local.abriendo::before {
   background-color: #ffbb4f;
   box-shadow: 0 0 6px rgba(255, 235, 59, 0.6);
-  top: 1.25em;
+  top: 1.3em;
 }
 
 .estado-local.cerrando::before {
   background-color: #ffbb4f;
   box-shadow: 0 0 6px rgba(255, 82, 82, 0.6);
-  top: 1.25em;
+  top: 1.3em;
 }
 
 .estado-local.abierto::before {
   background-color: #4CAF50;
   box-shadow: 0 0 10px rgba(0, 255, 0, 0.6);
   animation: pulse 1.5s infinite;
-  top: 0.9em;
+  top: 1.3em;
 }
 
 .estado-local.cerrado::before {
@@ -844,3 +844,84 @@ html {
   from { opacity: 0; transform: scale(0.95); }
   to { opacity: 1; transform: scale(1); }
 }
+
+#sobre-nosotros-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  z-index: 9998;
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+#sobre-nosotros-overlay.visible {
+  display: block;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#sobre-nosotros {
+  display: none;
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%) scale(0.97);
+  background: linear-gradient(135deg, #ffe9b9 0%, #fff 100%);
+  color: #222;
+  border-radius: 18px;
+  max-width: 450px;
+  width: 92vw;
+  min-height: 180px;
+  padding: 34px 34px 22px 34px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.21);
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.27s, transform 0.27s;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+#sobre-nosotros.visible {
+  opacity: 1;
+  pointer-events: auto;
+  display: flex;
+  transform: translate(-50%,-50%) scale(1);
+}
+
+#sobre-nosotros h2 {
+  width: 100%;
+  margin: 0 0 10px 0;
+  text-align: center;
+  color: #c97a1c;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+}
+
+#sobre-nosotros p {
+  color: #222;
+  font-size: 1.13rem;
+  margin: 0;
+  text-align: center;
+  width: 100%;
+  font-family: inherit;
+}
+
+#cerrar-sobre-nosotros {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #c97a1c;
+  cursor: pointer;
+  align-self: flex-end;
+  margin-bottom: 2px;
+  margin-right: -9px;
+  transition: color 0.2s;
+  position: absolute;
+  top: 15px; right: 19px;
+  z-index: 1;
+}
+#cerrar-sobre-nosotros:hover {
+  color: #f44336;
+}
+
