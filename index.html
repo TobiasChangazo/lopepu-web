@@ -5,10 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lo Pepu</title>
   <link href="styles.css?v=10.3" rel="stylesheet"/>
-  <link href="favicon.ico" rel="icon" type="image/x-icon">
+  <link href="img/favicon/favicon.ico" rel="icon" type="image/x-icon">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
+  <link rel="icon" type="image/x-icon" href="img/favicon/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="img/favicon/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="img/favicon/android-chrome-512x512.png">
 </head>
 <body>
   <div class="fondo-fijo" aria-hidden="true"></div>
@@ -60,497 +66,547 @@
     </section>
 </section>
 <nav>
-<ul>
-<li><a class="active" onclick="showSection('pizzas')">Pizzas</a></li>
-<li><a onclick="showSection('empanadas')">Empanadas</a></li>
-<li><a onclick="showSection('tartas')">Tartas</a></li>
-<li><a onclick="showSection('bebidas')">Bebidas</a></li>
-<li><a onclick="showSection('conos')">Conos</a></li>
-<li><a onclick="showSection('promos')">Promociones</a></li>
-</ul>
+  <ul>
+    <li><a class="active" onclick="showSection('promos')">Promociones</a></li>
+    <li><a onclick="showSection('pizzas')">Pizzas</a></li>
+    <li><a onclick="showSection('empanadas')">Empanadas</a></li>
+    <li><a onclick="showSection('tartas')">Tartas</a></li>
+    <li><a onclick="showSection('bebidas')">Bebidas</a></li>
+    <li><a onclick="showSection('conos')">Conos</a></li>
+  </ul>
 </nav>
-<!-- PIZZAS -->
-<section class="section active" id="pizzas">
-<div class="card-horizontal full">
-<div class="info">
-<h4>Muzzarella</h4>
-<p>description</p>
-<div class="precios-dobles">
-<span class="price">
-<span class="label">Grande:</span> <span class="monto">$8000</span>
-</span>
-<span class="price">
-<span class="label">Chica:</span> <span class="monto">$5900</span>
-</span>
-</div>
-</div>
-<img alt="Muzzarella" src="img/foto1.webp"/>
-</div>
-<div class="card-horizontal full">
-<div class="info">
-<h4>Jamón y Morrón</h4>
-<p>description</p>
-<div class="precios-dobles">
-<span class="price">
-<span class="label">Grande:</span> <span class="monto">$9000</span>
-</span>
-<span class="price">
-<span class="label">Chica:</span> <span class="monto">$7200</span>
-</span>
-</div>
-</div>
-<img alt="jamon y morron" src="img/foto2.webp"/>
-</div>
-<div class="card-horizontal full">
-<div class="info">
-<h4>Jamón Solo</h4>
-<p>description</p>
-<div class="precios-dobles">
-<span class="price">
-<span class="label">Grande:</span> <span class="monto">$9000</span>
-</span>
-<span class="price">
-<span class="label">Chica:</span> <span class="monto">$7200</span>
-</span>
-</div>
-</div>
-<img alt="jamon solo" src="img/123.jpg"/>
-</div>
-<div class="card-horizontal full">
-<div class="info">
-<h4>Jamón y Huevo</h4>
-<p>description</p>
-<div class="precios-dobles">
-<span class="price">
-<span class="label">Grande:</span> <span class="monto">$9000</span>
-</span>
-<span class="price">
-<span class="label">Chica:</span> <span class="monto">$7200</span>
-</span>
-</div>
-</div>
-<img alt="Jamón y Huevo" src="img/123.jpg"/>
-</div>
-<div class="card-horizontal full">
-<div class="info">
-<h4>Napolitana</h4>
-<p>description</p>
-<div class="precios-dobles">
-<span class="price">
-<span class="label">Grande:</span> <span class="monto">$9000</span>
-</span>
-<span class="price">
-<span class="label">Chica:</span> <span class="monto">$7200</span>
-</span>
-</div>
-</div>
-<img alt="Napolitana" src="img/123.jpg"/>
-</div>
-<div class="card-horizontal full">
-<div class="info">
-<h4>Cebolla</h4>
-<p>description</p>
-<div class="precios-dobles">
-<span class="price">
-<span class="label">Grande:</span> <span class="monto">$9000</span>
-</span>
-<span class="price">
-<span class="label">Chica:</span> <span class="monto">$7200</span>
-</span>
-</div>
-</div>
-<img alt="Cebolla" src="img/123.jpg"/>
-</div>
-<div class="card-horizontal full">
-<div class="info">
-<h4>Cebolla y Tomate</h4>
-<p>description</p>
-<div class="precios-dobles">
-<span class="price">
-<span class="label">Grande:</span> <span class="monto">$9000</span>
-</span>
-<span class="price">
-<span class="label">Chica:</span> <span class="monto">$7200</span>
-</span>
-</div>
-</div>
-<img alt="Cebolla y Tomate" src="img/123.jpg"/>
-</div>
-<div class="card-horizontal full">
-<div class="info">
-<h4>Cebolla y Albahaca</h4>
-<p>description</p>
-<div class="precios-dobles">
-<span class="price">
-<span class="label">Grande:</span> <span class="monto">$9000</span>
-</span>
-<span class="price">
-<span class="label">Chica:</span> <span class="monto">$7200</span>
-</span>
-</div>
-</div>
-<img alt="Cebolla y Albahaca" src="img/123.jpg"/>
-</div>
-<div class="card-horizontal full">
-<div class="info">
-<h4>Albahaca</h4>
-<p>description</p>
-<div class="precios-dobles">
-<span class="price">
-<span class="label">Grande:</span> <span class="monto">$9000</span>
-</span>
-<span class="price">
-<span class="label">Chica:</span> <span class="monto">$7200</span>
-</span>
-</div>
-</div>
-<img alt="Albahaca" src="img/123.jpg"/>
-</div>
-<div class="card-horizontal full">
-<div class="info">
-<h4>Capresse</h4>
-<p>description</p>
-<div class="precios-dobles">
-<span class="price">
-<span class="label">Grande:</span> <span class="monto">$9000</span>
-</span>
-<span class="price">
-<span class="label">Chica:</span> <span class="monto">$7200</span>
-</span>
-</div>
-</div>
-<img alt="Capresse" src="img/123.jpg"/>
-</div>
-<div class="card-horizontal full">
-<div class="info">
-<h4>Calabreza</h4>
-<p>description</p>
-<div class="precios-dobles">
-<span class="price">
-<span class="label">Grande:</span> <span class="monto">$9000</span>
-</span>
-<span class="price">
-<span class="label">Chica:</span> <span class="monto">$7200</span>
-</span>
-</div>
-</div>
-<img alt="Calabreza" src="img/123.jpg"/>
-</div>
-<div class="card-horizontal full">
-<div class="info">
-<h4>Papas Pay</h4>
-<p>description</p>
-<div class="precios-dobles">
-<span class="price">
-<span class="label">Grande:</span> <span class="monto">$9000</span>
-</span>
-<span class="price">
-<span class="label">Chica:</span> <span class="monto">$7200</span>
-</span>
-</div>
-</div>
-<img alt="Papas Pay" src="img/123.jpg"/>
-</div>
-<div class="card-horizontal full">
-<div class="info">
-<h4>Choclo</h4>
-<p>description</p>
-<div class="precios-dobles">
-<span class="price">
-<span class="label">Grande:</span> <span class="monto">$9000</span>
-</span>
-<span class="price">
-<span class="label">Chica:</span> <span class="monto">$7200</span>
-</span>
-</div>
-</div>
-<img alt="Choclo" src="img/123.jpg"/>
-</div>
-<div class="card-horizontal full">
-<div class="info">
-<h4>Huevo Solo</h4>
-<p>description</p>
-<div class="precios-dobles">
-<span class="price">
-<span class="label">Grande:</span> <span class="monto">$9000</span>
-</span>
-<span class="price">
-<span class="label">Chica:</span> <span class="monto">$7200</span>
-</span>
-</div>
-</div>
-<img alt="Huevo Solo" src="img/123.jpg"/>
-</div>
-<div class="card-horizontal full">
-<div class="info">
-<h4>Ananá</h4>
-<p>description</p>
-<div class="precios-dobles">
-<span class="price">
-<span class="label">Grande:</span> <span class="monto">$10000</span>
-</span>
-<span class="price">
-<span class="label">Chica:</span> <span class="monto">$7600</span>
-</span>
-</div>
-</div>
-<img alt="Ananá" src="img/123.jpg"/>
-</div>
-<div class="card-horizontal full">
-<div class="info">
-<h4>Anchoa</h4>
-<p>description</p>
-<div class="precios-dobles">
-<span class="price">
-<span class="label">Grande:</span> <span class="monto">$10000</span>
-</span>
-<span class="price">
-<span class="label">Chica:</span> <span class="monto">$7600</span>
-</span>
-</div>
-</div>
-<img alt="Anchoa" src="img/123.jpg"/>
-</div>
-<div class="card-horizontal full">
-<div class="info">
-<h4>Roquefort</h4>
-<p>description</p>
-<div class="precios-dobles">
-<span class="price">
-<span class="label">Grande:</span> <span class="monto">$10000</span>
-</span>
-<span class="price">
-<span class="label">Chica:</span> <span class="monto">$7600</span>
-</span>
-</div>
-</div>
-<img alt="Roquefort" src="img/123.jpg"/>
-</div>
-<div class="card-horizontal full">
-<div class="info">
-<h4>3 Quesos</h4>
-<p>Muzzarella , Regiano y Roquefort</p>
-<div class="precios-dobles">
-<span class="price">
-<span class="label">Grande:</span> <span class="monto">$10000</span>
-</span>
-<span class="price">
-<span class="label">Chica:</span> <span class="monto">$7600</span>
-</span>
-</div>
-</div>
-<img alt="3 Quesos" src="img/123.jpg"/>
-</div>
-<div class="card-horizontal full">
-<div class="info">
-<h4>Palmito</h4>
-<p>description</p>
-<div class="precios-dobles">
-<span class="price">
-<span class="label">Grande:</span> <span class="monto">$10000</span>
-</span>
-<span class="price">
-<span class="label">Chica:</span> <span class="monto">$7600</span>
-</span>
-</div>
-</div>
-<img alt="Palmito" src="img/123.jpg"/>
+
+<!-- PROMOS -->
+<section class="section active" id="promos">
+  <div class="card-horizontal full">
+    <div class="info">
+      <h4>Promo 1</h4>
+      <p>asdasdsad</p>
+      <span class="price">$15000</span>
+  </div>
+    <img alt="Promo 1" src="img/promo1.jpg"/>
 </div>
 </section>
+
+<!-- PIZZAS -->
+<section class="section" id="pizzas">
+  <div class="card-horizontal full">
+    <div class="info">
+      <h4>Muzzarella</h4>
+      <p>description</p>
+    <div class="precios-dobles">
+      <span class="price">
+      <span class="label">Grande:</span> <span class="monto">$8000</span>
+  </span>
+      <span class="price">
+      <span class="label">Chica:</span> <span class="monto">$5900</span>
+  </span>
+  </div>
+</div>
+  <img alt="Muzzarella" src="img/foto1.webp"/>
+</div>
+
+  <div class="card-horizontal full">
+    <div class="info">
+      <h4>Jamón y Morrón</h4>
+      <p>description</p>
+    <div class="precios-dobles">
+      <span class="price">
+      <span class="label">Grande:</span> <span class="monto">$9000</span>
+  </span>
+      <span class="price">
+      <span class="label">Chica:</span> <span class="monto">$7200</span>
+  </span>
+  </div>
+</div>
+  <img alt="jym" src="img/foto2.webp"/>
+</div>
+
+  <div class="card-horizontal full">
+    <div class="info">
+      <h4>Jamón Solo</h4>
+      <p>description</p>
+    <div class="precios-dobles">
+      <span class="price">
+      <span class="label">Grande:</span> <span class="monto">$9000</span>
+  </span>
+      <span class="price">
+      <span class="label">Chica:</span> <span class="monto">$7200</span>
+  </span>
+  </div>
+</div>
+  <img alt="Jamón Solo" src="img/123.webp"/>
+</div>
+
+  <div class="card-horizontal full">
+    <div class="info">
+      <h4>Jamón y Huevo</h4>
+      <p>description</p>
+    <div class="precios-dobles">
+      <span class="price">
+      <span class="label">Grande:</span> <span class="monto">$9000</span>
+  </span>
+      <span class="price">
+      <span class="label">Chica:</span> <span class="monto">$7200</span>
+  </span>
+  </div>
+</div>
+  <img alt="Jamón y Huevo" src="img/123.webp"/>
+</div>
+
+  <div class="card-horizontal full">
+    <div class="info">
+      <h4>Napolitana</h4>
+      <p>description</p>
+    <div class="precios-dobles">
+      <span class="price">
+      <span class="label">Grande:</span> <span class="monto">$9000</span>
+  </span>
+      <span class="price">
+      <span class="label">Chica:</span> <span class="monto">$7200</span>
+  </span>
+  </div>
+</div>
+  <img alt="Napolitana" src="img/123.webp"/>
+</div>
+
+  <div class="card-horizontal full">
+    <div class="info">
+      <h4>Fugazzeta</h4>
+      <p>description</p>
+    <div class="precios-dobles">
+      <span class="price">
+      <span class="label">Grande:</span> <span class="monto">$9000</span>
+  </span>
+      <span class="price">
+      <span class="label">Chica:</span> <span class="monto">$7200</span>
+  </span>
+  </div>
+</div>
+  <img alt="Fugazzeta" src="img/123.webp"/>
+</div>
+
+  <div class="card-horizontal full">
+    <div class="info">
+      <h4>Cebolla y Tomate</h4>
+      <p>description</p>
+    <div class="precios-dobles">
+      <span class="price">
+      <span class="label">Grande:</span> <span class="monto">$9000</span>
+  </span>
+      <span class="price">
+      <span class="label">Chica:</span> <span class="monto">$7200</span>
+  </span>
+  </div>
+</div>
+  <img alt="Cebolla y Tomate" src="img/123.webp"/>
+</div>
+
+  <div class="card-horizontal full">
+    <div class="info">
+      <h4>Cebolla y Albahaca</h4>
+      <p>description</p>
+    <div class="precios-dobles">
+      <span class="price">
+      <span class="label">Grande:</span> <span class="monto">$9000</span>
+  </span>
+      <span class="price">
+      <span class="label">Chica:</span> <span class="monto">$7200</span>
+  </span>
+  </div>
+</div>
+  <img alt="Cebolla y Albahaca" src="img/123.webp"/>
+</div>
+
+  <div class="card-horizontal full">
+    <div class="info">
+      <h4>Albahaca</h4>
+      <p>description</p>
+    <div class="precios-dobles">
+      <span class="price">
+      <span class="label">Grande:</span> <span class="monto">$9000</span>
+  </span>
+      <span class="price">
+      <span class="label">Chica:</span> <span class="monto">$7200</span>
+  </span>
+  </div>
+</div>
+  <img alt="Albahaca" src="img/123.webp"/>
+</div>
+
+  <div class="card-horizontal full">
+    <div class="info">
+      <h4>Capresse</h4>
+      <p>description</p>
+    <div class="precios-dobles">
+      <span class="price">
+      <span class="label">Grande:</span> <span class="monto">$9000</span>
+  </span>
+      <span class="price">
+      <span class="label">Chica:</span> <span class="monto">$7200</span>
+  </span>
+  </div>
+</div>
+  <img alt="Capresse" src="img/123.webp"/>
+</div>
+
+  <div class="card-horizontal full">
+    <div class="info">
+      <h4>Calabresa</h4>
+      <p>description</p>
+    <div class="precios-dobles">
+      <span class="price">
+      <span class="label">Grande:</span> <span class="monto">$9000</span>
+  </span>
+      <span class="price">
+      <span class="label">Chica:</span> <span class="monto">$7200</span>
+  </span>
+  </div>
+</div>
+  <img alt="Calabresa" src="img/123.webp"/>
+</div>
+
+  <div class="card-horizontal full">
+    <div class="info">
+      <h4>Papas Pay</h4>
+      <p>description</p>
+    <div class="precios-dobles">
+      <span class="price">
+      <span class="label">Grande:</span> <span class="monto">$9000</span>
+  </span>
+      <span class="price">
+      <span class="label">Chica:</span> <span class="monto">$7200</span>
+  </span>
+  </div>
+</div>
+  <img alt="Papas Pay" src="img/123.webp"/>
+</div>
+
+  <div class="card-horizontal full">
+    <div class="info">
+      <h4>Choclo</h4>
+      <p>description</p>
+    <div class="precios-dobles">
+      <span class="price">
+      <span class="label">Grande:</span> <span class="monto">$9000</span>
+  </span>
+      <span class="price">
+      <span class="label">Chica:</span> <span class="monto">$7200</span>
+  </span>
+  </div>
+</div>
+  <img alt="Choclo" src="img/123.webp"/>
+</div>
+
+  <div class="card-horizontal full">
+    <div class="info">
+      <h4>Huevo Solo</h4>
+      <p>description</p>
+    <div class="precios-dobles">
+      <span class="price">
+      <span class="label">Grande:</span> <span class="monto">$9000</span>
+  </span>
+      <span class="price">
+      <span class="label">Chica:</span> <span class="monto">$7200</span>
+  </span>
+  </div>
+</div>
+  <img alt="Huevo Solo" src="img/123.webp"/>
+</div>
+
+  <div class="card-horizontal full">
+    <div class="info">
+      <h4>Ananá</h4>
+      <p>description</p>
+    <div class="precios-dobles">
+      <span class="price">
+      <span class="label">Grande:</span> <span class="monto">$10000</span>
+  </span>
+      <span class="price">
+      <span class="label">Chica:</span> <span class="monto">$7600</span>
+  </span>
+  </div>
+</div>
+  <img alt="Ananá" src="img/123.webp"/>
+</div>
+
+  <div class="card-horizontal full">
+    <div class="info">
+      <h4>Anchoa</h4>
+      <p>description</p>
+    <div class="precios-dobles">
+      <span class="price">
+      <span class="label">Grande:</span> <span class="monto">$10000</span>
+  </span>
+      <span class="price">
+      <span class="label">Chica:</span> <span class="monto">$7600</span>
+  </span>
+  </div>
+</div>
+  <img alt="Anchoa" src="img/123.webp"/>
+</div>
+
+  <div class="card-horizontal full">
+    <div class="info">
+      <h4>Roquefort</h4>
+      <p>description</p>
+    <div class="precios-dobles">
+      <span class="price">
+      <span class="label">Grande:</span> <span class="monto">$10000</span>
+  </span>
+      <span class="price">
+      <span class="label">Chica:</span> <span class="monto">$7600</span>
+  </span>
+  </div>
+</div>
+  <img alt="Roquefort" src="img/123.webp"/>
+</div>
+
+  <div class="card-horizontal full">
+    <div class="info">
+      <h4>3 Quesos</h4>
+      <p>description</p>
+    <div class="precios-dobles">
+      <span class="price">
+      <span class="label">Grande:</span> <span class="monto">$10000</span>
+  </span>
+      <span class="price">
+      <span class="label">Chica:</span> <span class="monto">$7600</span>
+  </span>
+  </div>
+</div>
+  <img alt="3 Quesos" src="img/123.webp"/>
+</div>
+
+  <div class="card-horizontal full">
+    <div class="info">
+      <h4>Palmito</h4>
+      <p>description</p>
+    <div class="precios-dobles">
+      <span class="price">
+      <span class="label">Grande:</span> <span class="monto">$10000</span>
+  </span>
+      <span class="price">
+      <span class="label">Chica:</span> <span class="monto">$7600</span>
+  </span>
+  </div>
+</div>
+  <img alt="Palmito" src="img/123.webp"/>
+</div>
+</section>
+
 <!-- EMPANADAS -->
 <section class="section" id="empanadas">
-<div class="bloque-precio-empanadas simple">
-<h3>PROMO EMPANADAS</h3>
-<p><strong>1/2 Docena:</strong> <span class="precio">$8000</span></p>
-<p><strong>1 Docena:</strong> <span class="precio">$15000</span></p>
-<p><strong>2 Docenas:</strong> <span class="precio">$29000</span></p>
-</div>
-<div class="card-horizontal full">
-<div class="info">
-<h4>Carne</h4>
-<p></p>
-<span class="price">$1500</span>
-</div>
-<img alt="carne" src="img/muzza.jpg"/>
-</div>
-<div class="card-horizontal full">
-<div class="info">
-<h4>Pollo</h4>
-<p></p>
-<span class="price">$1500</span>
-</div>
-<img alt="pollo" src="img/empanada.jpg"/>
-</div>
-<div class="card-horizontal full">
-<div class="info">
-<h4>Cebolla y Queso</h4>
-<p></p>
-<span class="price">$1500</span>
-</div>
-<img alt="cebolla" src="img/empanada.jpg"/>
-</div>
-<div class="card-horizontal full">
-<div class="info">
-<h4>Jamón y Queso</h4>
-<p></p>
-<span class="price">$1500</span>
-</div>
-<img alt="jyq" src="img/empanada.jpg"/>
-</div>
-<div class="card-horizontal full">
-<div class="info">
-<h4>Humita</h4>
-<p></p>
-<span class="price">$1500</span>
-</div>
-<img alt="humita" src="img/empanada.jpg"/>
-</div>
+  <div class="bloque-precio-empanadas simple">
+    <h3>PROMO EMPANADAS</h3>
+    <p><strong>1/2 Docena:</strong> <span class="precio">$8000</span></p>
+    <p><strong>1 Docena:</strong> <span class="precio">$15000</span></p>
+    <p><strong>2 Docenas:</strong> <span class="precio">$29000</span></p>
+  </div>
+
+  <div class="card-horizontal full">
+  <div class="info">
+    <h4>Carne</h4>
+    <p>description</p>
+    <span class="price">$1500</span>
+  </div>
+    <img alt="carne" src="img/123.jpg"/>
+  </div>
+
+  <div class="card-horizontal full">
+  <div class="info">
+    <h4>Jamón y Queso</h4>
+    <p>description</p>
+    <span class="price">$1500</span>
+  </div>
+    <img alt="Jamón y Queso" src="img/123.jpg"/>
+  </div>
+
+    <div class="card-horizontal full">
+  <div class="info">
+    <h4>Pollo</h4>
+    <p>description</p>
+    <span class="price">$1500</span>
+  </div>
+    <img alt="Pollo" src="img/123.jpg"/>
+  </div>
+
+    <div class="card-horizontal full">
+  <div class="info">
+    <h4>Humita</h4>
+    <p>description</p>
+    <span class="price">$1500</span>
+  </div>
+    <img alt="Humita" src="img/123.jpg"/>
+  </div>
+
+    <div class="card-horizontal full">
+  <div class="info">
+    <h4>Cebolla y Queso</h4>
+    <p>description</p>
+    <span class="price">$1500</span>
+  </div>
+    <img alt="carne" src="img/123.jpg"/>
+  </div>
 </section>
+
 <!-- TARTAS -->
 <section class="section" id="tartas">
-<div class="card-horizontal full">
-<div class="info">
-<h4>Jamón y Queso</h4>
-<p>Tarta de Jamón , Queso y Huevo</p>
-<span class="price">$10000</span>
-</div>
-<img alt="Tarta" src="img/tarta.jpg"/>
-</div>
+  <div class="card-horizontal full">
+  <div class="info">
+    <h4>Jamón y Queso</h4>
+    <p>description</p>
+    <span class="price">$1500</span>
+  </div>
+    <img alt="tarta" src="img/123.jpg"/>
+  </div>
 </section>
+
 <!-- BEBIDAS -->
 <section class="section" id="bebidas">
-<div class="card-horizontal full">
-<div class="info">
-<h4>Coca Cola Retornable</h4>
-<p>Coca Cola Retornable sabor original</p>
-<span class="price">$3100</span>
-</div>
-<img alt="Coca ret" src="img/coca.jpg"/>
-</div>
-<div class="card-horizontal full">
-<div class="info">
-<h4>Sprite Retornable</h4>
-<p>Sprite Retornable sabor original</p>
-<span class="price">$3100</span>
-</div>
-<img alt="sprite ret" src="img/coca.jpg"/>
-</div>
-<div class="card-horizontal full">
-<div class="info">
-<h4>Coca Cola Zero Retornable</h4>
-<p>Coca Cola Retornable Zero</p>
-<span class="price">$3100</span>
-</div>
-<img alt="Coca ret zero" src="img/coca.jpg"/>
-</div>
-<div class="card-horizontal full">
-<div class="info">
-<h4>Coca Cola 1,75L Descartable</h4>
-<p>Coca Cola 1,75L Descartable</p>
-<span class="price">$3100</span>
-</div>
-<img alt="Coca Descartable" src="img/coca.jpg"/>
-</div>
-<div class="card-horizontal full">
-<div class="info">
-<h4>Sprite 2,25L Descartable</h4>
-<p>Sprite 2,25L Descartable</p>
-<span class="price">$3100</span>
-</div>
-<img alt="Sprite Descartable" src="img/coca.jpg"/>
-</div>
-<div class="card-horizontal full">
-<div class="info">
-<h4>Brahama 1L</h4>
-<p></p>
-<span class="price">$3200</span>
-</div>
-<img alt="Brahama 1L" src="img/coca.jpg"/>
-</div>
-<div class="card-horizontal full">
-<div class="info">
-<h4>Levite Naranja</h4>
-<p></p>
-<span class="price">$2200</span>
-</div>
-<img alt="Levite Naranja" src="img/coca.jpg"/>
-</div>
-<div class="card-horizontal full">
-<div class="info">
-<h4>Crush Lima</h4>
-<p></p>
-<span class="price">$2200</span>
-</div>
-<img alt="Crush Lima" src="img/coca.jpg"/>
-</div>
-<div class="card-horizontal full">
-<div class="info">
-<h4>Brahama 500Ml</h4>
-<p></p>
-<span class="price">$2100</span>
-</div>
-<img alt="Agua" src="img/coca.jpg"/>
-</div>
-<div class="card-horizontal full">
-<div class="info">
-<h4>7Up 500Ml</h4>
-<p></p>
-<span class="price">$1600</span>
-</div>
-<img alt="7Up" src="img/coca.jpg"/>
-</div>
-<div class="card-horizontal full">
-<div class="info">
-<h4>Pepsi 500Ml</h4>
-<p></p>
-<span class="price">$1600</span>
-</div>
-<img alt="Pepsi" src="img/coca.jpg"/>
-</div>
-<div class="card-horizontal full">
-<div class="info">
-<h4>Agua 500Ml</h4>
-<p></p>
-<span class="price">$1000</span>
-</div>
-<img alt="Agua" src="img/coca.jpg"/>
-</div>
+  <div class="card-horizontal full">
+  <div class="info">
+    <h4>Coca Cola Retornable</h4>
+    <p>Coca Cola Retornable sabor original</p>
+    <span class="price">$3200</span>
+  </div>
+    <img alt="Coca ret" src="img/coca.jpg"/>
+  </div>
+
+  <div class="card-horizontal full">
+  <div class="info">
+    <h4>Sprite Retornable</h4>
+    <p>Sprite Retornable</p>
+    <span class="price">$3200</span>
+  </div>
+    <img alt="Coca ret" src="img/coca.jpg"/>
+  </div>
+
+    <div class="card-horizontal full">
+  <div class="info">
+    <h4>Coca Cola Zero Retornable</h4>
+    <p>Coca Cola Retornable sin azucar</p>
+    <span class="price">$3200</span>
+  </div>
+    <img alt="Coca ret" src="img/coca.jpg"/>
+  </div>
+
+    <div class="card-horizontal full">
+  <div class="info">
+    <h4>Brahma 1L</h4>
+    <p>Brahma 1L</p>
+    <span class="price">$3200</span>
+  </div>
+    <img alt="brahma" src="img/coca.jpg"/>
+  </div>
+
+    <div class="card-horizontal full">
+  <div class="info">
+    <h4>Levite Pomelo 1.5L</h4>
+    <p>Levite Pomelo 1.5L</p>
+    <span class="price">$2200</span>
+  </div>
+    <img alt="Coca ret" src="img/coca.jpg"/>
+  </div>
+
+    <div class="card-horizontal full">
+  <div class="info">
+    <h4>Levite Naranja 1.5L</h4>
+    <p>Levite Naranja 1.5L</p>
+    <span class="price">$2200</span>
+  </div>
+    <img alt="Coca ret" src="img/coca.jpg"/>
+  </div>
+
+    <div class="card-horizontal full">
+  <div class="info">
+    <h4>Crush 2L</h4>
+    <p>Crush 2L lima limón</p>
+    <span class="price">$2500</span>
+  </div>
+    <img alt="Coca ret" src="img/coca.jpg"/>
+  </div>
+
+    <div class="card-horizontal full">
+  <div class="info">
+    <h4>Coca Cola Descartable 1,75L</h4>
+    <p>Coca Cola Descartable 1,75L</p>
+    <span class="price">$3500</span>
+  </div>
+    <img alt="Coca ret" src="img/coca.jpg"/>
+  </div>
+
+    <div class="card-horizontal full">
+  <div class="info">
+    <h4>Sprite Descartable 2,25L</h4>
+    <p>Sprite Descartable 2,25L</p>
+    <span class="price">$4200</span>
+  </div>
+    <img alt="Coca ret" src="img/coca.jpg"/>
+  </div>
+
+    <div class="card-horizontal full">
+  <div class="info">
+    <h4>Brahma 500Ml</h4>
+    <p>Brahma 500Ml</p>
+    <span class="price">$2100</span>
+  </div>
+    <img alt="Coca ret" src="img/coca.jpg"/>
+  </div>
+  
+    <div class="card-horizontal full">
+  <div class="info">
+    <h4>7up 500Ml</h4>
+    <p>7up 500Ml</p>
+    <span class="price">$1800</span>
+  </div>
+    <img alt="Coca ret" src="img/coca.jpg"/>
+  </div>
+
+    <div class="card-horizontal full">
+  <div class="info">
+    <h4>Pepsi 500Ml</h4>
+    <p>Pepsi 500Ml</p>
+    <span class="price">$1800</span>
+  </div>
+    <img alt="Coca ret" src="img/coca.jpg"/>
+  </div>
+
+    <div class="card-horizontal full">
+  <div class="info">
+    <h4>Agua 500Ml</h4>
+    <p>Agua 500Ml</p>
+    <span class="price">$1000</span>
+  </div>
+    <img alt="Coca ret" src="img/coca.jpg"/>
+  </div>
 </section>
+
 <!-- CONOS -->
 <section class="section" id="conos">
-<div class="bloque-promo-conos">
-<h3>VARIEDADES DE CONOS</h3>
-<p class="nota-conos">⚠️ Máximo 2 gustos por cono</p>
-<ul>
-<li>Jamón</li>
-<li>Morrón</li>
-<li>Huevo</li>
-<li>Cebolla</li>
-<li>Choclo</li>
-<li>Tomate</li>
-<li>Albahaca</li>
-<li>Papas Pay</li>
-</ul>
-</div>
-<div class="card-horizontal full">
-<div class="info">
-<h4>Cono Pizza</h4>
-<p>Salsa, Muzzarella, Aceituna + Hasta (2) Variedades.</p>
-<span class="price">$5500</span>
-</div>
-<img alt="cono" src="img/coca.jpg"/>
-</div>
-</section>
-<!-- PROMOS -->
-<section class="section" id="promos">
-<div class="card-horizontal full">
-<div class="info">
-<h4>Promo 1</h4>
-<p>2 Pizzas + 1 Coca 1.5L</p>
-<span class="price">$15000</span>
-</div>
-<img alt="Promo 1" src="img/promo1.jpg"/>
-</div>
+  <div class="bloque-promo-conos">
+    <h3>VARIEDADES DE CONOS</h3>
+    <p class="nota-conos">⚠️ Máximo 2 gustos por cono</p>
+      <ul>
+        <li>Jamón</li>
+        <li>Morrón</li>
+        <li>Huevo</li>
+        <li>Cebolla</li>
+        <li>Choclo</li>
+        <li>Tomate</li>
+        <li>Albahaca</li>
+        <li>Papas Pay</li>
+      </ul>
+  </div>
+
+  <div class="card-horizontal full">
+    <div class="info">
+      <h4>Cono Pizza</h4>
+      <p>Muzzarella, Salsa, Aceituna + Hasta (2) Variedades.</p>
+      <span class="price">$5500</span>
+    </div>
+      <img alt="cono" src="img/coca.jpg"/>
+    </div>
 </section>
 
 <!-- SOBRE NOSOTROS (MODAL O BLOQUE) -->

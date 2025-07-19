@@ -422,27 +422,32 @@ html {
 
   .card-horizontal.full {
     flex-direction: row;
-    width: 100%;
-    padding: 16px;
-    gap: 12px;
+    align-items: center;
+    height: 180px;
+    padding: 10px;
+    gap: 10px;
+    width: 80vw;
+    max-width: 350px;    /* Limita el ancho de la card */
+    margin: 12px auto;
+    border-radius: 12px;
   }
-
   .card-horizontal.full img {
-    width: 80px;
-    height: 80px;
+    width: 85px;
+    height: 85px;
+    border-radius: 10px;
+    margin-left: 0;
   }
-
   .card-horizontal.full .info {
-    width: calc(100% - 100px);
+    width: calc(100% - 92px);
+    padding-right: 0;
+    text-align: left;
+    align-items: flex-start;
+    justify-content: center;
   }
-
-  .card-horizontal.full h4 {
-    font-size: 1rem;
-  }
-
+  .card-horizontal.full h4,
   .card-horizontal.full p,
   .card-horizontal.full .price {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
   }
 
   footer {
@@ -455,6 +460,26 @@ html {
     transition: none !important;
     transform: none !important;
     opacity: 1 !important;
+  }
+
+  #sobre-nosotros {
+    max-width: 80vw !important;
+    width: 80vw !important;
+    min-width: unset;
+    padding: 22px 8px 18px 8px;
+    border-radius: 14px;
+  }
+  #sobre-nosotros h2 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+  }
+  #sobre-nosotros p {
+    font-size: 0.99rem;
+  }
+  #cerrar-sobre-nosotros {
+    top: 9px;
+    right: 13px;
+    font-size: 1.7rem;
   }
 }
 
@@ -699,6 +724,16 @@ html {
   margin-bottom: 18px;
 }
 
+/* Descripcion card */
+
+.card-horizontal.full .info p {
+  word-break: break-word;
+  overflow-wrap: break-word;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  max-height: 60px; /* Limita la altura del texto */
+}
+
 .modal-item-details {
   font-family: 'Montserrat', sans-serif;
   text-align: left;
@@ -807,7 +842,7 @@ html {
   color: #c8ffc8;
 }
 
-/* Bolita */
+/* luz led */
 .estado-local.abriendo::before {
   background-color: #ffbb4f;
   box-shadow: 0 0 6px rgba(255, 235, 59, 0.6);
@@ -824,7 +859,7 @@ html {
   background-color: #4CAF50;
   box-shadow: 0 0 10px rgba(0, 255, 0, 0.6);
   animation: pulse 1.5s infinite;
-  top: 1.3em;
+  top: 0.92em;
 }
 
 .estado-local.cerrado::before {
