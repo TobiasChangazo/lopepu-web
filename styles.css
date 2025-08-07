@@ -637,10 +637,10 @@ html {
 .redes-sociales-link a {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 1rem;
   font-weight: bold;
   text-decoration: none;
-  color: #fff;
+  color: #000000;
   margin: 12px 0;
   font-size: 1rem;
   padding: 10px 16px;
@@ -657,19 +657,68 @@ html {
 }
 
 .redes-sociales-link a {
-  background-color: #e1306c;
+  background-color: #e96591;
 }
 
 .redes-sociales-link a:hover {
-  background-color: #c01e59;
+  background-color: #9a4c68;
+}
+
+.btn-order {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #000000;    
+  color: #ffe209;
+  padding: 10px 16px;
+  border-radius: 30px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  margin: 12px 0;
+  transition: background 0.2s;
 }
 
 .pedido-wsp i,
 .redes-sociales-link i {
-  color: #ffffff !important; /* blanco puro */
+  color: #000000 !important; /* blanco puro */
   filter: none !important;   /* sin efectos */
   font-size: 1.2rem;
 }
+
+/* — Social buttons: dos columnas centradas — */
+.social-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin-top: 3rem;
+}
+
+.social-buttons .pedido-wsp,
+.social-buttons .redes-sociales-link {
+  flex: 1 1 auto;
+  max-width: 180px;
+}
+
+/* — Destacar “Armá tu pedido” con pulso suave — */
+.highlight-order {
+  animation: pulse 2s ease-in-out infinite;
+  background-color: #000000 !important;
+  opacity: 1 !important;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    /* no tocamos la opacidad */
+    opacity: 1;
+  }
+}
+
 
 /* === MODAL LIMPIO Y FUNCIONAL === */
 #item-modal-overlay {
@@ -959,4 +1008,3 @@ html {
 #cerrar-sobre-nosotros:hover {
   color: #f44336;
 }
-

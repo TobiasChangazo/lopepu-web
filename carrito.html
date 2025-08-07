@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Armá tu pedido | Lo Pepu</title>
+  <link rel="stylesheet" href="carrito.css"/>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+</head>
+<body>
+<!-- 1) FORMULARIO INICIAL -->
+<div id="info-box" class="info-box" style="position:relative; padding-top:60px;">
+  <!-- Botón Volver al menú posicionado arriba a la derecha -->
+  <button id="btn-exit" class="btn-exit" style="position:absolute; top:12px; right:12px;">
+    <i class="fas fa-times"></i>
+  </button>
+
+  <h2>Datos del cliente</h2>
+
+  <!-- Nuevo selector tipo de entrega -->
+  <div class="tipo-entrega-box">
+    <h3>Tipo de entrega</h3>
+    <div class="tipo-entrega-btns">
+      <button type="button" class="entrega-btn selected" data-tipo="Retiro">
+        <i class="fas fa-hands-helping"></i>
+      </button>
+      <button type="button" class="entrega-btn" data-tipo="Envío">
+        <i class="fas fa-motorcycle"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Campos de datos -->
+  <div class="detalle-card">
+    <label>Nombre y Apellido</label>
+    <input type="text" id="clienteNombre" placeholder="Tu nombre y apellido" />
+  </div>
+  <div id="direccion-inicial" class="detalle-card" style="display:none;">
+    <label>Dirección de envío</label>
+    <input type="text" id="clienteDireccion" placeholder="Calle, número, piso" />
+  </div>
+  <button id="btn-continuar" class="btn-continuar">Continuar</button>
+</div>
+
+  <!-- 2) MENÚ DE PEDIDO (oculto hasta completar datos) -->
+  <div id="menu-box" style="display:none;">
+    <button id="btn-back" class="btn-back">
+      <i class="fas fa-arrow-left"></i> Volver
+    </button>
+
+    <div class="pedido-box">
+      <h2>Armá tu pedido</h2>
+
+      <!-- ocultamos radiobuttons en esta pantalla -->
+      <div class="tipo-envio" style="display:none;">
+        <label>Retiro</label>
+        <label>Envío</label>
+      </div>
+
+      <div class="opciones-menu">
+        <button class="opcion-btn selected" data-cat="Pizza">
+          🍕 Pizza
+        </button>
+        <button class="opcion-btn" data-cat="Empanada">
+          🥟 Empanadas
+        </button>
+        <button class="opcion-btn" data-cat="Tarta">
+          🥧 Tarta
+        </button>
+        <button class="opcion-btn" data-cat="Cono">
+          🌯 Cono
+        </button>
+      </div>
+
+      <div class="opciones-detalles" id="opciones-detalles"></div>
+
+      <!-- solo aparece si es Envío -->
+      <div
+        id="direccion-box"
+        class="detalle-card"
+        style="display:none;"
+      >
+        <label>Dirección de envío:</label>
+        <input
+          type="text"
+          id="envioDireccion"
+          readonly
+        />
+      </div>
+
+<div class="pedido-lista" id="pedido-lista">
+    <h4>Tu Pedido</h4>
+  <div id="pedido-items"></div>
+  <div class="pedido-vacio" id="pedido-vacio">
+    Agregá productos a tu pedido
+  </div>
+  <div id="pedido-total"></div>
+  <div id="pedido-note"
+     style="display:none;
+            margin-top:10px;
+            font-size:0.95rem;
+            font-style:italic;">
+  * El envío es aparte del precio que marca la página.
+  </div>
+</div>
+
+      <button class="whatsapp-btn" id="btn-wsp">
+        <i class="fab fa-whatsapp"></i>
+        Enviar pedido por WhatsApp
+      </button>
+    </div>
+  </div>
+
+  <script src="carrito.js"></script>
+</body>
+</html>

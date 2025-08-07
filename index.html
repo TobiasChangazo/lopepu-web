@@ -43,26 +43,35 @@
             <i class="fa-solid fa-map-location-dot"></i> Calle 30 Bis Esquina 5 <span class="ver-mapa">[Ver en mapa]</span>
           </a>
         </div>
-        <div class="pago-redes-moderno">
-          <h3><i class="fa-solid fa-credit-card"></i> Medios de pago</h3>
-          <ul class="lista-medios">
-            <li><i class="fa-solid fa-money-bill-wave"></i> Efectivo</li>
-            <li><i class="fa-solid fa-qrcode"></i> QR</li>
-            <li><i class="fa-solid fa-building-columns"></i> Transferencia</li>
-            <li><i class="fa-solid fa-credit-card"></i> Débito</li>
-          </ul>
-          <div class="pedido-wsp">
-            <a href="https://wa.me/5492324674311" target="_blank">
-              <i class="fab fa-whatsapp"></i> Hacé tu pedido por WhatsApp
-            </a>
-          </div>
-          <div class="redes-sociales-link">
-            <a href="https://instagram.com/lopepupizzeria" target="_blank">
-              <i class="fab fa-instagram"></i> Seguinos en Instagram
-            </a>
-          </div>
-        </div>
-      </div>
+        <!-- Sección de “Medios de pago” y botones sociales, ya sin diff -->
+<div class="pago-redes-moderno">
+  <h3><i class="fa-solid fa-credit-card"></i> Medios de pago</h3>
+  <ul class="lista-medios">
+    <li><i class="fa-solid fa-money-bill-wave"></i> Efectivo</li>
+    <li><i class="fa-solid fa-qrcode"></i> QR</li>
+    <li><i class="fa-solid fa-building-columns"></i> Transferencia</li>
+    <li><i class="fa-solid fa-credit-card"></i> Débito</li>
+  </ul>
+
+  <!-- Botón destacado para armar pedido -->
+  <button class="btn-order highlight-order" id="open-cart">
+    Hace tu pedido aca!
+  </button>
+
+  <!-- Redes en fila lado a lado -->
+  <div class="social-buttons">
+    <div class="pedido-wsp">
+      <a href="https://wa.me/5492324674311" target="_blank">
+        <i class="fab fa-whatsapp"></i> WhatsApp
+      </a>
+    </div>
+    <div class="redes-sociales-link">
+      <a href="https://instagram.com/lopepupizzeria" target="_blank">
+        <i class="fab fa-instagram"></i> Instagram
+      </a>
+    </div>
+  </div>
+</div>
     </section>
 </section>
 <nav>
@@ -850,6 +859,36 @@
     if ((sobreNosotros.classList.contains('visible')) && (e.key === 'Escape')) cerrarSobre();
   });
 });
+
+// 1. Cargo o inicio el carrito
+  const cart = JSON.parse(localStorage.getItem('lopepu-cart') || '[]');
+
+  // 2. Función para agregar productos
+  function addToCart(name, price) {
+    const existing = cart.find(i => i.name === name);
+    if (existing) existing.qty++;
+    else cart.push({ name, price, qty: 1 });
+    localStorage.setItem('lopepu-cart', JSON.stringify(cart));
+  }
+
+  // 3. Hooks de UI (productos & carrito)
+  document.addEventListener('DOMContentLoaded', () => {
+    // Botones Agregar
+    document.querySelectorAll('.btn-add').forEach(btn => {
+      btn.addEventListener('click', e => {
+        const card  = e.currentTarget.closest('.card-horizontal.full');
+        const name  = card.dataset.name;
+        const price = parseInt(card.dataset.price, 10);
+        addToCart(name, price);
+        alert(`${name} agregado al carrito.`);
+      });
+    });
+
+    // Abrir carrito
+    document.getElementById('open-cart').addEventListener('click', () => {
+      window.location.href = 'carrito.html';
+    });
+  });
 
 </script>
 </body>
