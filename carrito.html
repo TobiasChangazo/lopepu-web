@@ -46,13 +46,12 @@
 </div>
 
   <!-- 2) MENÚ DE PEDIDO (oculto hasta completar datos) -->
-  <div id="menu-box" style="display:none;">
-    <button id="btn-back" class="btn-back">
-      <i class="fas fa-arrow-left"></i> Volver
+<div id="menu-box" style="display:none;">
+  <div class="pedido-box" style="position:relative;">
+    <button id="btn-back" class="btn-exit" style="position:absolute; top:12px; right:12px;">
+      <i class="fas fa-times"></i>
     </button>
-
-    <div class="pedido-box">
-      <h2>Armá tu pedido</h2>
+    <h2>Armá tu pedido</h2>
 
       <!-- ocultamos radiobuttons en esta pantalla -->
       <div class="tipo-envio" style="display:none;">
@@ -76,20 +75,6 @@
       </div>
 
       <div class="opciones-detalles" id="opciones-detalles"></div>
-
-      <!-- solo aparece si es Envío -->
-      <div
-        id="direccion-box"
-        class="detalle-card"
-        style="display:none;"
-      >
-        <label>Dirección de envío:</label>
-        <input
-          type="text"
-          id="envioDireccion"
-          readonly
-        />
-      </div>
 
 <div class="pedido-lista" id="pedido-lista">
     <h4>Tu Pedido</h4>

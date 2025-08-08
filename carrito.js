@@ -82,11 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     infoBox.style.display = 'none';
     menuBox.style.display = 'block';
-
-    // Mostrar u ocultar dirección en el menú
-    const dirBox = document.getElementById('direccion-box');
-    dirBox.style.display = (clienteTipo === 'Envío') ? 'block' : 'none';
-    document.getElementById('envioDireccion').value = clienteDireccion;
   };
 
   // 5) DATOS DE PRODUCTOS
@@ -468,6 +463,7 @@ document.addEventListener('DOMContentLoaded', () => {
     msg += `\n* El envío es aparte del precio que marca la página.`;
     window.open('https://wa.me/5492324674311?text=' + encodeURIComponent(msg), '_blank');
   });
+  
 
   // 11) Render inicial
   renderPedido();
