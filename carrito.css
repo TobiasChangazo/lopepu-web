@@ -253,7 +253,6 @@ body {
   transform: translateX(-2px) scale(1.1);
 }
 
-
 /* Panel del Pedido*/
 .pedido-box {
   background: #d2f0e8;
@@ -270,6 +269,7 @@ body {
   transition: transform .3s ease, box-shadow .3s ease;
   display: flex;
   position: relative;
+  padding-bottom: 96px;
   flex-direction: column;
   max-height: calc(100vh - 40px);
 }
@@ -319,9 +319,9 @@ body {
 
 /* Notas del pedido (descripcion) */
 .opciones-detalles {
-  flex: 0 0 auto;         /* deja de crecer indefinidamente */
-  max-height: 24vh;       /* ajustá si querés más/menos */
+  flex: 0 0 auto;
   overflow-y: auto;
+  max-height: 35vh; 
 }
 .detalle-card {
   background: var(--light);
@@ -406,8 +406,9 @@ body {
   padding: 12px;
   display: flex;
   flex-direction: column;
-  max-height: 62vh;
-  overflow: hidden; 
+  max-height: 60vh;
+  overflow: hidden;
+  margin-top: 12px; 
 }
 .pedido-lista h4 {
   margin: 0 0 10px;
@@ -513,8 +514,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 15px auto 0;
-  width: 80%;
+  margin: 0;
+  width: calc(100% - 40px); 
   background: var(--dark) !important;
   color: var(--greenwsp) !important;
   font-size: 1.11rem;
@@ -525,8 +526,14 @@ body {
   box-shadow: 0 4px 16px rgba(0,0,0,0.15);
   cursor: pointer;
   gap: 11px;
-  transition: background .15s, color .15s, transform .16s;
-  animation: fadeIn .8s;
+  transition: background .15s, color .15s;
+  animation: none;                          
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  transform: translateX(-50%);    
+  max-width: 360px;                                
+  z-index: 2;    
 }
 .whatsapp-btn:hover,
 .whatsapp-btn:focus {
@@ -555,152 +562,103 @@ body {
 /* Responsive */
 
 @media (max-width: 768px) {
+  body { padding:12px 0; align-items:flex-start; }
+
   #info-box,
-  .pedido-box {
-    width: 90%;
+  .pedido-box{
+    width: calc(100% - 24px);
     max-width: none;
-    margin: 20px auto;
-    padding: 24px;
+    margin: 12px auto;
+    padding: 20px;
+    border-radius: 16px;
   }
 
-  .opciones-menu {
-    gap: 12px;
-  }
-  .opcion-btn {
-    flex: 1 1 45%;
-    font-size: 1.03rem;
-    padding: 12px 16px;
-  }
-
-  .detalle-card {
-    padding: 18px;
-    margin-bottom: 14px;
-  }
-  .detalle-card label {
-    margin-bottom: 4px;
-  }
-  .detalle-card input,
-  .detalle-card select {
-    padding: 8px 12px;
-    font-size: 1rem;
-  }
-  .detalle-card .agregar-btn {
-    margin-top: 12px;
-    padding: 14px 0;
-    font-size: 1.08rem;
+  /* panel no fijo; botón fijo */
+  .pedido-box{
+    position: relative;
+    height: 92vh;
+    overflow: hidden;          
+    padding-bottom: 96px;      
+    display: flex;
+    flex-direction: column;
   }
 
-  .detalle-card > div > label span {
-  display: block;                    
-  margin-left: 22px;                  
-  margin-top: 4px;
-  font-size: .95em;
-  color: #b2b2b2;
+  .opciones-menu{ gap:12px; }
+  .opcion-btn{ flex:1 1 45%; font-size:1.03rem; padding:12px 16px; }
+
+  /* constructor con scroll propio */
+  .opciones-detalles{
+    flex: 1 1 auto;
+    min-height: 0;
+    padding-bottom: 12px;
+    max-height: none;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
-  .pedido-lista {
+  /* “Tu Pedido” arriba del botón; scrollea SOLO la lista interna */
+  .pedido-lista{
+    display:flex;
+    flex-direction:column;
+    margin-top: 10px;
+    max-height: 58vh;
+    overflow: hidden;
     padding: 14px;
-    margin-bottom: 16px;
   }
-  .pedido-item {
-    padding: 8px 12px;
+  #pedido-items{
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    padding-right: 6px;
+    -webkit-overflow-scrolling: touch;
   }
-  .pedido-item .titulo {
-    font-size: 1rem;
+
+  .pedido-item{ padding:8px 12px; }
+  .pedido-item .titulo{ font-size:1rem; }
+  .pedido-item .subtotal{ font-size:1.05rem; }
+  #pedido-total{ font-size:1.3rem; }
+  #pedido-note{ font-size:0.9rem; }
+
+  /* botón WhatsApp fijo */
+  .whatsapp-btn{
+    position: absolute;
+    left: 50%;
+    bottom: 12px;
+    transform: translateX(-50%);
+    width: calc(100% - 40px);
+    max-width: 360px;
+    margin: 0;
   }
-  .pedido-item .subtotal {
-    font-size: 1.05rem;
-  }
-  #pedido-total {
-    font-size: 1.3rem;
-  }
-  #pedido-note {
-    font-size: 0.9rem;
-  }
-  .btn-continuar,
-  .whatsapp-btn {
-    padding: 12px 0;
-    font-size: 1rem;
-  }
+
+  #btn-back{ top:8px; right:8px; left:auto; }
 }
 
+/* <= 576px (teléfonos chicos) */
 @media (max-width: 576px) {
-  body {
-    padding: 12px 0;
-    align-items: flex-start;
-  }
   #info-box,
-  .pedido-box {
-    width: calc(100% - 24px);
-    margin: 12px auto;
-    padding: 16px;
-  }
-  
-  .tipo-envio {
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-  .tipo-envio label {
-    flex: 1 1 48%;
-    padding: 8px;
-    font-size: 1rem;
+  .pedido-box{ padding:16px; }
+
+  .pedido-box{
+    height: 94vh;
+    padding-bottom: 104px;     
   }
 
-  .opciones-menu {
-    gap: 8px;
-  }
-  .opcion-btn {
-    flex: 1 1 48%;
-    padding: 10px;
-  }
-
-  .detalle-card {
-    padding: 14px;
-    margin-bottom: 16px;
-  }
-  .detalle-card input,
-  .detalle-card select {
-    margin-bottom: 12px;
-  }
-
-  .pedido-lista {
+  /* más alto para el carrito en pantallas chicas */
+  .opciones-detalles{ max-height: none; }
+  .pedido-lista{
+    max-height: 66vh;
+    margin-top: auto;          
     padding: 12px;
   }
-  .pedido-item {
-    padding: 8px 12px;
-    margin-bottom: 12px;
-  }
 
-  .pedido-lista {
-    padding: 10px;
-  }
-  .pedido-item {
-    padding: 6px 10px;
-  }
-  .pedido-item .titulo {
-    font-size: 0.95rem;
-  }
-  .pedido-item .subtotal {
-    font-size: 1rem;
-  }
-  #pedido-total {
-    font-size: 1.2rem;
-  }
-  #pedido-note {
-    font-size: 0.85rem;
-  }
+  .pedido-item{ padding:6px 10px; margin-bottom:12px; }
+  .pedido-item .titulo{ font-size:0.95rem; }
+  .pedido-item .subtotal{ font-size:1rem; }
+  #pedido-total{ font-size:1.2rem; }
+  #pedido-note{ font-size:0.85rem; }
 
   .btn-continuar,
-  .whatsapp-btn {
-    padding: 10px 0;
-    font-size: 0.95rem;
-  }
-
-  #btn-back {
-    top: 8px;
-    right: 8px;
-    left: auto;
-  }
+  .whatsapp-btn{ padding:10px 0; font-size:0.95rem; }
 }
 
 #info-box { position: relative; }
@@ -773,8 +731,9 @@ body {
   background: rgba(0,0,0,0.05);
 }
 
+/* Chrome/Android */
 .entrega-btn {
-  -webkit-tap-highlight-color: transparent; /* Chrome/Android */
+  -webkit-tap-highlight-color: transparent; 
   outline: none;
   user-select: none;
   -webkit-user-select: none;
@@ -783,7 +742,7 @@ body {
 .entrega-btn:focus,
 .entrega-btn:active {
   outline: none;
-  box-shadow: none; /* por si algún estilo lo agrega */
+  box-shadow: none; 
 }
 
 /* Si querés aplicarlo a TODOS los botones y links táctiles: */
@@ -801,11 +760,18 @@ button:focus-visible { outline: 2px solid #333; border-radius: 8px; }
   overflow-y: auto;
   padding-right: 6px;
 }
-@media (max-width: 768px){
-  .opciones-detalles{ max-height: 20vh; }
-  .pedido-lista{ max-height: 68vh; }
-}
-@media (max-width: 576px){
-  .opciones-detalles{ max-height: 18vh; }
-  .pedido-lista{ max-height: 72vh; }
+
+@media (max-width: 768px) {
+  /* permitir que el panel crezca en pizzas */
+  .pedido-box {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  /* si querés mantener el botón fijo y que solo scrollee el contenido */
+  .opciones-detalles,
+  .pedido-lista {
+    max-height: none !important;
+  }
 }
