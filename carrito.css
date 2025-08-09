@@ -263,6 +263,8 @@ body {
   padding: 34px 20px 26px 20px;
   max-width: 430px;
   width: 97vw;
+  height: 94vh;
+  overflow: hidden;
   margin: 36px auto 28px;
   animation: fadeIn .7s;
   transition: transform .3s ease, box-shadow .3s ease;
@@ -317,7 +319,8 @@ body {
 
 /* Notas del pedido (descripcion) */
 .opciones-detalles {
-  flex-grow: 1;
+  flex: 0 0 auto;         /* deja de crecer indefinidamente */
+  max-height: 24vh;       /* ajustá si querés más/menos */
   overflow-y: auto;
 }
 .detalle-card {
@@ -401,6 +404,10 @@ body {
   border: 2px solid #000000;
   border-radius: 12px;
   padding: 12px;
+  display: flex;
+  flex-direction: column;
+  max-height: 62vh;
+  overflow: hidden; 
 }
 .pedido-lista h4 {
   margin: 0 0 10px;
@@ -408,6 +415,11 @@ body {
   font-weight: bold;
   color: var(--dark);
 }
+
+.pedido-lista h4,
+#pedido-total,
+#pedido-note{ flex: 0 0 auto; }
+
 .pedido-vacio {
   color: var(--dark);
   background: #fff8;
@@ -759,4 +771,41 @@ body {
 }
 .custom-select .option:hover {
   background: rgba(0,0,0,0.05);
+}
+
+.entrega-btn {
+  -webkit-tap-highlight-color: transparent; /* Chrome/Android */
+  outline: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.entrega-btn:focus,
+.entrega-btn:active {
+  outline: none;
+  box-shadow: none; /* por si algún estilo lo agrega */
+}
+
+/* Si querés aplicarlo a TODOS los botones y links táctiles: */
+button, a, [role="button"] {
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+button:focus { outline: none; }
+button:focus-visible { outline: 2px solid #333; border-radius: 8px; }
+
+#pedido-items{
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+@media (max-width: 768px){
+  .opciones-detalles{ max-height: 20vh; }
+  .pedido-lista{ max-height: 68vh; }
+}
+@media (max-width: 576px){
+  .opciones-detalles{ max-height: 18vh; }
+  .pedido-lista{ max-height: 72vh; }
 }
