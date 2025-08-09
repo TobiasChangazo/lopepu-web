@@ -538,7 +538,6 @@ body {
 .whatsapp-btn:hover,
 .whatsapp-btn:focus {
   background: #18181b !important;
-  transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0,0,0,0.2);
 }
 .whatsapp-btn i {

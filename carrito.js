@@ -46,12 +46,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // 1) Selector tipo de entrega con botones circulares
   const entregaBtns       = document.querySelectorAll('.entrega-btn');
   const direccionInicial  = document.getElementById('direccion-inicial');
+  const pedidoNote        = document.getElementById('pedido-note');
   entregaBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       entregaBtns.forEach(b => b.classList.remove('selected'));
       btn.classList.add('selected');
       clienteTipo = btn.dataset.tipo;
       direccionInicial.style.display = (clienteTipo === 'Envío') ? 'block' : 'none';
+      pedidoNote.style.display = (clienteTipo === 'Envío') ? 'block' : 'none';
     });
   });
 
@@ -114,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { nombre:"Humita",          precio:1500 },
   ];
   const tartas = [
-    { nombre:"Jamón y Morrón",  precio:1500 }
+    { nombre:"Jamón y Queso",  precio:10000 }
   ];
   const conos_gustos = ["Jamón","Morrón","Huevo","Choclo","Cebolla","Tomate","Albahaca","Papas Pay"];
   const conos = [
@@ -587,18 +589,88 @@ window.agregarCono = function() {
 };
 
 
-  // 10) Envío a WhatsApp
-    document.getElementById('btn-wsp').addEventListener('click', () => {
-    if (!pedido.length) return alert('Tu pedido está vacío.');
-    let msg = `Hola, soy ${clienteNombre} y quiero hacer un pedido para (${clienteTipo}).\n\n`;
-    if (clienteTipo==='Envío') msg += `Dirección: ${clienteDireccion}\n\n`;
-    pedido.forEach(i => {
-      const descClean = i.desc.substring(i.desc.indexOf(' ')+1);
-      msg += `* (${i.cant}) ${descClean}` + (i.nota?` (${i.nota})`:'') + `.\n`;
-    });
-    msg += `\n* El envío es aparte del precio que marca la página.`;
-    window.open('https://wa.me/5492324674311?text=' + encodeURIComponent(msg), '_blank');
+// Helper robusto: detecta combinadas 1/2 y 1/2
+function esMediaYMedia(texto) {
+  const s = (texto || '')
+    .toString()
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+  // coincide 1/2 (con o sin espacios) o el símbolo ½
+  const tieneMedio = /\b1\s*\/\s*2\b|½/.test(s);
+  // y que haya dos mitades separadas por " y "
+  const tieneDosMitades = /1\s*\/\s*2|½/.test(s) && /\by\b/.test(s);
+  return tieneMedio && tieneDosMitades;
+}
+
+// Envío a WhatsApp — Formato Cliente (con promos en el total)
+document.getElementById('btn-wsp').onclick = function () {
+  if (!pedido.length) { alert('Tu pedido está vacío.'); return; }
+
+  const nombre     = (clienteNombre || '').trim() || '(Sin nombre)';
+  const direccion  = (clienteDireccion || '').trim() || '(Sin dirección)';
+  const subtotal   = pedido.reduce((acc, it) => acc + it.subtotal, 0);
+
+  const { discount, promos } = computePromos(pedido); // ahora también recibimos promos
+  const total      = subtotal - discount;
+  const fmt        = n => n.toLocaleString('es-AR');
+
+  // armar texto de promos en una sola línea
+  let promosTxt = '';
+  if (promos.length) {
+    promosTxt = ' (' + promos.map(p => `x${p.qty} Promo ${p.label}`).join(', ') + ')';
+  }
+
+  let msg  = `Nombre: ${nombre}\n`;
+  msg     += `Dirección: ${direccion}\n`;
+  msg     += `Total pedido: $${fmt(total)}${promosTxt}\n\n`;
+  msg     += `pedido:\n`;
+
+  pedido.forEach(it => {
+    let linea = '';
+
+    if (it.type === 'pizza') {
+      let sabor = (it.flavor || it.desc.replace(/^.*Pizza\s*/, '')).trim();
+      if (esMediaYMedia(sabor)) {
+        linea = (it.cant === 1) ? sabor : `${it.cant} x ${sabor}`;
+      } else {
+        linea = `${it.cant} ${sabor}`;
+      }
+    } 
+    else if (it.type === 'empanada') {
+      const sabor = it.desc.replace(/^.*Empanada\s*/, '').trim();
+      const palabra = it.cant === 1 ? 'Empanada' : 'Empanadas';
+      linea = `${it.cant} ${palabra} de ${sabor}`;
+    } 
+    else if (it.type === 'tarta') {
+      const sabor = it.desc.replace(/^.*Tarta\s*/, '').trim();
+      const palabra = it.cant === 1 ? 'Tarta' : 'Tartas';
+      linea = `${it.cant} ${palabra} de ${sabor}`;
+    } 
+    else if (it.type === 'cono') {
+      const gusto = it.desc.match(/\((.*?)\)/)?.[1] || '';
+      const palabra = it.cant === 1 ? 'Cono Pizza' : 'Conos Pizza';
+      linea = `${it.cant} ${palabra}${gusto ? ` (${gusto})` : ''}`;
+    } 
+    else {
+      const clean = it.desc.replace(/^(\p{Extended_Pictographic}|\p{Emoji_Presentation})\s*/u,'').trim();
+      linea = `${it.cant} ${clean}`;
+    }
+
+    if (it.nota) linea += ` (${it.nota})`;
+    msg += linea + '\n';
   });
+
+  const phone = '5492324674311';
+  const enc   = encodeURIComponent(msg);
+  const isDesktop = !/Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
+  const url = isDesktop
+    ? `https://web.whatsapp.com/send?phone=${phone}&text=${enc}`
+    : `https://wa.me/${phone}?text=${enc}`;
+
+  window.location.href = url;
+};
+
   
   // ---- PROMOS ----
 // Promo: 1 Muzzarella grande + 6 empanadas a $15.500
