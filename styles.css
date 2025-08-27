@@ -18,10 +18,19 @@ body::before {
   top: 0; left: 0;
   width: 100vw;
   height: 100vh;
-  background: #000 url('img/logo/fondo.webp') center top no-repeat;
-  background-size: cover;
   z-index: -1;
-  opacity: 1;
+
+  /* Degradé continuo para toda la página */
+  background: linear-gradient(
+    to bottom,
+    #f0cf2b 0%,    /* amarillo logo */
+    #e7b846 28%,   /* amarillo dorado */
+    #dea160 58%,   /* durazno claro */
+    #f09952 75%
+  );
+
+  /* opcional si querés “fijo” al hacer scroll en desktop */
+  background-attachment: fixed;
 }
 
 /* SOLUCIÓN PARA MÓVILES */
@@ -188,17 +197,12 @@ nav a.active {
 
 /* === BIENVENIDA Y DATOS === */
 .bienvenida-box {
-  background: linear-gradient(
-    to bottom,
-    #f0cf2b 0%,     /* amarillo logo */
-    #dea160 60%,    /* durazno claro */
-    #f09952 75%,    /* naranja pastel */
-    rgba(0,0,0,0) 100%  /* transición a fondo */
-  );
+  background: transparent;       /* antes era otro degradé */
   color: #333;
   padding: 40px 20px;
   font-family: 'Montserrat', sans-serif;
-  box-shadow: inset 0 -40px 60px -20px rgba(0, 0, 0, 0.4);
+  /* quitamos la sombra interna que hacía la “banda” */
+  box-shadow: none;
 }
 
 .bienvenida-bloque {
