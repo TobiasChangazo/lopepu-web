@@ -18,19 +18,10 @@ body::before {
   top: 0; left: 0;
   width: 100vw;
   height: 100vh;
+  background: #000 url('img/logo/fondo.webp') center top no-repeat;
+  background-size: cover;
   z-index: -1;
-
-  /* Degradé continuo para toda la página */
-  background: linear-gradient(
-    to bottom,
-    #f0cf2b 0%,    /* amarillo logo */
-    #e7b846 28%,   /* amarillo dorado */
-    #dea160 58%,   /* durazno claro */
-    #f09952 75%
-  );
-
-  /* opcional si querés “fijo” al hacer scroll en desktop */
-  background-attachment: fixed;
+  opacity: 1;
 }
 
 /* SOLUCIÓN PARA MÓVILES */
@@ -197,12 +188,16 @@ nav a.active {
 
 /* === BIENVENIDA Y DATOS === */
 .bienvenida-box {
-  background: transparent;       /* antes era otro degradé */
+  background: linear-gradient(
+    to bottom,
+    #f0cf2b 0%,     /* amarillo logo */
+    #dea160 60%,    /* durazno claro */
+    #f09952 75%,    /* naranja pastel */
+    rgba(0,0,0,0) 100%  /* transición a fondo */
+  );
   color: #333;
   padding: 40px 20px;
   font-family: 'Montserrat', sans-serif;
-  /* quitamos la sombra interna que hacía la “banda” */
-  box-shadow: none;
 }
 
 .bienvenida-bloque {
@@ -704,16 +699,34 @@ html {
 .btn-order {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  background: #000000;    
-  color: #ffe209;
-  padding: 10px 16px;
-  border-radius: 30px;
+  gap: 8px;   
+  color: #000000;
+  padding: 18px 32px;
+  border-radius: 20px;
   font-weight: bold;
   border: none;
   cursor: pointer;
   margin: 12px 0;
+  font-size: 17px;
   transition: background 0.2s;
+  outline: none;             
+  -webkit-tap-highlight-color: transparent;
+  border: #000000 2.1px solid; 
+}
+
+.btn-order:focus {
+  outline: none;
+}
+
+.btn-order:active {
+  color: white;
+  transform: scale(0.96);
+}
+
+.highlight-order {
+  animation: pulse 2s ease-in-out infinite;
+  background-color: #ffe209 !important;
+  opacity: 1 !important;
 }
 
 .pedido-wsp i,
@@ -735,13 +748,6 @@ html {
 .social-buttons .redes-sociales-link {
   flex: 1 1 auto;
   max-width: 180px;
-}
-
-/* — Destacar “Armá tu pedido” con pulso suave — */
-.highlight-order {
-  animation: pulse 2s ease-in-out infinite;
-  background-color: #000000 !important;
-  opacity: 1 !important;
 }
 
 @keyframes pulse {
