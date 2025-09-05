@@ -4,7 +4,7 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pizzería Lo Pepu</title>
-  <link href="styles.css?v=10.12" rel="stylesheet"/>
+  <link href="styles.css?v=10.13" rel="stylesheet"/>
   <link href="img/favicon/favicon.ico" rel="icon" type="image/x-icon">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -58,6 +58,13 @@
     🛒 Arma tu pedido!
   </button>
 
+
+<!-- PDF
+<div class="export-panel" id="export-panel">
+  <button id="btnMenuPdfAcroform" class="btn-export">Descargar Menú (PDF)</button>
+</div>  -->
+
+
   <!-- Redes en fila lado a lado -->
   <div class="social-buttons">
     <div class="pedido-wsp">
@@ -72,7 +79,6 @@
     </div>
   </div>
 </div>
-    </section>
 </section>
 <nav>
   <ul>
@@ -577,46 +583,37 @@
   <div class="card-horizontal full">
   <div class="info">
     <h4>Coca Cola Retornable</h4>
-    <p>Coca Cola Retornable sabor original</p>
+    <p>Coca Cola Retornable sabor original 2L</p>
     <span class="price">$3300</span>
   </div>
-    <img alt="Coca ret" src="img/coca.webp"/>
+    <img alt="Coca ret" src="img/bebida/coca_ret.webp"/>
   </div>
 
   <div class="card-horizontal full">
   <div class="info">
     <h4>Sprite Retornable</h4>
-    <p>Sprite Retornable</p>
+    <p>Sprite Retornable 2L</p>
     <span class="price">$3300</span>
   </div>
-    <img alt="Coca ret" src="img/coca.webp"/>
+    <img alt="Coca ret" src="img/bebida/sprite_ret.webp"/>
   </div>
 
     <div class="card-horizontal full">
   <div class="info">
     <h4>Coca Cola Zero Retornable</h4>
-    <p>Coca Cola Retornable sin azucar</p>
+    <p>Coca Cola Retornable sin azucar 2L</p>
     <span class="price">$3300</span>
   </div>
-    <img alt="Coca ret" src="img/coca.webp"/>
+    <img alt="Coca ret" src="img/bebida/coca_ret_sa.webp"/>
   </div>
 
     <div class="card-horizontal full">
   <div class="info">
-    <h4>Brahma 1L</h4>
+    <h4>Brahma 1L Retornable</h4>
     <p>Brahma 1L</p>
     <span class="price">$3300</span>
   </div>
-    <img alt="brahma" src="img/coca.webp"/>
-  </div>
-
-    <div class="card-horizontal full">
-  <div class="info">
-    <h4>Levite Pomelo 1.5L</h4>
-    <p>Levite Pomelo 1.5L</p>
-    <span class="price">$2200</span>
-  </div>
-    <img alt="Coca ret" src="img/coca.webp"/>
+    <img alt="brahma" src="img/bebida/brahma.webp"/>
   </div>
 
     <div class="card-horizontal full">
@@ -625,7 +622,7 @@
     <p>Levite Naranja 1.5L</p>
     <span class="price">$2200</span>
   </div>
-    <img alt="Coca ret" src="img/coca.webp"/>
+    <img alt="Coca ret" src="img/bebida/levite.webp"/>
   </div>
 
     <div class="card-horizontal full">
@@ -634,7 +631,7 @@
     <p>Crush 2L lima limón</p>
     <span class="price">$2500</span>
   </div>
-    <img alt="Coca ret" src="img/coca.webp"/>
+    <img alt="Coca ret" src="img/bebida/crush.webp"/>
   </div>
 
     <div class="card-horizontal full">
@@ -643,25 +640,25 @@
     <p>Coca Cola Descartable 1,75L</p>
     <span class="price">$3500</span>
   </div>
-    <img alt="Coca ret" src="img/coca.webp"/>
+    <img alt="Coca ret" src="img/bebida/coca_1,75.webp"/>
   </div>
 
     <div class="card-horizontal full">
   <div class="info">
-    <h4>Sprite Descartable 2,25L</h4>
-    <p>Sprite Descartable 2,25L</p>
-    <span class="price">$4200</span>
+    <h4>Sprite Descartable 1,75L</h4>
+    <p>Sprite Descartable 1,75L</p>
+    <span class="price">$3500</span>
   </div>
-    <img alt="Coca ret" src="img/coca.webp"/>
+    <img alt="Coca ret" src="img/bebida/sprite_1,75.webp"/>
   </div>
 
     <div class="card-horizontal full">
   <div class="info">
     <h4>Brahma 500Ml</h4>
     <p>Brahma 500Ml</p>
-    <span class="price">$2100</span>
+    <span class="price">$2200</span>
   </div>
-    <img alt="Coca ret" src="img/coca.webp"/>
+    <img alt="Coca ret" src="img/bebida/brahma_lata.webp"/>
   </div>
   
     <div class="card-horizontal full">
@@ -670,7 +667,7 @@
     <p>7up 500Ml</p>
     <span class="price">$1800</span>
   </div>
-    <img alt="Coca ret" src="img/coca.webp"/>
+    <img alt="Coca ret" src="img/bebida/7up_500.webp"/>
   </div>
 
     <div class="card-horizontal full">
@@ -679,16 +676,16 @@
     <p>Pepsi 500Ml</p>
     <span class="price">$1800</span>
   </div>
-    <img alt="Coca ret" src="img/coca.webp"/>
+    <img alt="Coca ret" src="img/bebida/pepsi_500.webp"/>
   </div>
 
     <div class="card-horizontal full">
   <div class="info">
     <h4>Agua 500Ml</h4>
     <p>Agua 500Ml</p>
-    <span class="price">$1000</span>
+    <span class="price">$1200</span>
   </div>
-    <img alt="Coca ret" src="img/coca.webp"/>
+    <img alt="Coca ret" src="img/bebida/agua_500.webp"/>
   </div>
 </section>
 
@@ -746,11 +743,11 @@
     </div>
   </div>
 <script>
-  function showSection(sectionId) {
+  function showSection(sectionId, ev) {
     document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
     document.getElementById(sectionId).classList.add('active');
     document.querySelectorAll('nav a').forEach(link => link.classList.remove('active'));
-    event.target.classList.add('active');
+    ev.target.classList.add('active');
   }
 
   const cards = document.querySelectorAll('.card-horizontal');
@@ -913,7 +910,8 @@
       window.location.href = 'carrito.html';
     });
   });
-
 </script>
+<script type="module" src="./scripts/makeMenuPdf-acroform.js"></script>
+<script type="module" src="./scripts/makePromos.js"></script>
 </body>
 </html>
