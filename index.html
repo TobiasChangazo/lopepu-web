@@ -102,7 +102,7 @@
     <img alt="Promo 1" src="img/promos/2muzza.webp"/>
   </div>
 
-  <div class="card-horizontal full">
+  <div class="card-horizontal full" data-badge="Más pedida">
     <div class="info">
       <h4>2 Especiales</h4>
       <p>Promo 2 Especiales (Solo las variedades que entran en la Promo)</p>
@@ -551,14 +551,6 @@
 
     <div class="card-horizontal full">
   <div class="info">
-    <h4>Humita</h4>
-    <span class="price">$1500</span>
-  </div>
-    <img alt="Humita" src="img/emp/humita.webp"/>
-  </div>
-
-    <div class="card-horizontal full">
-  <div class="info">
     <h4>Cebolla y Queso</h4>
     <span class="price">$1500</span>
   </div>
@@ -743,174 +735,235 @@
     </div>
   </div>
 <script>
+(() => {
+  // ----- Navegación por secciones -----
   function showSection(sectionId, ev) {
     document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
-    document.getElementById(sectionId).classList.add('active');
+    const target = document.getElementById(sectionId);
+    if (target) target.classList.add('active');
+
     document.querySelectorAll('nav a').forEach(link => link.classList.remove('active'));
-    ev.target.classList.add('active');
+    if (ev?.currentTarget) ev.currentTarget.classList.add('active');
   }
+  window.showSection = showSection;
 
-  const cards = document.querySelectorAll('.card-horizontal');
-  const itemModal = document.getElementById('item-modal');
-  const itemModalOverlay = document.getElementById('item-modal-overlay');
-  const closeModalBtn = document.getElementById('close-modal-btn');
-  const modalItemImage = document.getElementById('modal-item-image');
-  const modalItemTitle = document.getElementById('modal-item-title');
-  const modalItemDescription = document.getElementById('modal-item-description');
-  const modalItemPrice = document.getElementById('modal-item-price');
-
-  function cerrarModal() {
-    itemModal.classList.remove('visible');
-    itemModalOverlay.classList.remove('visible');
-    document.body.style.overflow = '';
-  }
-
-  closeModalBtn.addEventListener('click', cerrarModal);
-  itemModalOverlay.addEventListener('click', cerrarModal);
-
-  cards.forEach(card => {
-    card.addEventListener('click', () => {
-      const imageEl = card.querySelector('img');
-      const imageSrc = imageEl?.dataset.full || imageEl?.src || 'img/default.webp';
-      const title = card.querySelector('h4').innerText;
-      const description = card.querySelector('p').innerText;
-
-      let priceText = '';
-      const prices = card.querySelectorAll('.price');
-        prices.forEach(price => {
-      const labelEl = price.querySelector('.label');
-      const montoEl = price.querySelector('.monto');
-        if (labelEl && montoEl) {
-      // caso pizzas con label/monto
-        priceText += `<strong>${labelEl.innerText}</strong> ${montoEl.innerText}<br>`;
-      } else {
-      // caso empanadas, bebidas, conos… span.price con texto directo
-      priceText += `${price.innerText.trim()}<br>`;
-      }
-    });
-
-      modalItemImage.src = imageSrc;
-      modalItemImage.alt = title;
-      modalItemTitle.innerText = title;
-      modalItemDescription.innerText = description;
-      modalItemPrice.innerHTML = priceText;
-
-      itemModal.classList.add('visible');
-      itemModalOverlay.classList.add('visible');
-      document.body.style.overflow = 'hidden';
-    });
-  });
-
-  // horarios config
-  document.getElementById('toggle-horarios').addEventListener('click', () => {
-    const detalle = document.getElementById('horarios-detalle');
-    const visible = window.getComputedStyle(detalle).display !== 'none';
-    detalle.style.display = visible ? 'none' : 'block';
-  });
-
+  // ----- Estado abierto/cerrado -----
   function actualizarEstado() {
     const estadoEl = document.getElementById('estado-actual');
+    if (!estadoEl) return;
+
     const ahora = new Date();
     const dia = ahora.getDay();
     const hora = ahora.getHours();
     const minutos = ahora.getMinutes();
 
-    const abre = 19 * 60 + 30;
-    const cierra = 23 * 60;
+    const abre = 19 * 60 + 30; // 19:30
+    const cierra = 23 * 60;    // 23:00
     const actual = hora * 60 + minutos;
 
-    const esDiaHabil = (dia >= 2 && dia <= 6) || dia === 0;
+    const esDiaHabil = (dia >= 2 && dia <= 6) || dia === 0; // mar-dom
 
-    let estado = '';
-    let clase = '';
-
+    let estado = '', clase = '';
     if (esDiaHabil) {
       if (actual >= abre && actual < cierra) {
-        if (actual >= cierra - 30) {
-          estado = '<strong>Cierra pronto</strong>';
-          clase = 'cerrando';
-        } else {
-          estado = '<strong>Abierto</strong>';
-          clase = 'abierto';
-        }
+        if (actual >= cierra - 30) { estado = '<strong>Cierra pronto</strong>'; clase = 'cerrando'; }
+        else { estado = '<strong>Abierto</strong>'; clase = 'abierto'; }
       } else if (actual >= abre - 30 && actual < abre) {
-        estado = '<strong>Abre pronto</strong>';
-        clase = 'abriendo';
-      } else {
-        estado = '<strong>Cerrado</strong>';
-        clase = 'cerrado';
-      }
-    } else {
-      estado = '<strong>Cerrado</strong>';
-      clase = 'cerrado';
-    }
+        estado = '<strong>Abre pronto</strong>'; clase = 'abriendo';
+      } else { estado = '<strong>Cerrado</strong>'; clase = 'cerrado'; }
+    } else { estado = '<strong>Cerrado</strong>'; clase = 'cerrado'; }
 
     estadoEl.innerHTML = estado;
-    estadoEl.classList.remove('abierto', 'cerrado', 'abriendo', 'cerrando');
+    estadoEl.classList.remove('abierto','cerrado','abriendo','cerrando');
     estadoEl.classList.add(clase);
   }
 
-  actualizarEstado();
-  setInterval(actualizarEstado, 60000);
-
-    // Abrir sobre nosotros al clickear logo
-  document.addEventListener('DOMContentLoaded', function() {
-  const sobreNosotrosOverlay = document.getElementById('sobre-nosotros-overlay');
-  const sobreNosotros = document.getElementById('sobre-nosotros');
-  const cerrarSobreNosotros = document.getElementById('cerrar-sobre-nosotros');
-  const logo = document.querySelector('.logo-redondo');
-
-  function abrirSobreNosotros() {
-    sobreNosotrosOverlay.classList.add('visible');
-    sobreNosotros.classList.add('visible');
-    document.body.style.overflow = 'hidden';
-    setTimeout(() => sobreNosotros.focus(), 10);
-  }
-  function cerrarSobre() {
-    sobreNosotrosOverlay.classList.remove('visible');
-    sobreNosotros.classList.remove('visible');
-    document.body.style.overflow = '';
-  }
-
-  logo.addEventListener('click', abrirSobreNosotros);
-  cerrarSobreNosotros.addEventListener('click', cerrarSobre);
-  sobreNosotrosOverlay.addEventListener('click', cerrarSobre);
-
-  window.addEventListener('keydown', function(e) {
-    if ((sobreNosotros.classList.contains('visible')) && (e.key === 'Escape')) cerrarSobre();
-  });
-});
-
-// 1. Cargo o inicio el carrito
+  // ----- Carrito -----
   const cart = JSON.parse(localStorage.getItem('lopepu-cart') || '[]');
-
-  // 2. Función para agregar productos
   function addToCart(name, price) {
     const existing = cart.find(i => i.name === name);
-    if (existing) existing.qty++;
-    else cart.push({ name, price, qty: 1 });
+    if (existing) existing.qty++; else cart.push({ name, price, qty: 1 });
     localStorage.setItem('lopepu-cart', JSON.stringify(cart));
   }
 
-  // 3. Hooks de UI (productos & carrito)
-  document.addEventListener('DOMContentLoaded', () => {
-    // Botones Agregar
+  // ----- Inicialización de UI -----
+  const initUI = () => {
+    // Modal de ítem
+    const itemModal = document.getElementById('item-modal');
+    const itemModalOverlay = document.getElementById('item-modal-overlay');
+    const closeModalBtn = document.getElementById('close-modal-btn');
+    const modalItemImage = document.getElementById('modal-item-image');
+    const modalItemTitle = document.getElementById('modal-item-title');
+    const modalItemDescription = document.getElementById('modal-item-description');
+    const modalItemPrice = document.getElementById('modal-item-price');
+
+    const cerrarModal = () => {
+      itemModal?.classList.remove('visible');
+      itemModalOverlay?.classList.remove('visible');
+      document.body.style.overflow = '';
+    };
+    closeModalBtn?.addEventListener('click', cerrarModal);
+    itemModalOverlay?.addEventListener('click', cerrarModal);
+
+    document.querySelectorAll('.card-horizontal').forEach(card => {
+      card.addEventListener('click', () => {
+        if (!itemModal || !itemModalOverlay) return;
+        const imageEl = card.querySelector('img');
+        const imageSrc = imageEl?.dataset.full || imageEl?.src || 'img/default.webp';
+        const title = card.querySelector('h4')?.innerText || '';
+        const description = card.querySelector('p')?.innerText || '';
+
+        let priceText = '';
+        card.querySelectorAll('.price').forEach(price => {
+          const labelEl = price.querySelector('.label');
+          const montoEl = price.querySelector('.monto');
+          priceText += (labelEl && montoEl)
+            ? `<strong>${labelEl.innerText}</strong> ${montoEl.innerText}<br>`
+            : `${price.textContent.trim()}<br>`;
+        });
+
+        if (modalItemImage) { modalItemImage.src = imageSrc; modalItemImage.alt = title; }
+        if (modalItemTitle) modalItemTitle.innerText = title;
+        if (modalItemDescription) modalItemDescription.innerText = description;
+        if (modalItemPrice) modalItemPrice.innerHTML = priceText;
+
+        itemModal.classList.add('visible');
+        itemModalOverlay.classList.add('visible');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    // Toggle horarios
+    const btnHorarios = document.getElementById('toggle-horarios');
+    const detalleHorarios = document.getElementById('horarios-detalle');
+    btnHorarios?.addEventListener('click', () => {
+      if (!detalleHorarios) return;
+      const visible = window.getComputedStyle(detalleHorarios).display !== 'none';
+      detalleHorarios.style.display = visible ? 'none' : 'block';
+    });
+
+    // Sobre nosotros (logo)
+    const sobreNosotrosOverlay = document.getElementById('sobre-nosotros-overlay');
+    const sobreNosotros = document.getElementById('sobre-nosotros');
+    const cerrarSobreNosotros = document.getElementById('cerrar-sobre-nosotros');
+    const logo = document.querySelector('.logo-redondo');
+    const abrirSobreNosotros = () => {
+      if (!sobreNosotros || !sobreNosotrosOverlay) return;
+      sobreNosotrosOverlay.classList.add('visible');
+      sobreNosotros.classList.add('visible');
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => sobreNosotros.focus(), 10);
+    };
+    const cerrarSobre = () => {
+      if (!sobreNosotros || !sobreNosotrosOverlay) return;
+      sobreNosotrosOverlay.classList.remove('visible');
+      sobreNosotros.classList.remove('visible');
+      document.body.style.overflow = '';
+    };
+    logo?.addEventListener('click', abrirSobreNosotros);
+    cerrarSobreNosotros?.addEventListener('click', cerrarSobre);
+    sobreNosotrosOverlay?.addEventListener('click', cerrarSobre);
+    window.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && sobreNosotros?.classList.contains('visible')) cerrarSobre();
+    });
+
+    // Botones "Agregar" y abrir carrito
     document.querySelectorAll('.btn-add').forEach(btn => {
       btn.addEventListener('click', e => {
-        const card  = e.currentTarget.closest('.card-horizontal.full');
-        const name  = card.dataset.name;
-        const price = parseInt(card.dataset.price, 10);
+        const card = e.currentTarget.closest('.card-horizontal.full');
+        if (!card) return;
+        const name  = card.dataset.name || 'Producto';
+        const price = parseInt(card.dataset.price || '0', 10);
         addToCart(name, price);
         alert(`${name} agregado al carrito.`);
       });
     });
-
-    // Abrir carrito
-    document.getElementById('open-cart').addEventListener('click', () => {
+    document.getElementById('open-cart')?.addEventListener('click', () => {
       window.location.href = 'carrito.html';
     });
-  });
+
+    // Estado abierto/cerrado
+    actualizarEstado();
+    setInterval(actualizarEstado, 60_000);
+
+    // ----- Mini-flechas de la navbar -----
+    const nav = document.querySelector('nav');
+    if (nav) {
+      // Preferimos que scrollee el <ul>; si no, usamos <nav>
+      const pickScroller = () => {
+        const ul = nav.querySelector('ul');
+        let el = ul || nav;
+        if (ul && (ul.scrollWidth - ul.clientWidth <= 1) && (nav.scrollWidth - nav.clientWidth > 1)) {
+          el = nav;
+        }
+        return el;
+      };
+      let scroller = pickScroller();
+
+      // Crear flechas (evita duplicados)
+      nav.setAttribute('data-scrollable', '');
+      nav.querySelectorAll('.nav-chev').forEach(n => n.remove());
+
+      const mkBtn = (cls, label, char) => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = `nav-chev ${cls}`;
+        b.setAttribute('aria-label', label);
+        b.textContent = char;
+        return b;
+      };
+      const left  = mkBtn('nav-chev-left',  'Desplazar categorías a la izquierda', '‹');
+      const right = mkBtn('nav-chev-right', 'Desplazar categorías a la derecha',  '›');
+      nav.append(left, right);
+
+      // Umbral para ignorar pequeños paddings/márgenes
+      const EDGE = 14;
+
+      const updateHints = () => {
+        // Re-elegir scroller si cambió por CSS
+        const nextScroller = pickScroller();
+        if (nextScroller !== scroller) {
+          scroller.removeEventListener('scroll', updateHints);
+          scroller = nextScroller;
+          scroller.addEventListener('scroll', updateHints, { passive: true });
+        }
+
+        const hasOverflow = scroller.scrollWidth - scroller.clientWidth > EDGE;
+        if (!hasOverflow) {
+          nav.dataset.atStart = '1';
+          nav.dataset.atEnd   = '1';
+          return;
+        }
+        const atStart = scroller.scrollLeft <= EDGE;
+        const atEnd = scroller.scrollLeft + scroller.clientWidth >= scroller.scrollWidth - EDGE;
+        nav.dataset.atStart = atStart ? '1' : '0';
+        nav.dataset.atEnd   = atEnd   ? '1' : '0';
+      };
+
+      const step = Math.max(80, Math.round(scroller.clientWidth * 0.7));
+      left.addEventListener('click',  () => scroller.scrollBy({ left: -step, behavior: 'smooth' }));
+      right.addEventListener('click', () => scroller.scrollBy({ left:  step, behavior: 'smooth' }));
+
+      scroller.addEventListener('scroll', updateHints, { passive: true });
+      window.addEventListener('resize', updateHints);
+      if (window.ResizeObserver) new ResizeObserver(updateHints).observe(scroller);
+
+      // Recalcular cuando cargan fuentes/imágenes y con pequeños delays
+      window.addEventListener('load', updateHints);
+      setTimeout(updateHints, 300);
+      setTimeout(updateHints, 1000);
+      updateHints();
+    }
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initUI);
+  } else {
+    initUI();
+  }
+})();
 </script>
+
 <script type="module" src="./scripts/makeMenuPdf-acroform.js"></script>
 <script type="module" src="./scripts/makePromos.js"></script>
 </body>

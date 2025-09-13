@@ -18,20 +18,28 @@
     <i class="fas fa-times"></i>
   </button>
 
-  <h2>Datos del cliente</h2>
+  <h2>Datos del Cliente</h2>
 
-  <!-- Nuevo selector tipo de entrega -->
-  <div class="tipo-entrega-box">
-    <h3>Tipo de entrega</h3>
-    <div class="tipo-entrega-btns">
-      <button type="button" class="entrega-btn selected" data-tipo="Retiro">
-        <i class="fas fa-hands-helping"></i>
+<div class="tipo-entrega-box">
+  <h3>Forma de entrega</h3>
+  <div class="tipo-entrega-btns">
+    <div class="entrega-option">
+      <button type="button" class="entrega-btn selected" data-tipo="Retiro"
+              aria-label="Retiro en el local" title="Retiro en el local">
+        <i class="fa-solid fa-shop"></i>
       </button>
-      <button type="button" class="entrega-btn" data-tipo="Envío">
+      <span class="entrega-caption">Retiro</span>
+    </div>
+
+    <div class="entrega-option">
+      <button type="button" class="entrega-btn" data-tipo="Envío"
+              aria-label="Envío a domicilio" title="Envío a domicilio">
         <i class="fas fa-motorcycle"></i>
       </button>
+      <span class="entrega-caption">Envío</span>
     </div>
   </div>
+</div>
 
   <!-- Campos de datos -->
   <div class="detalle-card">
