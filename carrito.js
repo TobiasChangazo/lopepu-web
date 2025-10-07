@@ -97,25 +97,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 5) DATOS DE PRODUCTOS
   const pizzas = [
-    { nombre:"Muzzarella",      grande:8000, chica:5900 },
-    { nombre:"Jamón y Morrón",  grande:10000, chica:7200 },
-    { nombre:"Jamón Solo",      grande:10000, chica:7200 },
-    { nombre:"Jamón y Huevo",   grande:10000, chica:7200 },
-    { nombre:"Napolitana",      grande:10000, chica:7200 },
-    { nombre:"Fugazzeta",       grande:10000, chica:7200 },
-    { nombre:"Cebolla y Tomate", grande:10000, chica:7200 },
-    { nombre:"Cebolla y Albahaca", grande:10000, chica:7200 },
-    { nombre:"Albahaca",        grande:10000, chica:7200 },
-    { nombre:"Capresse",        grande:10000, chica:7200 },
-    { nombre:"Calabresa",       grande:10000, chica:7200 },
-    { nombre:"Papas Pay",       grande:10000, chica:7200 },
-    { nombre:"Choclo",          grande:10000, chica:7200 },
-    { nombre:"Huevo Solo",      grande:10000, chica:7200 },
-    { nombre:"Ananá",           grande:11500, chica:7600 },
-    { nombre:"Anchoa",          grande:11500, chica:7600 },
-    { nombre:"Roquefort",       grande:11500, chica:7600 },
-    { nombre:"3 Quesos",        grande:11500, chica:7600 },
-    { nombre:"Palmito",         grande:11500, chica:7600 }
+    { nombre:"Muzzarella",      grande:10000, chica:5300 },
+    { nombre:"Jamón y Morrón",  grande:12000, chica:7000 },
+    { nombre:"Jamón Solo",      grande:12000, chica:7000 },
+    { nombre:"Jamón y Huevo",   grande:12000, chica:7000 },
+    { nombre:"Napolitana",      grande:12000, chica:7000 },
+    { nombre:"Fugazzeta",       grande:12000, chica:7000 },
+    { nombre:"Cebolla y Tomate", grande:12000, chica:7000 },
+    { nombre:"Cebolla y Albahaca", grande:12000, chica:7000 },
+    { nombre:"Albahaca",        grande:12000, chica:7000 },
+    { nombre:"Capresse",        grande:12000, chica:7000 },
+    { nombre:"Calabresa",       grande:12000, chica:7000 },
+    { nombre:"Papas Pay",       grande:12000, chica:7000 },
+    { nombre:"Choclo",          grande:12000, chica:7000 },
+    { nombre:"Huevo Solo",      grande:12000, chica:7000 },
+    { nombre:"Ananá",           grande:13500, chica:7600 },
+    { nombre:"Anchoa",          grande:13500, chica:7600 },
+    { nombre:"Roquefort",       grande:13500, chica:7600 },
+    { nombre:"3 Quesos",        grande:13500, chica:7600 },
+    { nombre:"Palmito",         grande:13500, chica:7600 }
   ];
   const empanadas = [
     { nombre:"Carne",           precio:1500 },
@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { nombre:"Cebolla y Queso", precio:1500 }
   ];
   const tartas = [
-    { nombre:"Jamón y Queso",  precio:10000 }
+    { nombre:"Jamón y Queso",  precio:12000 }
   ];
   const conos_gustos = ["Jamón","Morrón","Huevo","Choclo","Cebolla","Tomate","Albahaca","Papas Pay"];
   const conos = [
@@ -701,129 +701,130 @@ Pedido:
   window.location.href = url;
 };
   
-  // ---- PROMOS ----
-  // Promo: 1 Muzzarella grande + 6 empanadas a $15.500
-  function computePromos(items) {
-    // Contadores de recursos
-    let muzza = 0;       // pizzas muzza grande
-    let especial = 0;    // pizzas especiales grande (o 1/2 + 1/2 especiales)
-    let emp = 0;         // empanadas sueltas
+// ---- PROMOS (precios 2025-10) ----
+// Base: muzza $10000, especial $12000, emp $1500 c/u
+// Packs emp: 1/2 doc $8000, 1 doc $15000
+function computePromos(items) {
+  // Contadores de recursos
+  let muzza = 0;       // pizzas muzza grande
+  let especial = 0;    // pizzas especiales grande (o 1/2 + 1/2 especiales)
+  let emp = 0;         // empanadas sueltas
 
-    items.forEach(it => {
-      if (it.type === 'pizza') {
-        const kind = classifyPizza(it); // 'muzza' | 'especial' | null
-        if (kind === 'muzza') muzza += it.cant;
-        if (kind === 'especial') especial += it.cant;
-      } else if (it.type === 'empanada') {
-        emp += it.cant;
-      }
-    });
-
-    const promos = []; // {label, qty}
-    let discount = 0;
-
-    // ====== PRIORIDAD: combos con DOCENAS + pizzas ======
-    // 1 ESPECIAL + 1 DOC $24500  (normal 10000 + 12*1500=28000 => save 3500)
-    let take = Math.min(especial, Math.floor(emp/12));
-    if (take > 0) {
-      promos.push({ label: "1 ESPECIAL + 1 DOC", qty: take });
-      discount += (10000 + 12*1500 - 24500) * take; // 3500
-      especial -= take; emp -= take*12;
+  items.forEach(it => {
+    if (it.type === 'pizza') {
+      const kind = classifyPizza(it); // 'muzza' | 'especial' | null
+      if (kind === 'muzza') muzza += it.cant;
+      if (kind === 'especial') especial += it.cant;
+    } else if (it.type === 'empanada') {
+      emp += it.cant;
     }
+  });
 
-    // 1 MUZZA + 1 DOC $22500 (normal 8000 + 18000=26000 => save 3500)
-    take = Math.min(muzza, Math.floor(emp/12));
-    if (take > 0) {
-      promos.push({ label: "1 MUZZA + 1 DOC", qty: take });
-      discount += (8000 + 12*1500 - 22500) * take; // 3500
-      muzza -= take; emp -= take*12;
-    }
+  const promos = []; // {label, qty}
+  let discount = 0;
 
-    // ====== combos con 1/2 doc + pizzas ======
-    // 1 ESPECIAL + 1/2 DOC $17500 (normal 10000 + 9000=19000 => save 1500)
-    take = Math.min(especial, Math.floor(emp/6));
-    if (take > 0) {
-      promos.push({ label: "1 ESPECIAL + 1/2 DOC", qty: take });
-      discount += (10000 + 6*1500 - 17500) * take; // 1500
-      especial -= take; emp -= take*6;
-    }
-
-    // 1 MUZZA + 1/2 DOC $15500 (normal 8000 + 9000=17000 => save 1500)
-    take = Math.min(muzza, Math.floor(emp/6));
-    if (take > 0) {
-      promos.push({ label: "1 MUZZA + 1/2 DOC", qty: take });
-      discount += (8000 + 6*1500 - 15500) * take; // 1500
-      muzza -= take; emp -= take*6;
-    }
-
-    // ====== combos sólo pizzas ======
-    // 3 MUZZA $22800 (normal 24000 => save 1200)
-    take = Math.floor(muzza / 3);
-    if (take > 0) {
-      promos.push({ label: "3 MUZZA", qty: take });
-      discount += (3*8000 - 22800) * take; // 1200
-      muzza -= take*3;
-    }
-
-    // 2 MUZZA $15400 (normal 16000 => save 600)
-    take = Math.floor(muzza / 2);
-    if (take > 0) {
-      promos.push({ label: "2 MUZZA", qty: take });
-      discount += (2*8000 - 15400) * take; // 600
-      muzza -= take*2;
-    }
-
-    // 3 ESPECIALES $29000 (normal 30000 => save 1000)
-    take = Math.floor(especial / 3);
-    if (take > 0) {
-      promos.push({ label: "3 ESPECIALES", qty: take });
-      discount += (3*10000 - 29000) * take; // 1000
-      especial -= take*3;
-    }
-
-    // 2 ESPECIALES $19000 (normal 20000 => save 1000)
-    take = Math.floor(especial / 2);
-    if (take > 0) {
-      promos.push({ label: "2 ESPECIALES", qty: take });
-      discount += (2*10000 - 19000) * take; // 1000
-      especial -= take*2;
-    }
-
-    // 1 ESPECIAL + 1 MUZZA $17500 (normal 18000 => save 500)
-    take = Math.min(especial, muzza);
-    if (take > 0) {
-      promos.push({ label: "1 ESPECIAL + 1 MUZZA", qty: take });
-      discount += ((10000 + 8000) - 17500) * take; // 500
-      especial -= take; muzza -= take;
-    }
-
-    // ====== packs de empanadas ======
-    // 2 DOC $29000 (normal 36000 => save 7000)
-    take = Math.floor(emp / 24);
-    if (take > 0) {
-      promos.push({ label: "2 DOC", qty: take });
-      discount += (24*1500 - 29000) * take; // 7000
-      emp -= take*24;
-    }
-
-    // 1 DOC $15000 (normal 18000 => save 3000)
-    take = Math.floor(emp / 12);
-    if (take > 0) {
-      promos.push({ label: "1 DOC", qty: take });
-      discount += (12*1500 - 15000) * take; // 3000
-      emp -= take*12;
-    }
-
-    // 1/2 DOC $8000 (normal 9000 => save 1000)
-    take = Math.floor(emp / 6);
-    if (take > 0) {
-      promos.push({ label: "1/2 DOC", qty: take });
-      discount += (6*1500 - 8000) * take; // 1000
-      emp -= take*6;
-    }
-
-    return { promos, discount };
+  // ====== PRIORIDAD: combos con DOCENAS + pizzas ======
+  // 1 ESPECIAL + 1 DOC $26.500  (normal 12.000 + 18.000 = 30.000 => save 3.500)
+  let take = Math.min(especial, Math.floor(emp/12));
+  if (take > 0) {
+    promos.push({ label: "1 ESPECIAL + 1 DOC", qty: take });
+    discount += (12000 + 12*1500 - 26500) * take; // 3500
+    especial -= take; emp -= take*12;
   }
+
+  // 1 MUZZA + 1 DOC $24.500 (normal 10.000 + 18.000 = 28.000 => save 3.500)
+  take = Math.min(muzza, Math.floor(emp/12));
+  if (take > 0) {
+    promos.push({ label: "1 MUZZA + 1 DOC", qty: take });
+    discount += (10000 + 12*1500 - 24500) * take; // 3500
+    muzza -= take; emp -= take*12;
+  }
+
+  // ====== combos con 1/2 doc + pizzas ======
+  // 1 ESPECIAL + 1/2 DOC $19.500 (normal 12.000 + 9.000 = 21.000 => save 1.500)
+  take = Math.min(especial, Math.floor(emp/6));
+  if (take > 0) {
+    promos.push({ label: "1 ESPECIAL + 1/2 DOC", qty: take });
+    discount += (12000 + 6*1500 - 19500) * take; // 1500
+    especial -= take; emp -= take*6;
+  }
+
+  // 1 MUZZA + 1/2 DOC $17.500 (normal 10.000 + 9.000 = 19.000 => save 1.500)
+  take = Math.min(muzza, Math.floor(emp/6));
+  if (take > 0) {
+    promos.push({ label: "1 MUZZA + 1/2 DOC", qty: take });
+    discount += (10000 + 6*1500 - 17500) * take; // 1500
+    muzza -= take; emp -= take*6;
+  }
+
+  // ====== combos sólo pizzas ======
+  // 3 MUZZA $28.500 (normal 30.000 => save 1.500)
+  take = Math.floor(muzza / 3);
+  if (take > 0) {
+    promos.push({ label: "3 MUZZA", qty: take });
+    discount += (3*10000 - 28500) * take; // 1500
+    muzza -= take*3;
+  }
+
+  // 2 MUZZA $19.000 (normal 20.000 => save 1.000)
+  take = Math.floor(muzza / 2);
+  if (take > 0) {
+    promos.push({ label: "2 MUZZA", qty: take });
+    discount += (2*10000 - 19000) * take; // 1000
+    muzza -= take*2;
+  }
+
+  // 3 ESPECIALES $34.500 (normal 36.000 => save 1.500)
+  take = Math.floor(especial / 3);
+  if (take > 0) {
+    promos.push({ label: "3 ESPECIALES", qty: take });
+    discount += (3*12000 - 34500) * take; // 1500
+    especial -= take*3;
+  }
+
+  // 2 ESPECIALES $23.000 (normal 24.000 => save 1.000)
+  take = Math.floor(especial / 2);
+  if (take > 0) {
+    promos.push({ label: "2 ESPECIALES", qty: take });
+    discount += (2*12000 - 23000) * take; // 1000
+    especial -= take*2;
+  }
+
+  // 1 ESPECIAL + 1 MUZZA $21.500 (normal 22.000 => save 500)
+  take = Math.min(especial, muzza);
+  if (take > 0) {
+    promos.push({ label: "1 ESPECIAL + 1 MUZZA", qty: take });
+    discount += ((12000 + 10000) - 21500) * take; // 500
+    especial -= take; muzza -= take;
+  }
+
+  // ====== packs de empanadas ======
+  // 2 DOC $29.000 (normal 36.000 => save 7.000)
+  take = Math.floor(emp / 24);
+  if (take > 0) {
+    promos.push({ label: "2 DOC", qty: take });
+    discount += (24*1500 - 29000) * take; // 7000
+    emp -= take*24;
+  }
+
+  // 1 DOC $15.000 (normal 18.000 => save 3.000)
+  take = Math.floor(emp / 12);
+  if (take > 0) {
+    promos.push({ label: "1 DOC", qty: take });
+    discount += (12*1500 - 15000) * take; // 3000
+    emp -= take*12;
+  }
+
+  // 1/2 DOC $8.000 (normal 9.000 => save 1.000)
+  take = Math.floor(emp / 6);
+  if (take > 0) {
+    promos.push({ label: "1/2 DOC", qty: take });
+    discount += (6*1500 - 8000) * take; // 1000
+    emp -= take*6;
+  }
+
+  return { promos, discount };
+}
 
   renderPedido();
 });
