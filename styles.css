@@ -1517,3 +1517,137 @@ html {
   }
 }
 
+/* ===========================
+   📱 TABLETS Y TELÉFONOS GRANDES (≤ 900px)
+   =========================== */
+@media (max-width: 900px) {
+  .section {
+    padding: 16px;
+  }
+
+  .card-horizontal.full {
+    display: grid;
+    grid-template-columns: 1fr 40%;
+    align-items: center;
+    gap: 14px;
+    width: 95%;
+    margin: 14px auto;
+    padding: 16px;
+    min-height: 160px;
+    border-radius: 14px;
+  }
+
+  .card-horizontal.full img {
+    width: 100%;
+    max-width: 160px;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    border-radius: 12px;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .card-horizontal.full .info {
+    text-align: left;
+    align-items: flex-start;
+    justify-content: center;
+    padding-right: 0;
+  }
+
+  .card-horizontal.full .info h4 {
+    font-size: 1rem;
+    gap: 6px;
+    white-space: normal;
+    flex-wrap: wrap;
+  }
+
+  .card-horizontal.full .info .badge {
+    font-size: 0.7rem;
+    padding: 3px 7px;
+  }
+
+  .card-horizontal.full p,
+  .card-horizontal.full .price {
+    font-size: 0.95rem;
+  }
+
+  #promos .card-horizontal.full img {
+    object-fit: contain;
+    background: #fff;
+    padding: 4px;
+  }
+
+  footer {
+    font-size: 0.9rem;
+    padding: 14px;
+  }
+
+  .nav-search {
+    width: 80%;
+    height: 36px;
+  }
+
+  #lp-nav .nav-icon {
+    width: 68px;
+    height: 68px;
+  }
+
+  #lp-nav .nav-chip span {
+    font-size: 0.9rem;
+  }
+}
+
+
+/* ===========================
+   📱 CELULARES COMPACTOS (≤ 480px)
+   =========================== */
+@media (max-width: 480px) {
+  .card-horizontal.full {
+    grid-template-columns: 1fr 48%;
+    gap: 10px;
+    width: 92%;
+    padding: 12px;
+    min-height: 150px;
+  }
+
+  .card-horizontal.full img {
+    max-width: 140px;
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+
+  .card-horizontal.full .info h4 {
+    font-size: 0.9rem;
+    gap: 4px;
+    white-space: normal;
+    flex-wrap: wrap;
+  }
+
+  .card-horizontal.full .info .badge {
+    font-size: 0.6rem;
+    padding: 2px 6px;
+  }
+
+  .card-horizontal.full p,
+  .card-horizontal.full .price {
+    font-size: 0.85rem;
+  }
+
+  footer {
+    font-size: 0.8rem;
+  }
+
+  #lp-nav .nav-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  #lp-nav .nav-chip span {
+    font-size: 0.85rem;
+  }
+
+  .nav-search {
+    width: 85%;
+    height: 32px;
+  }
+}
