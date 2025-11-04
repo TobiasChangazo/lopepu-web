@@ -58,13 +58,6 @@
     🛒 Arma tu pedido!
   </button>
 
-
-<!-- PDF
-<div class="export-panel" id="export-panel">
-  <button id="btnMenuPdfAcroform" class="btn-export">Descargar Menú (PDF)</button>
-</div>  -->
-
-
   <!-- Redes en fila lado a lado -->
   <div class="social-buttons">
     <div class="pedido-wsp">
@@ -80,23 +73,59 @@
   </div>
 </div>
 </section>
-<nav>
-  <ul>
-    <li><a class="active" onclick="showSection('promos')">Promociones</a></li>
-    <li><a onclick="showSection('pizzas')">Pizzas</a></li>
-    <li><a onclick="showSection('empanadas')">Empanadas</a></li>
-    <li><a onclick="showSection('tartas')">Tartas</a></li>
-    <li><a onclick="showSection('bebidas')">Bebidas</a></li>
-    <li><a onclick="showSection('conos')">Conos</a></li>
-  </ul>
-</nav>
+
+<div class="nav-container">
+  <nav id="lp-nav" data-scrollable>
+    <div class="nav-slab">
+      <div class="nav-inner">
+
+        <!-- BUSCADOR ARRIBA -->
+        <div class="nav-search-row">
+          <div class="nav-search">
+            <input id="lp-search" type="search" placeholder="Buscar Producto..." aria-label="Buscar producto">
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+          </div>
+        </div>
+
+        <!-- ÍCONOS DEBAJO -->
+        <ul class="nav-icons nav-icons-big">
+          <li><button class="nav-chip" data-target="promos" aria-label="Promociones">
+            <img class="nav-icon" src="img/icon-nav/promoicon.png" alt="Promos"><span>Promos</span>
+          </button></li>
+
+          <li><button class="nav-chip" data-target="pizzas" aria-label="Pizzas">
+            <img class="nav-icon" src="img/icon-nav/pizzaicon.png" alt="Pizzas"><span>Pizzas</span>
+          </button></li>
+
+          <li><button class="nav-chip" data-target="empanadas" aria-label="Empanadas">
+            <img class="nav-icon" src="img/icon-nav/empanadaicon.png" alt="Empanadas"><span>Empanadas</span>
+          </button></li>
+
+          <li><button class="nav-chip" data-target="tartas" aria-label="Tartas">
+            <img class="nav-icon" src="img/icon-nav/tartaicon.png" alt="Tartas"><span>Tartas</span>
+          </button></li>
+
+          <li><button class="nav-chip" data-target="bebidas" aria-label="Bebidas">
+            <img class="nav-icon" src="img/icon-nav/bebidaicon.png" alt="Bebidas"><span>Bebidas</span>
+          </button></li>
+
+          <li><button class="nav-chip" data-target="conos" aria-label="Conos">
+            <img class="nav-icon" src="img/icon-nav/conoicon.png" alt="Conos"><span>Conos</span>
+          </button></li>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+</div>
+
 
 <!-- PROMOS -->
 <section class="section active" id="promos">
   <div class="card-horizontal full">
     <div class="info">
-      <h4>2 Muzzarella</h4>
-      <p>Promo 2 Muzzarellas</p>
+      <h4>2 Muzzarellas</h4>
+      <p></p>
       <span class="price">$19000</span>
   </div>
     <img alt="Promo 1" src="img/promos/2muzza.webp"/>
@@ -105,7 +134,7 @@
   <div class="card-horizontal full" data-badge="Más pedida">
     <div class="info">
       <h4>2 Especiales</h4>
-      <p>Promo 2 Especiales (Solo las variedades que entran en la Promo)</p>
+      <p>Especial a Elección</p>
       <span class="price">$23000</span>
   </div>
     <img alt="Promo 1" src="img/promos/2esp.webp"/>
@@ -114,7 +143,7 @@
   <div class="card-horizontal full">
     <div class="info">
       <h4>1 Especial + 1 Muzzarella</h4>
-      <p>Promo 1 Especial + 1 Muzzarella</p>
+      <p>Especial a Elección</p>
       <span class="price">$21500</span>
   </div>
     <img alt="Promo 1" src="img/promos/muzza+esp.webp"/>
@@ -123,7 +152,7 @@
   <div class="card-horizontal full">
     <div class="info">
       <h4>1 Muzzarella + 1/2 Docena</h4>
-      <p>Promo 1 Muzzarella + 1/2 Docena (Pueden ser Variadas)</p>
+      <p>Empanadas a Elección</p>
       <span class="price">$17500</span>
   </div>
     <img alt="Promo 1" src="img/promos/muzza+6.webp"/>
@@ -132,7 +161,7 @@
   <div class="card-horizontal full">
     <div class="info">
       <h4>1 Especial + 1/2 Docena</h4>
-      <p>Promo 1 Especial + 1/2 Docena (Pueden ser Variadas)</p>
+      <p>Especial y Empanadas a Elección</p>
       <span class="price">$19500</span>
   </div>
     <img alt="Promo 1" src="img/promos/esp+6.webp"/>
@@ -141,7 +170,7 @@
   <div class="card-horizontal full">
     <div class="info">
       <h4>1 Muzzarella + 1 Docena</h4>
-      <p>Promo 1 Muzzarella + 1 Docena (Pueden ser Variadas)</p>
+      <p>Empanadas a Elección</p>
       <span class="price">$24500</span>
   </div>
     <img alt="Promo 1" src="img/promos/muzza+12.webp"/>
@@ -150,7 +179,7 @@
   <div class="card-horizontal full">
     <div class="info">
       <h4>1 Especial + 1 Docena</h4>
-      <p>Promo 1 Especial + 1 Docena (Pueden ser Variadas)</p>
+      <p>Especial y Empanadas a Elección</p>
       <span class="price">$26500</span>
   </div>
     <img alt="Promo 1" src="img/promos/esp+12.webp"/>
@@ -159,7 +188,7 @@
   <div class="card-horizontal full">
     <div class="info">
       <h4>3 Muzzarellas</h4>
-      <p>Promo 3 Muzzarellas</p>
+      <p></p>
       <span class="price">$28500</span>
   </div>
     <img alt="Promo 1" src="img/promos/3muzza.webp"/>
@@ -168,7 +197,7 @@
   <div class="card-horizontal full">
     <div class="info">
       <h4>3 Especiales</h4>
-      <p>Promo 3 Especiales</p>
+      <p>Especiales a Elección</p>
       <span class="price">$34500</span>
   </div>
     <img alt="Promo 1" src="img/promos/3esp.webp"/>
@@ -181,7 +210,7 @@
   <div class="card-horizontal full">
     <div class="info">
       <h4>Muzzarella</h4>
-      <p>Muzzarella, Salsa, Aceituna.</p>
+      <p></p>
     <div class="precios-dobles">
       <span class="price">
       <span class="label">Grande:</span> <span class="monto">$10000</span>
@@ -196,8 +225,8 @@
 
   <div class="card-horizontal full">
     <div class="info">
-      <h4>Jamón y Morrón</h4>
-      <p>Jamón, Morrón, Muzzarella, Salsa, Aceituna.</p>
+      <h4>Jamón y Morrón <span class="badge especial">Especial</span></h4>
+      <p></p>
     <div class="precios-dobles">
       <span class="price">
       <span class="label">Grande:</span> <span class="monto">$12000</span>
@@ -212,8 +241,8 @@
 
   <div class="card-horizontal full">
     <div class="info">
-      <h4>Jamón Solo</h4>
-      <p>Jamón, Muzzarella, Salsa, Aceituna.</p>
+      <h4>Jamón Solo <span class="badge especial">Especial</span></h4>
+      <p></p>
     <div class="precios-dobles">
       <span class="price">
       <span class="label">Grande:</span> <span class="monto">$12000</span>
@@ -228,8 +257,11 @@
 
   <div class="card-horizontal full">
     <div class="info">
-      <h4>Jamón y Huevo</h4>
-      <p>Jamón, Huevo, Muzzarella, Salsa, Aceituna.</p>
+      <h4>
+      Jamón y Huevo
+      <span class="badge especial">Especial</span>
+      </h4>
+      <p></p>
     <div class="precios-dobles">
       <span class="price">
       <span class="label">Grande:</span> <span class="monto">$12000</span>
@@ -244,8 +276,8 @@
 
 <div class="card-horizontal full">
     <div class="info">
-      <h4>Cebolla y Albahaca</h4>
-      <p>Cebolla, Albahaca, Muzzarella, Salsa, Aceituna.</p>
+      <h4>Cebolla y Albahaca <span class="badge especial">Especial</span></h4>
+      <p></p>
     <div class="precios-dobles">
       <span class="price">
       <span class="label">Grande:</span> <span class="monto">$12000</span>
@@ -260,8 +292,8 @@
 
 <div class="card-horizontal full">
     <div class="info">
-      <h4>Doble Muzzarella</h4>
-      <p>Doble Muzzarella, Salsa, Aceituna.</p>
+      <h4>Doble Muzzarella <span class="badge especial">Especial</span></h4>
+      <p></p>
     <div class="precios-dobles">
       <span class="price">
       <span class="label">Grande:</span> <span class="monto">$12000</span>
@@ -277,8 +309,8 @@
 
   <div class="card-horizontal full">
     <div class="info">
-      <h4>Napolitana</h4>
-      <p>Jamón, Tomate, Muzzarella, Salsa, Aceituna.</p>
+      <h4>Napolitana <span class="badge especial">Especial</span></h4>
+      <p></p>
     <div class="precios-dobles">
       <span class="price">
       <span class="label">Grande:</span> <span class="monto">$12000</span>
@@ -293,8 +325,8 @@
 
   <div class="card-horizontal full">
     <div class="info">
-      <h4>Fugazzeta</h4>
-      <p>Cebolla, Muzzarella, Salsa, Aceituna.</p>
+      <h4>Fugazzeta <span class="badge especial">Especial</span></h4>
+      <p></p>
     <div class="precios-dobles">
       <span class="price">
       <span class="label">Grande:</span> <span class="monto">$12000</span>
@@ -309,8 +341,8 @@
 
   <div class="card-horizontal full">
     <div class="info">
-      <h4>Cebolla y Tomate</h4>
-      <p>Cebolla, Tomate, Muzzarella, Salsa, Aceituna.</p>
+      <h4>Cebolla y Tomate <span class="badge especial">Especial</span></h4>
+      <p></p>
     <div class="precios-dobles">
       <span class="price">
       <span class="label">Grande:</span> <span class="monto">$12000</span>
@@ -325,8 +357,8 @@
 
   <div class="card-horizontal full">
     <div class="info">
-      <h4>Albahaca</h4>
-      <p>Albahaca, Muzzarella, Salsa, Aceituna.</p>
+      <h4>Albahaca <span class="badge especial">Especial</span></h4>
+      <p></p>
     <div class="precios-dobles">
       <span class="price">
       <span class="label">Grande:</span> <span class="monto">$12000</span>
@@ -341,8 +373,8 @@
 
   <div class="card-horizontal full">
     <div class="info">
-      <h4>Capresse</h4>
-      <p>Albahaca, Tomate, Muzzarella, Salsa, Aceituna.</p>
+      <h4>Capresse <span class="badge especial">Especial</span></h4>
+      <p></p>
     <div class="precios-dobles">
       <span class="price">
       <span class="label">Grande:</span> <span class="monto">$12000</span>
@@ -357,8 +389,8 @@
 
   <div class="card-horizontal full">
     <div class="info">
-      <h4>Calabresa</h4>
-      <p>Longaniza, Muzzarella, Salsa, Aceituna.</p>
+      <h4>Calabresa <span class="badge especial">Especial</span></h4>
+      <p>Longaniza y Muzzarella</p>
     <div class="precios-dobles">
       <span class="price">
       <span class="label">Grande:</span> <span class="monto">$12000</span>
@@ -373,8 +405,8 @@
 
   <div class="card-horizontal full">
     <div class="info">
-      <h4>Papas Pay</h4>
-      <p>Papas Pay, Muzzarella, Salsa, Aceituna.</p>
+      <h4>Papas Pay <span class="badge especial">Especial</span></h4>
+      <p></p>
     <div class="precios-dobles">
       <span class="price">
       <span class="label">Grande:</span> <span class="monto">$12000</span>
@@ -389,8 +421,8 @@
 
   <div class="card-horizontal full">
     <div class="info">
-      <h4>Choclo</h4>
-      <p>Choclo, Muzzarella, Salsa, Aceituna.</p>
+      <h4>Choclo <span class="badge especial">Especial</span></h4>
+      <p></p>
     <div class="precios-dobles">
       <span class="price">
       <span class="label">Grande:</span> <span class="monto">$12000</span>
@@ -405,8 +437,8 @@
 
   <div class="card-horizontal full">
     <div class="info">
-      <h4>Huevo Solo</h4>
-      <p>Huevo, Muzzarella, Salsa, Aceituna.</p>
+      <h4>Huevo Solo <span class="badge especial">Especial</span></h4>
+      <p></p>
     <div class="precios-dobles">
       <span class="price">
       <span class="label">Grande:</span> <span class="monto">$12000</span>
@@ -421,8 +453,8 @@
 
   <div class="card-horizontal full">
     <div class="info">
-      <h4>Provolone</h4>
-      <p>Provolone, Muzzarella, Salsa, Aceituna.</p>
+      <h4>Provolone <span class="badge super">Super</span></h4>
+      <p>Provolone y Muzzarella</p>
     <div class="precios-dobles">
       <span class="price">
       <span class="label">Grande:</span> <span class="monto">$13500</span>
@@ -437,8 +469,8 @@
 
   <div class="card-horizontal full">
     <div class="info">
-      <h4>Ananá</h4>
-      <p>Ananá, Muzzarella, Salsa, Aceituna.</p>
+      <h4>Ananá <span class="badge super">Super</span></h4>
+      <p></p>
     <div class="precios-dobles">
       <span class="price">
       <span class="label">Grande:</span> <span class="monto">$13500</span>
@@ -453,8 +485,8 @@
 
   <div class="card-horizontal full">
     <div class="info">
-      <h4>Roquefort</h4>
-      <p>Roquefort, Muzzarella, Salsa, Aceituna.</p>
+      <h4>Roquefort <span class="badge super">Super</span></h4>
+      <p>Roquefort y Muzzarella</p>
     <div class="precios-dobles">
       <span class="price">
       <span class="label">Grande:</span> <span class="monto">$13500</span>
@@ -469,8 +501,8 @@
 
   <div class="card-horizontal full">
     <div class="info">
-      <h4>Anchoa</h4>
-      <p>Anchoa, Muzzarella, Salsa, Aceituna.</p>
+      <h4>Anchoa <span class="badge super">Super</span></h4>
+      <p></p>
     <div class="precios-dobles">
       <span class="price">
       <span class="label">Grande:</span> <span class="monto">$13500</span>
@@ -485,8 +517,8 @@
 
   <div class="card-horizontal full">
     <div class="info">
-      <h4>3 Quesos</h4>
-      <p>Roquefort, Provolone, Muzzarella, Salsa, Aceituna.</p>
+      <h4>3 Quesos <span class="badge super">Super</span></h4>
+      <p>Roquefort, Provolone y Muzzarella</p>
     <div class="precios-dobles">
       <span class="price">
       <span class="label">Grande:</span> <span class="monto">$13500</span>
@@ -501,8 +533,8 @@
 
   <div class="card-horizontal full">
     <div class="info">
-      <h4>Palmito</h4>
-      <p>Palmito, Muzzarella, Salsa, Salsa Golf, Aceituna.</p>
+      <h4>Palmito <span class="badge super">Super</span></h4>
+      <p></p>
     <div class="precios-dobles">
       <span class="price">
       <span class="label">Grande:</span> <span class="monto">$13500</span>
@@ -527,7 +559,7 @@
 
   <div class="card-horizontal full">
   <div class="info">
-    <h4>Carne</h4>
+    <h4>Empanada Carne</h4>
     <span class="price">$1500</span>
   </div>
     <img alt="carne" src="img/emp/carne.webp"/>
@@ -535,7 +567,7 @@
 
   <div class="card-horizontal full">
   <div class="info">
-    <h4>Jamón y Queso</h4>
+    <h4>Empanada Jamón y Queso</h4>
     <span class="price">$1500</span>
   </div>
     <img alt="Jamón y Queso" src="img/emp/jyq.webp"/>
@@ -543,7 +575,7 @@
 
     <div class="card-horizontal full">
   <div class="info">
-    <h4>Pollo</h4>
+    <h4>Empanada Pollo</h4>
     <span class="price">$1500</span>
   </div>
     <img alt="Pollo" src="img/emp/pollo.webp"/>
@@ -551,7 +583,7 @@
   
   <div class="card-horizontal full">
   <div class="info">
-    <h4>Humita</h4>
+    <h4>Empanada Humita</h4>
     <span class="price">$1500</span>
   </div>
     <img alt="Pollo" src="img/emp/humita.webp"/>
@@ -559,7 +591,7 @@
 
     <div class="card-horizontal full">
   <div class="info">
-    <h4>Cebolla y Queso</h4>
+    <h4>Empanada Cebolla y Queso</h4>
     <span class="price">$1500</span>
   </div>
     <img alt="carne" src="img/emp/cebolla.webp"/>
@@ -570,7 +602,7 @@
 <section class="section" id="tartas">
   <div class="card-horizontal full">
   <div class="info">
-    <h4>Jamón y Queso</h4>
+    <h4>Tarta Jamón y Queso</h4>
     <p>Jamón , Huevo y Queso</p>
     <span class="price">$12000</span>
   </div>
@@ -638,7 +670,7 @@
   <div class="info">
     <h4>Coca Cola Descartable 1,75L</h4>
     <p>Coca Cola Descartable 1,75L</p>
-    <span class="price">$4000</span>
+    <span class="price">$4500</span>
   </div>
     <img alt="Coca ret" src="img/bebida/coca_1,75.webp"/>
   </div>
@@ -647,7 +679,7 @@
   <div class="info">
     <h4>Sprite Descartable 1,75L</h4>
     <p>Sprite Descartable 1,75L</p>
-    <span class="price">$4000</span>
+    <span class="price">$4500</span>
   </div>
     <img alt="Coca ret" src="img/bebida/sprite_1,75.webp"/>
   </div>
@@ -665,7 +697,7 @@
   <div class="info">
     <h4>7up 500Ml</h4>
     <p>7up 500Ml</p>
-    <span class="price">$1800</span>
+    <span class="price">$2000</span>
   </div>
     <img alt="Coca ret" src="img/bebida/7up_500.webp"/>
   </div>
@@ -674,7 +706,7 @@
   <div class="info">
     <h4>Pepsi 500Ml</h4>
     <p>Pepsi 500Ml</p>
-    <span class="price">$1800</span>
+    <span class="price">$2000</span>
   </div>
     <img alt="Coca ret" src="img/bebida/pepsi_500.webp"/>
   </div>
@@ -744,16 +776,24 @@
   </div>
 <script>
 (() => {
-  // ----- Navegación por secciones -----
-  function showSection(sectionId, ev) {
-    document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
-    const target = document.getElementById(sectionId);
-    if (target) target.classList.add('active');
+  // Navbar nuevo: activar chip y mostrar sección SIN scrollear
+  document.querySelectorAll('#lp-nav .nav-chip').forEach(btn => {
+    btn.addEventListener('click', (ev) => {
+      ev.preventDefault();
+      ev.stopPropagation();
 
-    document.querySelectorAll('nav a').forEach(link => link.classList.remove('active'));
-    if (ev?.currentTarget) ev.currentTarget.classList.add('active');
-  }
-  window.showSection = showSection;
+      const target = btn.dataset.target;
+
+      // marcar chip activo
+      document.querySelectorAll('#lp-nav .nav-chip').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      // mostrar sección correspondiente
+      document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+      const section = document.getElementById(target);
+      if (section) section.classList.add('active');
+    });
+  });
 
   // ----- Estado abierto/cerrado -----
   function actualizarEstado() {
@@ -893,75 +933,6 @@
     // Estado abierto/cerrado
     actualizarEstado();
     setInterval(actualizarEstado, 60_000);
-
-    // ----- Mini-flechas de la navbar -----
-    const nav = document.querySelector('nav');
-    if (nav) {
-      // Preferimos que scrollee el <ul>; si no, usamos <nav>
-      const pickScroller = () => {
-        const ul = nav.querySelector('ul');
-        let el = ul || nav;
-        if (ul && (ul.scrollWidth - ul.clientWidth <= 1) && (nav.scrollWidth - nav.clientWidth > 1)) {
-          el = nav;
-        }
-        return el;
-      };
-      let scroller = pickScroller();
-
-      // Crear flechas (evita duplicados)
-      nav.setAttribute('data-scrollable', '');
-      nav.querySelectorAll('.nav-chev').forEach(n => n.remove());
-
-      const mkBtn = (cls, label, char) => {
-        const b = document.createElement('button');
-        b.type = 'button';
-        b.className = `nav-chev ${cls}`;
-        b.setAttribute('aria-label', label);
-        b.textContent = char;
-        return b;
-      };
-      const left  = mkBtn('nav-chev-left',  'Desplazar categorías a la izquierda', '‹');
-      const right = mkBtn('nav-chev-right', 'Desplazar categorías a la derecha',  '›');
-      nav.append(left, right);
-
-      // Umbral para ignorar pequeños paddings/márgenes
-      const EDGE = 14;
-
-      const updateHints = () => {
-        // Re-elegir scroller si cambió por CSS
-        const nextScroller = pickScroller();
-        if (nextScroller !== scroller) {
-          scroller.removeEventListener('scroll', updateHints);
-          scroller = nextScroller;
-          scroller.addEventListener('scroll', updateHints, { passive: true });
-        }
-
-        const hasOverflow = scroller.scrollWidth - scroller.clientWidth > EDGE;
-        if (!hasOverflow) {
-          nav.dataset.atStart = '1';
-          nav.dataset.atEnd   = '1';
-          return;
-        }
-        const atStart = scroller.scrollLeft <= EDGE;
-        const atEnd = scroller.scrollLeft + scroller.clientWidth >= scroller.scrollWidth - EDGE;
-        nav.dataset.atStart = atStart ? '1' : '0';
-        nav.dataset.atEnd   = atEnd   ? '1' : '0';
-      };
-
-      const step = Math.max(80, Math.round(scroller.clientWidth * 0.7));
-      left.addEventListener('click',  () => scroller.scrollBy({ left: -step, behavior: 'smooth' }));
-      right.addEventListener('click', () => scroller.scrollBy({ left:  step, behavior: 'smooth' }));
-
-      scroller.addEventListener('scroll', updateHints, { passive: true });
-      window.addEventListener('resize', updateHints);
-      if (window.ResizeObserver) new ResizeObserver(updateHints).observe(scroller);
-
-      // Recalcular cuando cargan fuentes/imágenes y con pequeños delays
-      window.addEventListener('load', updateHints);
-      setTimeout(updateHints, 300);
-      setTimeout(updateHints, 1000);
-      updateHints();
-    }
   };
 
   if (document.readyState === 'loading') {
@@ -972,7 +943,94 @@
 })();
 </script>
 
-<script type="module" src="./scripts/makeMenuPdf-acroform.js"></script>
-<script type="module" src="./scripts/makePromos.js"></script>
+<script>
+  // 1) Quitar tildes => "jamon" = "jamón", "anana" = "ananá"
+  function foldAccents(str){
+    return (str || '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+  }
+
+  (function initSearch(){
+    const input = document.getElementById('lp-search');
+    if(!input) return;
+
+    // Todas las cards de todas las secciones
+    const productSelectors = [
+      '#promos .card-horizontal', '#pizzas .card-horizontal',
+      '#empanadas .card-horizontal', '#tartas .card-horizontal',
+      '#bebidas .card-horizontal', '#conos .card-horizontal'
+    ];
+
+    const nonProductSelectors = [
+    '#empanadas .bloque-precio-empanadas',
+    '#conos .bloque-promo-conos',
+    '#conos .nota-conos'
+    ];
+
+    // Guardamos qué sección estaba activa para restaurar luego
+    const chips = [...document.querySelectorAll('#lp-nav .nav-chip')];
+    const sections = [...document.querySelectorAll('.section')];
+    const getActiveTarget = () => chips.find(c => c.classList.contains('active'))?.dataset.target;
+
+    function showAllSections(){
+      sections.forEach(sec => sec.classList.add('active'));
+    }
+    function showOnly(targetId){
+      sections.forEach(sec => sec.classList.remove('active'));
+      document.getElementById(targetId)?.classList.add('active');
+    }
+
+    function filterProducts(q){
+      const qFold = foldAccents(q.trim());
+      if (qFold) {
+        // En búsqueda: mostrar TODAS las secciones y filtrar tarjetas
+        showAllSections();
+      } else {
+        // Vacío: volver a la sección que estaba activa
+        const target = getActiveTarget() || 'promos';
+        showOnly(target);
+      }
+
+      productSelectors.forEach(sel=>{
+        document.querySelectorAll(sel).forEach(card=>{
+          const txt = [
+            card.innerText || '',
+            card.getAttribute('data-tags') || '',
+            card.getAttribute('data-name') || ''
+          ].join(' ');
+          const txtFold = foldAccents(txt);
+          card.style.display = qFold ? (txtFold.includes(qFold) ? '' : 'none') : '';
+        });
+      });
+
+      nonProductSelectors.forEach(sel => {
+      document.querySelectorAll(sel).forEach(el => {
+        el.style.display = qFold ? 'none' : '';
+      });
+    });
+    }
+
+    input.addEventListener('input', () => filterProducts(input.value));
+  })();
+</script>
+
+<script>
+document.querySelectorAll('.nav-chip').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = btn.dataset.target;
+
+    // quitar 'active' de todos los botones
+    document.querySelectorAll('.nav-chip').forEach(b => b.classList.remove('active'));
+    // marcar el botón actual
+    btn.classList.add('active');
+
+    // ocultar todas las secciones
+    document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+    // mostrar la sección correspondiente al botón
+    const section = document.getElementById(target);
+    if (section) section.classList.add('active');
+  });
+});
+</script>
+
 </body>
 </html>

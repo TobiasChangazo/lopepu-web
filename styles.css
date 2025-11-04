@@ -13,7 +13,7 @@ html, body {
   padding: 0;
   max-width: 100%;
   overflow-x: hidden;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   color: #fff;
   min-height: 100vh;
   position: relative;
@@ -29,7 +29,7 @@ body::before {
   background: #000 url('img/logo/fondo.webp') center top no-repeat;
   background-size: cover;
   z-index: -1;
-  opacity: 1;
+  opacity: 2;
 }
 
 /* HEADER */
@@ -45,110 +45,6 @@ header img {
 header img:hover {
   transform: scale(1.1);
 }
-
-/* NAVBAR */
-
-nav {
-  background: rgba(187, 95, 95, 0.92);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  -webkit-overflow-scrolling: touch;
-  width: fit-content;
-  max-width: 95%;
-  margin: 20px auto;
-  padding: 0 20px;
-  border-radius: 16px;
-  position: relative;
-  z-index: 10;
-  -webkit-tap-highlight-color: transparent;
-}
-
-nav ul {
-  display: flex;
-  justify-content: center;
-  list-style: none;
-  margin: 0;
-  padding: 1rem 0;
-  gap: 16px;
-  white-space: nowrap;
-  overflow-x: auto;
-  flex-wrap: nowrap;
-  max-width: 100%;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-nav ul::-webkit-scrollbar {
-  display: none;
-}
-
-nav li {
-  flex: 0 0 auto;
-}
-
-nav a {
-  text-decoration: none;
-  color: #fff5eb; 
-  font-weight: bold;
-  font-size: 1.1rem;
-  cursor: pointer;
-  padding: 10px 16px;
-  border-radius: 8px;
-  background-color: transparent;
-  transition: background 0.3s, transform 0.3s ease;
-  white-space: nowrap;
-}
-
-nav a:hover,
-nav a.active {
-  background: #000000;
-  color: #fff717;
-}
-
-nav{
-  position: sticky; top: 0; z-index: 40;
-  background: rgba(28,28,28,0.92);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-  padding: 8px 10px;
-}
-nav a{
-  display:inline-block;
-  padding:8px 14px;
-  border-radius:999px;
-  border:2px solid var(--lp-dark);
-  background: var(--lp-yellow-ink);
-  color:#000; font-weight:800; text-decoration:none;
-  margin-right:8px;
-}
-nav a.active{
-  background:#000; color:var(--lp-yellow-ink);
-}
-
-/* NAV – mini-flechas estilo Lo Pepu */
-nav[data-scrollable]{ position: relative; }
-
-/* botón circular, amarillo + borde negro como los chips */
-.nav-chev{
-  position:absolute; top:40%; transform:translateY(-50%);
-  width:20px; height:24px; border-radius:9999px;
-  background: #ffffff;
-  border:2px solid #000;
-  color:#000; font-weight:900; font-size:18px; line-height:1;
-  display:flex; align-items:center; justify-content:center;
-  box-shadow: 0 2px 6px rgba(0,0,0,.25);
-  z-index:50;
-}
-
-/* separadas del borde del contenedor para que no tapen el primer chip */
-.nav-chev-left{  left:6px;  }
-.nav-chev-right{ right:6px; }
-
-/* ocultar automáticamente cuando no hagan falta */
-nav:not([data-scrollable]) .nav-chev{ display:none; }
-nav[data-at-start="1"] .nav-chev-left{ display:none; }
-nav[data-at-end="1"]   .nav-chev-right{ display:none; }
 
 /* SECCIONES  */
 .section {
@@ -184,13 +80,6 @@ nav[data-at-end="1"]   .nav-chev-right{ display:none; }
   max-width: 1600px;
   min-height: 200px;
   box-sizing: border-box;
-}
-
-.card-horizontal.full img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 12px;
 }
 
 .card-horizontal.full .info {
@@ -949,8 +838,6 @@ html {
 .btn-export:hover { transform: translateY(-1px); }
 .btn-export.outline { background:#111; color:#fff; border-color:#333; }
 
-body{ background: linear-gradient(180deg,#1e1e1e 0%, #141414 100%); }
-
 .section{ padding:10px 10px; }
 
 .section .card-horizontal.full{
@@ -1050,45 +937,163 @@ body{ background: linear-gradient(180deg,#1e1e1e 0%, #141414 100%); }
   box-shadow: 0 4px 0 #00000020;
 }
 
+.nav-container{
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  padding: 18px 0;      /* más aire para la cápsula */
+  background: transparent;
+  border: 0;            /* quitamos bordes amarillos aquí */
+  box-shadow: none;     /* sombra irá en la cápsula */
+  backdrop-filter: none;
+}
+
+.nav-slab {
+  width: min(1100px, 92vw);
+  margin: 0 auto;
+  background: #1e1e1e;
+  border: 2px solid var(--lp-yellow);
+  border-radius: 26px;
+  box-shadow: 0 10px 26px rgba(0,0,0,.3);
+  padding: 16px 0;           /* 🔥 sin padding lateral para pegar íconos al borde */
+  overflow-x: hidden;
+  position: relative;
+}
+
+.nav-slab {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Efecto de "fade" lateral */
+.nav-slab::before,
+.nav-slab::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 40px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.nav-slab::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(0,0,0,0.6), transparent);
+}
+
+.nav-slab::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(0,0,0,0.6), transparent);
+}
+
+/* contenedor de iconos */
+#lp-nav .nav-icons {
+  display: flex;
+  justify-content: flex-start;
+  overflow-x: auto;
+  overflow-y: hidden;
+  gap: 14px; /* 🔧 espaciado parejo sin huecos excesivos */
+  padding: 0px 0 0px 1px;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+
+}
+
+#lp-nav .nav-icons li {
+  flex: 0 0 100px;       /* 🔥 mismo ancho para todos los íconos */
+  text-align: center;    /* centra el texto debajo del ícono */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#lp-nav .nav-icons::-webkit-scrollbar {
+  display: none;
+}
+
+/* chip */
+#lp-nav .nav-chip {
+  flex: 0 0 90px; /* 🔥 cada ícono ocupa el mismo ancho */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* círculo con imagen – lugar para tus animaciones */
+#lp-nav .nav-icon{
+  width: 76px;
+  height: 76px;
+  border-radius:50%;
+  object-fit: cover;
+  background:#fff;
+  border: 2px solid #111;
+  box-shadow: 0 6px 16px rgba(0,0,0,.35);
+  padding: 6px;
+  transition: transform .2s ease, filter .2s ease;
+}
+#lp-nav .nav-chip span{
+  font-weight: 800;
+  color: var(--lp-yellow);
+  letter-spacing:.2px;
+  font-size: .95rem;
+}
+#lp-nav .nav-chip:hover .nav-icon{ transform: translateY(-2px); }
+#lp-nav .nav-chip.active .nav-icon{
+  transform: scale(1.08);
+  filter: brightness(1.1);
+}
+
+.nav-search-row {
+  display: flex;
+  justify-content: center;
+  margin: 6px 0 12px;
+}
+
+.nav-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 85%;             
+  max-width: 480px;       
+  height: 38px;           
+  background: #fff;
+  border-radius: 30px;     
+  padding: 4px 14px;      
+  box-shadow: 0 3px 10px rgba(0,0,0,0.25);
+}
+
+.nav-search input {
+  flex: 1;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font-size: 0.9rem;
+  color: #222;
+}
+
+.nav-search i {
+  font-size: 0.95rem;
+  color: #555;
+  margin-left: 8px;
+}
+
+.nav-search input::placeholder{ color:#888; }
+
+
 /* media responsive */
 
+@media (min-width: 768px) {
+  #lp-nav .nav-icons {
+    justify-content: center; /* centra los iconos */
+    overflow-x: hidden;       /* quita el scroll horizontal */
+    padding: 0;               /* quita el margen extra del costado */
+  }
+}
+
 @media (max-width: 768px) {
-  nav {
-    width: fit-content;
-    max-width: 90%;
-    padding: 4px 10px;
-    margin: 0 auto;
-    border-radius: 14px;
-  }
-
-  nav ul {
-    flex-direction: row;
-    justify-content: flex-start;
-    gap: 10px;
-    padding: 0.5rem 12px;
-    margin: 0;
-    white-space: nowrap;
-    scrollbar-width: none; 
-    -ms-overflow-style: none; 
-    scroll-snap-type: x mandatory;
-    scroll-padding-left: 0;
-    scroll-behavior: smooth;
-  }
-
-  nav ul::-webkit-scrollbar {
-    display: none;
-  }
-
-  nav li {
-    flex: 0 0 auto;
-    scroll-snap-align: start;
-  }
-
-  nav a {
-    font-size: 1rem;
-    padding: 7px 14px;
-  }
-
   .datos-negocio {
     max-width: 90%;
     padding: 10px;
@@ -1137,13 +1142,6 @@ body{ background: linear-gradient(180deg,#1e1e1e 0%, #141414 100%); }
     width: calc(100% - 24px);
     max-width: none;
     margin: 14px auto;
-  }
-  .card-horizontal.full img{
-    width: 100%;
-    height: 100%;
-    min-height: 140px;     
-    object-fit: cover;    
-    border-radius: 12px;   
   }
   .card-horizontal.full .info{
     width: auto;
@@ -1202,6 +1200,42 @@ body{ background: linear-gradient(180deg,#1e1e1e 0%, #141414 100%); }
     background-size: cover !important;
     opacity: 1 !important;
   }
+
+  #lp-nav .nav-icons{
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    overflow-y: hidden;
+    gap: 14px;
+    padding-bottom: 6px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  #lp-nav .nav-icons::-webkit-scrollbar{
+    display: none;
+  }
+
+  /* íconos un poco más chicos */
+  #lp-nav .nav-icon{
+    width: 64px;
+    height: 64px;
+  }
+  #lp-nav .nav-chip span{
+    font-size: 0.9rem;
+  }
+  .nav-search {
+    width: 80%;
+    max-width: none;
+    height: 34px;
+    padding: 3px 12px;
+  }
+
+  .nav-search input {
+    font-size: 1rem;
+  }
+
+  .nav-search i {
+    font-size: 1rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1218,13 +1252,7 @@ body{ background: linear-gradient(180deg,#1e1e1e 0%, #141414 100%); }
     max-width: none;
     margin: 14px auto;
   }
-  .card-horizontal.full img{
-    width: 100%;
-    height: 100%;
-    min-height: 140px;     
-    object-fit: cover;     
-    border-radius: 12px;   
-  }
+  
   .card-horizontal.full .info{
     width: auto;
     padding-right: 0;
@@ -1259,3 +1287,233 @@ body{ background: linear-gradient(180deg,#1e1e1e 0%, #141414 100%); }
     box-sizing: border-box;
   }
 }
+
+/* NAVBAR NUEVO CON ICONOS CIRCULARES */
+#lp-nav {
+  background: transparent;
+  padding: 10px 0 15px;
+  text-align: center;
+}
+.nav-icons {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 10px;
+}
+.nav-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: transform .2s, filter .2s;
+}
+.nav-chip img.nav-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 8px rgba(0,0,0,.4);
+  margin-bottom: 6px;
+}
+.nav-chip span {
+  color: var(--lp-yellow);
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-shadow: 0 0 6px #000;
+}
+.nav-chip.active img.nav-icon {
+  transform: scale(1.1);
+  filter: brightness(1.3);
+}
+.nav-search-row {
+  display: flex;
+  justify-content: center;
+}
+.nav-search input {
+  width: min(400px, 90%);
+  padding: 10px 36px 10px 14px;
+  border-radius: 9999px;
+  font-weight: bold;
+  color: #000;
+  background: #fff;
+}
+.nav-search i {
+  position: relative;
+  left: -28px;
+  color: #000;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  margin-left: 8px;
+  border-radius: 999px;
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.5px;
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  backdrop-filter: blur(8px) saturate(160%);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* 🔸 Detalle sutil de brillo en la parte superior */
+.badge::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 45%;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.45), transparent);
+  border-radius: inherit;
+}
+
+.badge.especial {
+  background: linear-gradient(135deg, #ffd84f 0%, #fbcb53 100%);
+  color: #000;
+  text-shadow: 0 1px 2px rgba(255,255,255,0.5);
+}
+
+.badge.super {
+  background: linear-gradient(135deg, #4e61d0 0%, #523ce0 100%);
+  color: #fff;
+  text-shadow: 0 2px 3px rgba(0,0,0,0.4);
+}
+
+.info h4 {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* espacio entre nombre y burbuja */
+  flex-wrap: wrap; /* permite adaptarse si es muy largo */
+}
+
+.card-horizontal.full .info h4 {
+  display: flex;
+  align-items: center;
+  gap: 8px;        /* espacio entre nombre y burbuja */
+  flex-wrap: wrap; /* si el nombre es muy largo, se corta bonito */
+}
+
+/* Ajuste del tamaño del badge para pantallas pequeñas */
+@media (max-width: 480px) {
+  .badge {
+    font-size: 0.68rem;
+    padding: 3px 8px;
+    letter-spacing: 0.3px;
+  }
+  .card-horizontal.full .info h4 {
+    gap: 6px;
+  }
+}
+
+.card-horizontal.full .info h4 {
+  display: inline-flex;        /* mantiene ambos en una misma línea */
+  align-items: center;         /* centra verticalmente */
+  gap: 8px;                    /* separa el texto de la burbuja */
+  flex-wrap: nowrap;           /* evita saltos innecesarios */
+  line-height: 1.2;            /* ajusta altura */
+  margin-bottom: 6px;          /* da respiro visual */
+}
+
+/* 🔸 Evita que el badge se expanda o rompa el layout */
+.card-horizontal.full .info h4 .badge {
+  flex-shrink: 0;
+}
+
+/* 📱 Ajuste en pantallas chicas */
+@media (max-width: 480px) {
+  .card-horizontal.full .info h4 {
+    font-size: 0.95rem;
+    gap: 6px;
+  }
+
+  .card-horizontal.full .info h4 .badge {
+    font-size: 0.7rem;
+    padding: 2px 7px;
+  }
+}
+
+.card-horizontal.full .info h4 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 6px;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+  font-size: 1rem;
+}
+
+/* 🔸 Ajuste del badge para mantenerse alineado */
+.card-horizontal.full .info h4 .badge {
+  flex-shrink: 0;
+  transform: translateY(-1px); /* lo centra ópticamente */
+}
+
+/* 📱 Responsive */
+@media (max-width: 480px) {
+  .card-horizontal.full .info h4 {
+    font-size: 0.9rem;
+    gap: 4px;
+  }
+  .card-horizontal.full .info h4 .badge {
+    font-size: 0.68rem;
+    padding: 2px 7px;
+    transform: translateY(-0.5px);
+  }
+}
+
+#pizzas .card-horizontal.full img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 12px;
+  height: auto;
+  max-height: 160px; /* mantiene proporción sin deformar */
+}
+
+/* 📱 En celulares, mantiene tamaño parejo */
+@media (max-width: 768px) {
+  #pizzas .card-horizontal.full img {
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+}
+
+.section .card-horizontal.full .info .badge {
+  font-size: 0.6rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  margin-left: 6px;
+  border-radius: 999px;
+  letter-spacing: 0.4px;
+  border: 1px solid rgba(0,0,0,0.25);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* 📱 En celulares aún más proporcionada */
+@media (max-width: 480px) {
+  .section .card-horizontal.full .info .badge {
+    font-size: 0.55rem;
+    padding: 2px 5px;
+    margin-left: 4px;
+  }
+}
+

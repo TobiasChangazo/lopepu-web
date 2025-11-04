@@ -134,17 +134,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // === HELPERS PROMOS ===
 
   // Lista de "Especiales" (precio grande $10000) — AJUSTÁ si cambiás la carta
-  const ESPECIALES_10000 = new Set([
+  const PIZZAS_ESPECIALES = new Set([
     "Jamón y Morrón","Jamón Solo","Jamón y Huevo","Napolitana","Fugazzeta",
     "Cebolla y Tomate","Cebolla y Albahaca","Albahaca","Capresse",
     "Calabresa","Papas Pay","Choclo","Huevo Solo"
   ]);
-
-  const PRICES = {
-    muzzaG: 8000,
-    especialG: 10000,
-    emp: 1500
-  };
 
   // Devuelve {half:true, p1, p2} si es 1/2 y 1/2, sino {half:false}
   function parseHalf(flavor) {
@@ -164,11 +158,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const half = parseHalf(item.flavor);
     if (!half.half) {
       if (item.flavor === 'Muzzarella') return 'muzza';
-      if (ESPECIALES_10000.has(item.flavor)) return 'especial';
+      if (PIZZAS_ESPECIALES.has(item.flavor)) return 'especial';
       return null;
     }
     // 1/2 y 1/2: cuenta como "especial" sólo si AMBOS gustos son especiales $10000
-    if (ESPECIALES_10000.has(half.p1) && ESPECIALES_10000.has(half.p2)) return 'especial';
+    if (PIZZAS_ESPECIALES.has(half.p1) && PIZZAS_ESPECIALES.has(half.p2)) return 'especial';
     // si alguno es muzza u otro precio NO lo contamos para promos
     return null;
   }
