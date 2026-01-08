@@ -1041,7 +1041,7 @@
 
 </main>
 <footer>
-<p>© 2025 Lo Pepu</p>
+<p>© 2026 Lo Pepu</p>
 </footer>
 
 <!-- MODAL PIZZA -->
@@ -1867,30 +1867,51 @@ const btnEnviarPedido = document.getElementById('cd-step2-confirm');
 const inputCalle  = document.getElementById('cd-calle');
 const inputNumero = document.getElementById('cd-num');
 
+// BUSCA ESTE BLOQUE Y REEMPLÁZALO COMPLETO:
 btnEnviarPedido?.addEventListener('click', () => {
   const modoActivo = document.querySelector('.cd-mode__card.is-active')?.dataset.mode;
 
-  // limpiar errores previos
+  // 1. LIMPIEZA DE ERRORES PREVIOS
+  // Quitamos la clase de error del nombre y los pagos
+  const inputNombre = document.getElementById('cd-nombre');
+  inputNombre?.classList.remove('is-error');
+  
+  document.querySelectorAll('.cd-radio').forEach(r => r.classList.remove('is-error'));
+
+  // Quitamos la clase de error de calle/número (si hubiera)
   inputCalle?.classList.remove('is-error');
   inputNumero?.classList.remove('is-error');
 
-  let errorBox = document.querySelector('.cd-envio-error');
-  if (errorBox) errorBox.remove();
+  // Borramos mensajes de error viejos (tanto de cliente como de envío)
+  document.querySelectorAll('.cd-field-error-msg, .cd-envio-error').forEach(e => e.remove());
 
-  const inputNombre = document.getElementById('cd-nombre');
+  // 2. VALIDACIÓN DE DATOS DEL CLIENTE (Nombre y Pago)
+  let clienteError = false;
   const pagoSeleccionado = document.querySelector('input[name="cd-pago"]:checked');
 
+  // Validar Nombre
   if (!inputNombre?.value.trim()) {
-    alert('Por favor ingresá tu nombre y apellido.');
-    return;
+    inputNombre?.classList.add('is-error');
+    clienteError = true;
   }
 
+  // Validar Pago
   if (!pagoSeleccionado) {
-    alert('Seleccioná un medio de pago.');
-    return;
+    // Marcamos ambas opciones en rojo para indicar que falta seleccionar una
+    document.querySelectorAll('.cd-radio').forEach(r => r.classList.add('is-error'));
+    clienteError = true;
   }
 
-  // si es envío, exigir calle y número
+  // Si falta Nombre o Pago, mostramos mensaje y cortamos
+  if (clienteError) {
+    const box = document.createElement('div');
+    box.className = 'cd-field-error-msg'; // Usamos la nueva clase CSS
+    box.textContent = 'Por favor completá tu Nombre y Medio de Pago.';
+    document.getElementById('cd-cliente')?.appendChild(box);
+    return; // <--- Importante: detiene la ejecución aquí
+  }
+
+  // 3. VALIDACIÓN DE ENVÍO (Solo si el modo es "envio")
   if (modoActivo === 'envio') {
     const calle  = inputCalle?.value.trim();
     const numero = inputNumero?.value.trim();
@@ -1900,26 +1921,24 @@ btnEnviarPedido?.addEventListener('click', () => {
       if (!numero) inputNumero?.classList.add('is-error');
 
       const box = document.createElement('div');
-      box.className = 'cd-envio-error';
+      box.className = 'cd-envio-error'; // Usamos la clase que ya tenías
       box.textContent = 'Para envío a domicilio, completá Calle y Número.';
       document.getElementById('cd-envio')?.appendChild(box);
-      return;
+      return; // <--- Detiene la ejecución si falta dirección
     }
   }
 
-  // ✅ abrir WhatsApp (sirve para retiro y envío)
+  // 4. SI TODO ESTÁ BIEN: ARMAR WHATSAPP
   const mensaje = buildWhatsappMessage();
-  const phone = '5492324674311';
+  const phone = '5492324674311'; // Tu número
   const url = `https://wa.me/${phone}?text=${encodeURIComponent(mensaje)}`;
   window.open(url, '_blank');
 
-  // ✅ vaciar carrito al enviar
-  localStorage.removeItem(CART_KEY);   // o 'lopepu-cart' si preferís literal
-  renderCart?.();                      // refresca UI si existe
-  closeCart?.();                       // cierra drawer si existe
+  // Vaciar carrito y cerrar
+  localStorage.removeItem(CART_KEY);
+  renderCart?.();
+  closeCart?.();
 });
-
-
 
   function openCart(){ 
     if(!elDrawer||!elOverlay) return; 
@@ -3295,7 +3314,6 @@ const promoTitleEl = document.getElementById("promo-modal-title");
 promoAddBtn?.addEventListener("click", () => {
   const qty = Math.max(1, parseInt(promoQtyIn?.value || "1", 10));
 
-  // ✅ basePrice REAL (por unidad), no el total del modal
   const basePrice = promoBasePrice;
 
   const requiredEmp =
@@ -3311,33 +3329,27 @@ promoAddBtn?.addEventListener("click", () => {
 
     if (selected !== requiredEmp) {
       alert(`Tenés que elegir ${requiredEmp} empanadas. Te faltan ${requiredEmp - selected}.`);
-      return; // ⛔ no agrega al carrito
+      return;
     }
   }
 
-  // ✅ Bundle 1 sola vez (esto es lo que “incluye” la promo)
   const bundle = buildPromoBundleOptions();
 
-  // ✅ Opcionales + comentario (lo vamos a replicar en los items reales)
   const commonOpts = [];
 
-  // 1) OPCIONALES (checkboxes marcados)
   document.querySelectorAll('#promo-modal .im-options .opt-flag:checked').forEach(ch => {
     commonOpts.push({ name: ch.value, price: 0, qty: 1 });
   });
 
-  // 2) COMENTARIO (lo guardamos como opción para que salga en “Ver detalles”)
   const note = (document.getElementById("promo-note")?.value || "").trim();
   if (note) commonOpts.push({ name: `Comentario: ${note}`, price: 0, qty: 1 });
 
-  const PIZZA_G = { muzza: 10000, esp: 12000 }; // mismos valores que venís usando
+  const PIZZA_G = { muzza: 10000, esp: 12000 };
   const EMP_UNIT = 1500;
 
-  // helper: agrega 1 pizza "real" al carrito
   const addPizzaItem = ({ tier, qty, pizzaLines }) => {
     const optLines = [];
 
-    // líneas de detalle (para WhatsApp y para "Ver detalles")
     (pizzaLines || []).forEach(line => {
       const t = String(line || "").trim();
       if (t) optLines.push({ name: `PIZZA: ${t}`, qty: 1, price: 0 });
@@ -3352,14 +3364,13 @@ promoAddBtn?.addEventListener("click", () => {
       qty: Math.max(1, Number(qty) || 1),
       extras: [],
       options: [...optLines, ...commonOpts],
-      note: note, // (por si tu builder también lo usa)
+      note: note, 
       sections: (pizzaLines && pizzaLines.length)
         ? [{ title: "PIZZA", lines: pizzaLines }]
         : []
     });
   };
 
-  // helper: agrega empanadas "reales"
   const addEmpItem = ({ name, qty }) => {
     addToCart({
       type: "empanada",
@@ -3367,20 +3378,18 @@ promoAddBtn?.addEventListener("click", () => {
       basePrice: EMP_UNIT,
       qty: Math.max(1, Number(qty) || 1),
       extras: [],
-      options: [...commonOpts],   // ✅ arreglado
-      note: note                 // ✅ por si se usa
+      options: [...commonOpts],  
+      note: note                
     });
   };
 
-  // armamos pizzas agrupadas por número (PIZZA 1 / PIZZA 2 / etc)
-  const pizzasByNum = new Map(); // num -> [ "½ X", "½ Y", ... ]
+  const pizzasByNum = new Map(); 
   let muzzaCount = 0;
 
   bundle.forEach(b => {
     const raw = String(b?.name || "").trim();
     const q = Math.max(1, Number(b?.qty) || 1);
 
-    // EMPANADAS
     let m = raw.match(/^EMPANADAS\s*:\s*(.+)$/i);
     if (m) {
       const empName = (m[1] || "").trim();
@@ -3388,7 +3397,6 @@ promoAddBtn?.addEventListener("click", () => {
       return;
     }
 
-    // PIZZA numerada: "PIZZA 1: ½ Napolitana"
     m = raw.match(/^PIZZA\s+(\d+)\s*:\s*(.+)$/i);
     if (m) {
       const num = Number(m[1] || 0);
