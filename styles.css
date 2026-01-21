@@ -3675,3 +3675,17 @@ html, body {
   position: relative;
   overflow: visible;
 }
+
+/* ARREGLO VISUAL DEL FONDO */
+body::before {
+  position: fixed !important; /* Lo clava a la pantalla */
+  top: 0; 
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-attachment: scroll !important; /* Evita rebotes en móviles */
+  background-size: cover !important;
+  pointer-events: none; /* Dejá esto, ayuda al scroll */
+  z-index: -9999; /* Se asegura que quede bien atrás */
+  transform: translateZ(0); /* Aceleración de hardware para que no titile */
+}
