@@ -4,7 +4,7 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pizzería Lo Pepu</title>
-  <link href="styles.css?v=20" rel="stylesheet"/>
+  <link href="styles.css?v=21" rel="stylesheet"/>
   <link href="img/favicon/favicon.ico" rel="icon" type="image/x-icon">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&display=swap" rel="stylesheet">
@@ -4238,6 +4238,10 @@ function loadPromoEspecialMasMediaDocena() {
 
   return lines.length ? `<div class="cd-meta">${lines.join("<br>")}</div>` : "";
   }
+
+    window.addEventListener("pageshow", () => {
+    document.body.classList.remove("modal-open");
+  });
 
   renderCart();
 })();

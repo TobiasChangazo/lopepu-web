@@ -3641,3 +3641,15 @@ body.modal-open .cart-fab {
   font-weight: 700;
   animation: fadeIn 0.3s ease;
 }
+
+/* Overlays: si están hidden, que no capturen toques */
+.lp-overlay[hidden],
+#item-modal-overlay[hidden],
+#cart-overlay[hidden]{
+  pointer-events: none !important;
+}
+
+/* (Extra) El fondo fijo nunca debería capturar toques */
+body::before{
+  pointer-events: none;
+}
