@@ -1086,6 +1086,8 @@ html {
     background-attachment: scroll !important;
     background-position: center top !important;
     background-size: cover !important;
+    position: absolute;
+    height: 100%;
     opacity: 1 !important;
   }
 
@@ -3642,14 +3644,29 @@ body.modal-open .cart-fab {
   animation: fadeIn 0.3s ease;
 }
 
-/* Overlays: si están hidden, que no capturen toques */
-.lp-overlay[hidden],
-#item-modal-overlay[hidden],
-#cart-overlay[hidden]{
-  pointer-events: none !important;
+#sobre-nosotros-overlay,
+#sobre-nosotros {
+  pointer-events: none;
 }
+
+#sobre-nosotros.visible,
+#sobre-nosotros-overlay.visible {
+  pointer-events: auto;
+}
+
 
 /* (Extra) El fondo fijo nunca debería capturar toques */
 body::before{
   pointer-events: none;
+}
+
+html, body {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+}
+
+.section {
+  position: relative;
+  overflow: visible;
 }
