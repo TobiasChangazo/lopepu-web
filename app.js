@@ -3,6 +3,13 @@
         const pill = document.getElementById('estado-local'); // ID correcto según tu HTML
         if (!pill) return;
 
+        const FORZAR_CIERRE = false; // Cambiar a true para cerrar el local manualmente (vacaciones / cierre temporal)
+        if (FORZAR_CIERRE) {
+            pill.className = 'estado-local cerrado';
+            pill.innerText = 'CERRADO - VOLVEMOS MAÑANA';
+            return;
+        }
+
         const ahora = new Date();
         const dia = ahora.getDay(); // 0 domingo, 1 lunes...
         const horas = ahora.getHours();
@@ -632,6 +639,12 @@
             return [];
         }
     }
+
+    function getCartItemCount() {
+        const cart = getCart();
+        return cart.reduce((acc, it) => acc + (Number(it.qty) || 1), 0);
+    }
+
     function setCart(arr) {
         localStorage.setItem(CART_KEY, JSON.stringify(arr));
         renderCart();
@@ -3120,21 +3133,37 @@
         updateCartFab();
     });
 
+    function renderCartBadge() {
+        const badge = document.getElementById('cart-badge');
+        if (!badge) return;
+        const total = getCartItemCount();
+        if (total > 0) {
+            badge.textContent = String(total);
+            badge.hidden = false;
+            badge.setAttribute('aria-hidden', 'true');
+        } else {
+            badge.textContent = '';
+            badge.hidden = true;
+        }
+    }
+
     function updateCartFab() {
         const cart = getCart();
         const countEl = document.getElementById("cart-count");
-        if (!countEl) return;
 
-        // Usamos la "vista agrupada" para que cuente combos enteros, no empanadas sueltas
-        const view = typeof buildCartView === 'function' ? buildCartView(cart) : cart;
+        if (countEl) {
+            // Usamos la "vista agrupada" para que cuente combos enteros, no empanadas sueltas
+            const view = typeof buildCartView === 'function' ? buildCartView(cart) : cart;
 
-        if (!Array.isArray(view) || view.length === 0) {
-            countEl.textContent = "0 items";
-            return;
+            if (!Array.isArray(view) || view.length === 0) {
+                countEl.textContent = "0 items";
+            } else {
+                const count = view.reduce((s, it) => s + (Number(it.qty) || 1), 0);
+                countEl.textContent = count + (count === 1 ? " item" : " items");
+            }
         }
 
-        const count = view.reduce((s, it) => s + (Number(it.qty) || 1), 0);
-        countEl.textContent = count + (count === 1 ? " item" : " items");
+        renderCartBadge();
     }
 
 

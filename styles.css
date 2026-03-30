@@ -3414,6 +3414,33 @@ body::before {
   fill: currentColor;
 }
 
+.nav-icon--cart {
+  position: relative;
+}
+
+.cart-nav-badge {
+  position: absolute;
+  top: -5px;
+  right: -8px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  box-sizing: border-box;
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 16px;
+  text-align: center;
+  color: #1a1a12;
+  background: var(--yellow);
+  border-radius: 999px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+}
+
+.cart-nav-badge[hidden] {
+  display: none !important;
+}
+
 /* ═══════════════════════════════════════════
    ACCESIBILIDAD
 ═══════════════════════════════════════════ */
