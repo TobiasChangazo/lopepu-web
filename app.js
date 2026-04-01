@@ -3,7 +3,7 @@
         const pill = document.getElementById('estado-local'); // ID correcto según tu HTML
         if (!pill) return;
 
-        const FORZAR_CIERRE = true; // Cambiar a true para cerrar el local manualmente (vacaciones / cierre temporal)
+        const FORZAR_CIERRE = false; // Cambiar a true para cerrar el local manualmente (vacaciones / cierre temporal)
         if (FORZAR_CIERRE) {
             pill.className = 'estado-local cerrado';
             pill.innerText = 'CERRADO - VOLVEMOS MAÑANA';
